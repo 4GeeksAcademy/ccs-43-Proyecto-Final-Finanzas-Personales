@@ -1,3 +1,12 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+.navbar {
+    background-color: #4654a3;
+}
+
+.logo-img {
+    width: 20rem;
+    height: auto; 
+  }
+  
