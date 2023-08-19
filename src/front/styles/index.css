@@ -6,7 +6,12 @@
 }
 
 .logo-img {
-    width: 20rem;
+    width: 18rem;
     height: auto; 
   }
+
+a {
+    display: flex;
+    align-items: center;
+}
   
