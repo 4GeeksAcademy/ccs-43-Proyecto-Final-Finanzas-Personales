@@ -9,12 +9,14 @@ export const Navbar = () => {
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1"><img src={Brand} className="logo-img img-fluid"/></span>
 				</Link>
-				<div className="d-flex justify-content-between">
-					<a href="nosotros" className="text-light text-decoration-none me-4">Nosotros</a>
-					<Link to="/demo">
-						<button className="btn btn-outline-light me-3">Iniciar sesión</button>
+				<div className="d-flex justify-content-between gap-4">
+					<Link to="nosotros" className="text-light text-decoration-none">Nosotros</Link>
+					<Link to="/demo" className="btn btn-outline-light text-decoration-none">
+						Iniciar sesión
 					</Link>
-					<button className="btn btn-outline-light">Registrarse</button>
+					<Link to="/demo" className="btn btn-outline-light text-decoration-none">
+						Registrarse
+					</Link>
 				</div>
 			</div>
 		</nav>
