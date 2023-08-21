@@ -41,6 +41,7 @@ setup_commands(app)
 
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(api, url_prefix='/api')
+print("API endpoints registered:", app.url_map)
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
@@ -61,6 +62,14 @@ def serve_any_other_file(path):
         path = 'index.html'
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0 # avoid cache memory
+    return response
+
+@app.route('/api/signup', methods=['OPTIONS'])
+def handle_options():
+    response = jsonify({'message': 'Preflight request allowed'})
+    response.headers.add('Access-Control-Allow-Origin', 'https://zany-bassoon-x69q4qv6655c6994-3000.app.github.dev')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    response.headers.add('Access-Control-Allow-Methods', 'POST')
     return response
 
 
