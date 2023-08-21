@@ -1,22 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "../../styles/Registro.css"
+import { Link } from "react-router-dom";
 
 export const Registro = () => {
-    const [formData, setFormData] = useState({
-        user_name: "",
-        first_name: "",
-        last_name: "",
-        email: "",
-        password_hash: ""
-    });
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const formData = {
+            user_name: e.target.user_name.value,
+            first_name: e.target.first_name.value,
+            last_name: e.target.last_name.value,
+            email: e.target.email.value,
+            password: e.target.password.value
+        };
 
         try {
             const response = await axios.post(
@@ -37,16 +34,21 @@ export const Registro = () => {
     };
 
     return (
+        <div className="container-fluid">
+        <div className="container-fluid FondoRegistroDeUsuario">
+        </div>
         <div className="container">
-            <h2>Registro de Usuario</h2>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="user_name" placeholder="Nombre de usuario" onChange={handleChange} required />
-                <input type="text" name="first_name" placeholder="Nombre" onChange={handleChange} required />
-                <input type="text" name="last_name" placeholder="Apellido" onChange={handleChange} required />
-                <input type="email" name="email" placeholder="Correo electrónico" onChange={handleChange} required />
-                <input type="password" name="password_hash" placeholder="Contraseña" onChange={handleChange} required />
-                <button type="submit">Registrarse</button>
+            <h3 id="tituloRegistroDeUsuario"><i className="fa-solid fa-user"></i> Registro de Usuario</h3>
+            <form onSubmit={handleSubmit} className="formularioDeRegistroDeUsuario">
+                <input className="inputRegistroDeUsuario" type="text" name="user_name" placeholder="Nombre de usuario" required />
+                <input className="inputRegistroDeUsuario" type="text" name="first_name" placeholder="Nombre" required />
+                <input className="inputRegistroDeUsuario" type="text" name="last_name" placeholder="Apellido" required />
+                <input className="inputRegistroDeUsuario" type="email" name="email" placeholder="Correo electrónico" required />
+                <input className="inputRegistroDeUsuario" type="password" name="password" placeholder="Contraseña" required />
+                <button className="buttonCargadeDatosDeRegistroDeUsuario btn btn-outline-primary" type="submit">Registrarse  <i className="fa-solid fa-arrow-right"></i></button>
             </form>
+            <p style={{whiteSpace: 'nowrap', display: 'inline-block'}} className="d-flex">¿Ya te registraste?  <Link to="/" style={{marginLeft: '5px'}}>Iniciar sesión</Link></p>
+        </div>
         </div>
     );
 };
