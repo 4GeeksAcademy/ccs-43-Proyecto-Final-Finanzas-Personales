@@ -14,7 +14,7 @@ export const Navbar = () => {
 					<Link to="/demo" className="btn btn-outline-light text-decoration-none">
 						Iniciar sesión
 					</Link>
-					<Link to="/demo" className="btn btn-outline-light text-decoration-none">
+					<Link to="/Registrarse" className="btn btn-outline-light text-decoration-none">
 						Registrarse
 					</Link>
 				</div>
