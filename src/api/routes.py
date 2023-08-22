@@ -61,17 +61,9 @@ def signup():
 
 
 
-@app.route('/login',methods = ['POST', 'GET'])
-def login():
-   if request.method == 'POST':
-      user = request.form['nm']
-      return jsonify({"message": "Metodo POST"}), 400
-   else:
-      user = request.args.get('nm')
-      return jsonify({"message": "otro METODO"}), 500
-
-if __name__ == '__main__':
-   app.run(debug = True)
+# @app.route('/login',methods = ['GET'])
+# def login():
+#     return jsonify({"message": "AQUI LLEGUE"}), 201
 
 
 if __name__ == '__main__':

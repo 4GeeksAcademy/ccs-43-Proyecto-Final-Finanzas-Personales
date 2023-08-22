@@ -7,30 +7,27 @@ export const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // const formData = {
-        //     user_name: e.target.user_name.value,
-        //     first_name: e.target.first_name.value,
-        //     last_name: e.target.last_name.value,
-        //     email: e.target.email.value,
-        //     password: e.target.password.value
-        // };
+        const formData = {
+            email: e.target.email.value,
+            password: e.target.password.value
+        };
+console.log(formData, 'AQUIII')
+        try {
+            const response = await axios.get(
+                process.env.BACKEND_URL+"/api/login",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    }
+                }
+            );
 
-        // try {
-        //     const response = await axios.post(
-        //         "https://zany-bassoon-x69q4qv6655c6994-3001.app.github.dev/api/signup",
-        //         formData,
-        //         {
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 "Accept": "application/json"
-        //             }
-        //         }
-        //     );
-
-        //     console.log("Registro exitoso", response.data);
-        // } catch (error) {
-        //     console.error("Error al registrar", error.response.data);
-        // }
+            console.log("Registro exitoso", response.data);
+        } catch (error) {
+            console.error("Error al registrar", error.response.data);
+        }
     };
 
     return (
