@@ -11,7 +11,7 @@ export const Navbar = () => {
 				</Link>
 				<div className="d-flex justify-content-between gap-4">
 					<Link to="nosotros" className="text-light text-decoration-none">Nosotros</Link>
-					<Link to="/demo" className="btn btn-outline-light text-decoration-none">
+					<Link to="/Login" className="btn btn-outline-light text-decoration-none">
 						Iniciar sesión
 					</Link>
 					<Link to="/Registrarse" className="btn btn-outline-light text-decoration-none">
