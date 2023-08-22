@@ -17,7 +17,7 @@ export const Registro = () => {
 
         try {
             const response = await axios.post(
-                "https://opulent-space-rotary-phone-9j4xj496gggc9x6q-3001.app.github.dev/api/signup",
+                process.env.BACKEND_URL+"/api/signup",
                 formData,
                 {
                     headers: {
