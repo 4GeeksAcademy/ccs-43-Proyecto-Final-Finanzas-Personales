@@ -60,5 +60,19 @@ def signup():
         return jsonify({"message": "Error interno", "error": str(error)}), 500
 
 
+
+@app.route('/login',methods = ['POST', 'GET'])
+def login():
+   if request.method == 'POST':
+      user = request.form['nm']
+      return jsonify({"message": "Metodo POST"}), 400
+   else:
+      user = request.args.get('nm')
+      return jsonify({"message": "otro METODO"}), 500
+
+if __name__ == '__main__':
+   app.run(debug = True)
+
+
 if __name__ == '__main__':
     api.run(debug=True)
