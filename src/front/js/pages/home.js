@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import Slide1 from "../../img/Slide1.png";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -15,7 +14,7 @@ export const Home = () => {
 			</div>
 			<div className="carousel-inner">
 				<div className="carousel-item active">
-				<img src={Slide1} className="d-block mx-auto img-fluid" alt="..." />
+				<img src="https://res.cloudinary.com/dronv3ars/image/upload/v1692704271/Imagen1_r6j4ee.jpg" className="d-block mx-auto img-fluid" alt="..." />
 				<div className="carousel-caption d-none d-md-block">
 					<h5>Control total de tus finanzas</h5>
 					<p>Registra de manera sencilla todos tus ingresos y egresos. Mantén un seguimiento claro de tus transacciones para tomar decisiones financieras informadas.</p>
