@@ -1,0 +1,13 @@
+.navbar {
+    background-color: #4654a3;
+}
+
+.logo-img {
+    width: 18rem;
+    height: auto; 
+  }
+
+a {
+    display: flex;
+    align-items: center;
+}

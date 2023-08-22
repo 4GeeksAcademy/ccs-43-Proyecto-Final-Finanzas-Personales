@@ -1,23 +1,7 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
-.navbar {
-    background-color: #4654a3;
-}
 
-.logo-img {
-    width: 18rem;
-    height: auto; 
-  }
 
-a {
-    display: flex;
-    align-items: center;
-}
 
-.carousel-inner {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
   
