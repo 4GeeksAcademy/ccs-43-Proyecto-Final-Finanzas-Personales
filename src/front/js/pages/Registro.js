@@ -17,7 +17,7 @@ export const Registro = () => {
 
         try {
             const response = await axios.post(
-                "https://zany-bassoon-x69q4qv6655c6994-3001.app.github.dev/api/signup",
+                process.env.BACKEND_URL+"/api/signup",
                 formData,
                 {
                     headers: {
