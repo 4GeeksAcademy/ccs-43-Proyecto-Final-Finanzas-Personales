@@ -4,6 +4,7 @@ from api.utils import generate_sitemap, APIException
 import bcrypt
 from werkzeug.security import generate_password_hash
 from sqlalchemy.exc import IntegrityError
+import json
 
 
 api = Blueprint('api', __name__)
@@ -61,10 +62,49 @@ def signup():
 
 
 
-# @app.route('/login',methods = ['GET'])
-# def login():
-#     return jsonify({"message": "AQUI LLEGUE"}), 201
 
 
+# @api.route('/sign-in', methods=['POST'])
+# def handle_login():
+#     data = request.data
+#     body = request.get_json()
+#     print("Request body:", body)
+#     print("Request data:", data)
+
+#     email = body.get("email")
+#     password = body.get("password")
+    
+#     data_decode = json.loads(data)
+#     user = User.query.filter_by(email).first()
+#     if user is None:
+#         response_body = {
+#             "message": user
+#         }
+#         return jsonify(response_body), 400
+#     else:
+#         response_body = {
+#             "message": "usuario logeado con exito",
+#         }
+#         return jsonify(response_body), 200
+    
+
+
+
+# probando acceso a bd y creando el sign-in falta la password
+@api.route('/sign-in', methods=['POST'])
+def post_one_users():
+    data = request.data
+    body = request.get_json()
+    email = body.get("email")
+    password = body.get("password")
+    users_query = User.query.all()
+    results = list(map(lambda item: item.serialize(), users_query))
+
+    for user in results:
+        if user['email'] == email:
+            return  jsonify({"message": user}), 201 
+    return  jsonify({"message": "error al buscar usuario"}), 500
+
+ 
 if __name__ == '__main__':
     api.run(debug=True)

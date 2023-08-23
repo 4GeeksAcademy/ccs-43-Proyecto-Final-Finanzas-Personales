@@ -1,0 +1,59 @@
+.formularioDeLogin{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#tituloDeLogin{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: #4654a3;
+}
+.container{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 65vh;
+    border: solid rgb(201, 201, 201) 1px;
+    border-radius: 25px;
+    min-height: 75vh;
+    margin-top: 50px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.inputDeLogin{
+    margin-top: 20px;
+    min-width: 40vh;
+    min-height: 6vh;
+    border: none;
+    border-bottom: 2px solid gray;
+    outline: none;
+}
+.buttonCargadeDatosDeLogin{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: #4654a3;
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.FondoRegistroDeLogin{
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, gray, white);
+    background-position: top;
+    background-size: 100% 1000%;
+    background-repeat: no-repeat;
+}
+.fa-arrow-right{
+    color: white;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.fa-user{
+    color: #4654a3;
+    margin-right: 10px;
+}
