@@ -8,6 +8,7 @@ import { Login } from "./pages/Login";
 import { Single } from "./pages/single";
 import { Registro } from "./pages/Registro";
 import injectContext from "./store/appContext";
+import { UserHome } from "./pages/UserHome";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -27,6 +28,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/Login" />
                         <Route element={<Registro />} path="/Registrarse" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<UserHome />} path="/UserHome" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

@@ -1,10 +1,11 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from api.models import db, User
 from api.utils import generate_sitemap, APIException
 import bcrypt
 from werkzeug.security import generate_password_hash
 from sqlalchemy.exc import IntegrityError
 import json
+from passlib.hash import bcrypt_sha256
 
 
 api = Blueprint('api', __name__)
@@ -33,8 +34,8 @@ def signup():
         if None in (user_name, first_name, last_name, email, password):
             return jsonify({"message": "Por favor, complete todos los campos"}), 400
         
-        salt = bcrypt.gensalt(14)
-        password_hash = bcrypt.hashpw(password.encode('utf-8'), salt)
+        # Genera el hash de contraseña usando passlib
+        password_hash = bcrypt_sha256.hash(password)
         
         user_exist = User.query.filter_by(email=email).one_or_none()
         if user_exist:
@@ -59,6 +60,7 @@ def signup():
     except Exception as error:
         db.session.rollback()
         return jsonify({"message": "Error interno", "error": str(error)}), 500
+
 
 
 
@@ -91,20 +93,26 @@ def signup():
 
 
 # probando acceso a bd y creando el sign-in falta la password
-@api.route('/sign-in', methods=['POST'])
-def post_one_users():
+@api.route('/login', methods=['POST'])
+def login():
+    try:
+        body = request.get_json()
+        email = body.get("email")
+        password = body.get("password")
 
-    data = request.data
-    body = request.get_json()
-    email = body.get("email")
-    password = body.get("password")
-    users_query = User.query.all()
-    results = list(map(lambda item: item.serialize(), users_query))
+        if None in (email, password):
+            return jsonify({"message": "Por favor, complete todos los campos"}), 400
 
-    for user in results:
-        if user['email'] == email:
-            return  jsonify({"message": user}), 201 
-    return  jsonify({"message": "error al buscar usuario"}), 500
+        user = User.query.filter_by(email=email).one_or_none()
+
+        if user and bcrypt_sha256.verify(password, user.password_hash):
+            session['user_id'] = user.id
+            return jsonify({"message": "Inicio de sesión exitoso"}), 200
+        else:
+            return jsonify({"message": "Credenciales inválidas"}), 401
+
+    except Exception as error:
+        return jsonify({"message": "Error interno", "error": str(error)}), 500
 
 
 
