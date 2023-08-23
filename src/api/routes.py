@@ -93,6 +93,7 @@ def signup():
 # probando acceso a bd y creando el sign-in falta la password
 @api.route('/sign-in', methods=['POST'])
 def post_one_users():
+
     data = request.data
     body = request.get_json()
     email = body.get("email")
@@ -104,6 +105,21 @@ def post_one_users():
         if user['email'] == email:
             return  jsonify({"message": user}), 201 
     return  jsonify({"message": "error al buscar usuario"}), 500
+
+
+
+# Consulta de todos los uarios
+@api.route('/allUsers', methods=['GET'])
+def get_all_users():
+
+    users_query = User.query.all()
+    results = list(map(lambda item: item.serialize(), users_query))
+
+    response_body = {
+       "results": results
+    }
+
+    return jsonify(response_body), 200
 
  
 if __name__ == '__main__':
