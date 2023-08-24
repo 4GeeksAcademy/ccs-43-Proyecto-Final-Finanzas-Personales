@@ -9,6 +9,27 @@ export const Movimientos = () => {
     const [moneda, setMoneda] = useState('');
     const [monto, setMonto] = useState('');
   
+    async function getUser () {
+      try {
+        const API_URL = "";
+        const requestConfig = {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json"
+          }
+        }
+        const response = await fetch(API_URL + "/", requestConfig); 
+          if (response.status != 200) {
+          console.log("Error en la solicitud. Code: ", response.status)
+          return;
+        }
+          const body = await response.json();
+        
+      } catch(error) {
+        console.log(error)
+      }
+    }
+
     const handleTipoChange = (event) => {
       setTipo(event.target.value);
       setCategoria('');
@@ -24,7 +45,7 @@ export const Movimientos = () => {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      //realizar acciones con los valores seleccionados (tipo, categoria, moneda, monto)
+      
       console.log('Valores seleccionados:', tipo, categoria, moneda, monto);
     };
   
@@ -69,10 +90,12 @@ export const Movimientos = () => {
               <option value="Egresos">Egresos</option>
             </select>
           </div>
+          <br />
           <div className="form-group">
             <label>Categoría:</label>
             {renderCategoriaOptions()}
           </div>
+          <br />
           {categoria && (
             <div className="form-group">
               <label>Moneda:</label>
@@ -83,6 +106,7 @@ export const Movimientos = () => {
               </select>
             </div>
           )}
+          <br />
           {moneda && (
             <div className="form-group">
               <label>Monto:</label>
@@ -95,6 +119,7 @@ export const Movimientos = () => {
               />
             </div>
           )}
+          <br />
           <button type="submit" className="btn btn-primary">Enviar</button>
         </form>
       </div>
