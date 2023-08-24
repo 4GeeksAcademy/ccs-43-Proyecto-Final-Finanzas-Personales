@@ -5,6 +5,7 @@
 .logo-img {
     width: 18rem;
     height: auto; 
+    min-width: 10rem;
   }
 
 .navbarButtons {
