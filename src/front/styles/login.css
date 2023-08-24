@@ -10,7 +10,7 @@
     margin-bottom: 15px;
     color: #4654a3;
 }
-.container{
+.containerDeLoginjs{
     justify-content: center;
     display: flex;
     flex-direction: column;
@@ -56,4 +56,11 @@
 .fa-user{
     color: #4654a3;
     margin-right: 10px;
+}
+.containerDeLoginjssegundo{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
 }
