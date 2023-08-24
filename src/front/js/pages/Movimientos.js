@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/movimientos.css";
+import { Link } from "react-router-dom";
 
 export const Movimientos = () => {
     const { store, actions } = useContext(Context);
@@ -11,7 +12,7 @@ export const Movimientos = () => {
         </div>
         <div className="container">
             <h3 id="registroDeMovimiento">Registro de Movimiento</h3>
-            <form onSubmit={handleSubmit} className="formularioDeRegistroDeMovimiento">
+            <form className="formularioDeRegistroDeMovimiento">
                 <input className="inputRegistroDeMovimiento" type="text" name="user_name" placeholder="Nombre de usuario" required />
                 <input className="inputRegistroDeMovimiento" type="text" name="first_name" placeholder="Nombre" required />
                 <input className="inputRegistroDeMovimiento" type="text" name="last_name" placeholder="Apellido" required />
