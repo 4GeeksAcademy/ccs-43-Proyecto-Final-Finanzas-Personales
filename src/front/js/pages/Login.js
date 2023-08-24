@@ -34,10 +34,10 @@ export const Login = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid containerDeLoginjs">
         <div className="container-fluid FondoRegistroDeLogin">
         </div>
-        <div className="container">
+        <div className="container containerDeLoginjssegundo">
             <h3 id="tituloDeLogin"><i className="fa-solid fa-user"></i> Iniciar sesión</h3>
             <form onSubmit={handleSubmit} className="formularioDeLogin">
                 <input className="inputDeLogin" type="email" name="email" placeholder="Correo electrónico" required />

@@ -36,10 +36,10 @@ export const Registro = () => {
     };
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid containerDeRegistrojs">
         <div className="container-fluid FondoRegistroDeUsuario">
         </div>
-        <div className="container">
+        <div className="container containerDeRegistrojsSegundo">
             <h3 id="tituloRegistroDeUsuario"><i className="fa-solid fa-user"></i> Registro de Usuario</h3>
             <form onSubmit={handleSubmit} className="formularioDeRegistroDeUsuario">
                 <input className="inputRegistroDeUsuario" type="text" name="user_name" placeholder="Nombre de usuario" required />
@@ -49,7 +49,7 @@ export const Registro = () => {
                 <input className="inputRegistroDeUsuario" type="password" name="password" placeholder="Contraseña" required />
                 <button className="buttonCargadeDatosDeRegistroDeUsuario btn btn-outline-primary" type="submit">Registrarse  <i className="fa-solid fa-arrow-right"></i></button>
             </form>
-            <p style={{whiteSpace: 'nowrap', display: 'inline-block'}} className="d-flex">¿Ya te registraste?  <Link to="/" style={{marginLeft: '5px'}}>Iniciar sesión</Link></p>
+            <p style={{whiteSpace: 'nowrap', display: 'inline-block', flexDirection: 'row'}}>¿Ya te registraste?<Link to="/Login" style={{marginLeft: '5px'}}>Iniciar sesión</Link></p>
         </div>
         </div>
     );
