@@ -22,7 +22,7 @@ class User(db.Model):
         return f'{self.first_name} {self.last_name}'
 
     def verify_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
+        return bcrypt.verify(password, self.password_hash)
 
     def serialize(self):
         return {
