@@ -7,7 +7,7 @@
     height: auto; 
   }
 
-a {
+.navbarButtons {
     display: flex;
     align-items: center;
 }

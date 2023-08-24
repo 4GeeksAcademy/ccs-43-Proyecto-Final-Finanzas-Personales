@@ -9,7 +9,7 @@ export const Navbar = () => {
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1692704267/Wallet-Rack_Logo_sinFondo_gs85ru.png" className="logo-img img-fluid"/></span>
 				</Link>
-				<div className="d-flex justify-content-between gap-4">
+				<div className="navbarButtons d-flex justify-content-between gap-4">
 					<Link to="/Nosotros" className="text-light text-decoration-none">Nosotros</Link>
 					<Link to="/Login" className="btn btn-outline-light text-decoration-none">
 						Iniciar sesión
