@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash
 from sqlalchemy.exc import IntegrityError
 import json
 from passlib.hash import bcrypt_sha256
+from flask_jwt_extended import create_access_token
 
 
 api = Blueprint('api', __name__)
@@ -107,7 +108,8 @@ def login():
 
         if user and bcrypt_sha256.verify(password, user.password_hash):
             session['user_id'] = user.id
-            return jsonify({"message": "Inicio de sesión exitoso"}), 200
+            token = create_access_token(identity= user.id)
+            return jsonify({"message": "Inicio de sesión exitoso", "token": token}), 200
         else:
             return jsonify({"message": "Credenciales inválidas"}), 401
 

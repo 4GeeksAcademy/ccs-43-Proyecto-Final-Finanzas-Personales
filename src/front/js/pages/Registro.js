@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../../styles/Registro.css"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Registro = () => {
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,8 +29,9 @@ export const Registro = () => {
             );
 
             console.log("Registro exitoso", response.data);
+            navigate("/Login")
         } catch (error) {
-            console.error("Error al registrar", error.response.data);
+            console.error("Error al registrar", error);
         }
     };
 
