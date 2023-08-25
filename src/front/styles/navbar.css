@@ -5,9 +5,10 @@
 .logo-img {
     width: 18rem;
     height: auto; 
+    min-width: 10rem;
   }
 
-a {
+.navbarButtons {
     display: flex;
     align-items: center;
 }

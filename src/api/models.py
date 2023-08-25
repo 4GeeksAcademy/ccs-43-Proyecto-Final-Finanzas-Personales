@@ -2,6 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from sqlalchemy.ext.hybrid import hybrid_property
 import bcrypt
+from sqlalchemy.sql import func
 
 db = SQLAlchemy()
 
@@ -13,6 +14,7 @@ class User(db.Model):
     last_name = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(500), unique=False, nullable=False)
+    money_register = db.relationship('MoneyRegister', back_populates='user')
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -31,4 +33,27 @@ class User(db.Model):
             "first_name": self.first_name,
             "last_name": self.last_name,
             "email": self.email,
+        }
+    
+
+class MoneyRegister(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    time_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    time_updated = db.Column(db.DateTime(timezone=True), onupdate=func.now())
+    tipo_movimiento = db.Column(db.String(500), unique=False, nullable=False)
+    tipo_categoria = db.Column(db.String(500), unique=False, nullable=False)
+    monto = db.Column(db.Integer, unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship("User", back_populates='money_register')
+
+    def __repr__(self):
+        return '<MoneyRegister %r>' % self.id
+
+    def serialize(self):
+        return {
+            "time_created": self.time_created,
+            "tipo_movimiento": self.tipo_movimiento,
+            "tipo_categoria": self.tipo_categoria,
+            "tipo_moneda": self.tipo_moneda,
+            "monto": self.monto,
         }
