@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, session
-from api.models import db, User
+from api.models import db, User, MoneyRegister
 from api.utils import generate_sitemap, APIException
 import bcrypt
 from werkzeug.security import generate_password_hash
@@ -131,6 +131,23 @@ def get_all_users():
 
     return jsonify(response_body), 200
 
+
+# Post de los Movimientos
+
+# @api.route('/Nosotros', methods=['POST'])
+# def registerMovement():
+#   print("Received POST request at /api/Nosotros")
+
+#    try:
+#        body = request.get_json()
+#        print("Request body:", body)
+
+#        time_created = body.get("time_created")
+#        time_updated = body.get("time_updated")
+#        tipo_movimiento = body.get("tipo_movimiento")
+#        tipo_categoria = body.get("tipo_categoria")
+#        tipo_moneda = body.get("tipo_moneda")
+#        monto = body.get("monto")
  
 if __name__ == '__main__':
     api.run(debug=True)

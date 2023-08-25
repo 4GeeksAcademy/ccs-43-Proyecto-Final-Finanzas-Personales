@@ -9,7 +9,7 @@ export const Movimientos = () => {
     const [moneda, setMoneda] = useState('');
     const [monto, setMonto] = useState('');
   
-    async function getUser () {
+    async function postMovimiento () {
       try {
         const API_URL = "";
         const requestConfig = {

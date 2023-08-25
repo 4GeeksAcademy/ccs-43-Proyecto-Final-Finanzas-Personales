@@ -14,7 +14,7 @@ class User(db.Model):
     last_name = db.Column(db.String(120), unique=False, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(500), unique=False, nullable=False)
-    money_register = db.relationship('MoneyRegister', back_populates='id')
+    money_register = db.relationship('MoneyRegister', back_populates='user')
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -42,8 +42,8 @@ class MoneyRegister(db.Model):
     time_updated = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     tipo_movimiento = db.Column(db.String(500), unique=False, nullable=False)
     tipo_categoria = db.Column(db.String(500), unique=False, nullable=False)
-    tipo_moneda = db.Column(db.String(200), unique=False, nullable=False)
     monto = db.Column(db.Integer, unique=False, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User", back_populates='money_register')
 
     def __repr__(self):
