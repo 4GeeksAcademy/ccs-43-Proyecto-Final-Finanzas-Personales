@@ -4,33 +4,23 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import { Redirect } from "react-router-dom";
 
-import { Home } from "./pages/home";
-import { Login } from "./pages/Login";
-import { Single } from "./pages/single";
-import { Registro } from "./pages/Registro";
-import { Movimientos } from "./pages/Movimientos";
+import { NavbarUserHome} from "./component/NavbarUserHome";
 import injectContext from "./store/appContext";
 import { UserHome } from "./pages/userHome";
 
-import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
-const Layout = () => {
+const LayoutUser = () => {
     const basename = process.env.BASENAME || "";
-
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
 
     return (
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                    <Navbar />
+                <NavbarUserHome />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Login />} path="/Login" />
-                        <Route element={<Registro />} path="/Registrarse" />
-                        <Route element={<Movimientos />} path="/Nosotros" />
-                        <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<UserHome />} path="/" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
@@ -40,4 +30,4 @@ const Layout = () => {
     );
 };
 
-export default injectContext(Layout);
+export default injectContext(LayoutUser);

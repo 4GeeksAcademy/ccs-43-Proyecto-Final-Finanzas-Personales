@@ -1,12 +1,22 @@
-//import react into the bundle
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-
-//include your index.scss file into the bundle
 import "../styles/index.css";
 
-//import your own components
 import Layout from "./layout";
+import LayoutUser from "./layoutUser";
 
-//render your react application
-ReactDOM.render(<Layout />, document.querySelector("#app"));
+const App = () => {
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  return (
+    <React.StrictMode>
+      {token ? (
+        <LayoutUser />
+      ) : (
+        <Layout />
+      )}
+    </React.StrictMode>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("app"));

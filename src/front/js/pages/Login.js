@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/login.css"
 import { Context } from "./../store/appContext";
 
 export const Login = () => {
     const {actions} = useContext(Context)
+    const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,6 +29,8 @@ export const Login = () => {
             actions.savetoken(response.data.token)
             console.log("Inicio de sesión exitoso", response.data);
             // You can perform any necessary action after successful login, like redirecting the user.
+            navigate("/")
+            window.location.reload();
         } catch (error) {
             console.error("Error al iniciar sesión", error.response.data);
         }

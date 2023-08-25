@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash
 from sqlalchemy.exc import IntegrityError
 import json
 from passlib.hash import bcrypt_sha256
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 
 api = Blueprint('api', __name__)
@@ -35,7 +35,7 @@ def signup():
         if None in (user_name, first_name, last_name, email, password):
             return jsonify({"message": "Por favor, complete todos los campos"}), 400
         
-        # Genera el hash de contraseña usando passlib
+
         password_hash = bcrypt_sha256.hash(password)
         
         user_exist = User.query.filter_by(email=email).one_or_none()
@@ -116,6 +116,17 @@ def login():
     except Exception as error:
         return jsonify({"message": "Error interno", "error": str(error)}), 500
 
+@api.route('/protected', methods=['GET'])
+@jwt_required()
+def protected():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    
+    if user:
+        user_name = user.user_name
+        return jsonify(message=f"¡Hola, {user_name}! ¡Este es un punto final protegido!")
+    else:
+        return jsonify(message="Usuario no encontrado"), 404
 
 
 # Consulta de todos los uarios
