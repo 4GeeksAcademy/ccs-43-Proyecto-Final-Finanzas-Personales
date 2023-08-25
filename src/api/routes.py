@@ -134,9 +134,9 @@ def get_all_users():
 
 # Post de los Movimientos
 
-# @api.route('/Nosotros', methods=['POST'])
+# @api.route('/RegistroMovimientos', methods=['POST'])
 # def registerMovement():
-#   print("Received POST request at /api/Nosotros")
+#   print("Received POST request at /api/RegistroMovimientos")
 
 #    try:
 #        body = request.get_json()
@@ -146,7 +146,6 @@ def get_all_users():
 #        time_updated = body.get("time_updated")
 #        tipo_movimiento = body.get("tipo_movimiento")
 #        tipo_categoria = body.get("tipo_categoria")
-#        tipo_moneda = body.get("tipo_moneda")
 #        monto = body.get("monto")
  
 if __name__ == '__main__':
