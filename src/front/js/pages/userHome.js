@@ -1,17 +1,37 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
 import { Context } from "../store/appContext";
 import { Chart, LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip } from 'chart.js';
-import { Link } from "react-router-dom";
 import "../../styles/UserHome.css"
 
 Chart.register(LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip);
 
 export const UserHome = () => {
-    const {  } = useContext(Context);
+    const { token } = useContext(Context);
+    const [userData, setUserData] = useState(null);
+    const currentMonth = new Date().getMonth();
 
-    const currentMonth = new Date().getMonth(); 
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get(
+                    process.env.BACKEND_URL + "/api/protected",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    }
+                );
+                setUserData(response.data.user);
+            } catch (error) {
+                console.error("Error fetching user data", error.response.data);
+            }
+        };
 
-	const ingresosAgosto = [
+        fetchUserData();
+    }, [token]);
+
+    const ingresosAgosto = [
 		1200, 1500, 1800, 1600, 2000, 2500, 2200, 2300, 2500, 2800, 2600, 2900, 3000, 3200, 3400, 3500, 3700, 3800, 4000, 4200, 4300, 4500, 4700, 500, 400, 1500, 2000, 1000, 6200, 3000, 2500,
 	  ];
 	  const egresosAgosto = [
@@ -59,8 +79,20 @@ export const UserHome = () => {
     }, []);
 
     return (
-        <div className="container" backgroundColor="black">
-            <canvas id="myChart" width="5vh" height="2vh"></canvas>
+        <div className="container-fluid">
+            {userData ? (
+                <div>
+                    <h2>Welcome, {userData.user_name}!</h2>
+                    <p>Full Name: {userData.first_name} {userData.last_name}</p>
+                    <p>Email: {userData.email}</p>
+                </div>
+            ) : (
+                <p>Loading user data...</p>
+            )}
+            <div className="container containerDeUsreHomejs">
+                <canvas id="myChart" width="5vh" height="3vh"></canvas>
+            </div>
+
         </div>
     );
 };
