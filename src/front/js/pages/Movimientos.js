@@ -10,15 +10,16 @@ export const Movimientos = () => {
     const [monto, setMonto] = useState('');
   
     async function postMovimiento () {
+      /*solicitud a la API del dolar*/
       try {
-        const API_URL = "";
+        const API_URL = process.env.BACKEND_URL;
         const requestConfig = {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-type": "application/json"
           }
         }
-        const response = await fetch(API_URL + "/", requestConfig); 
+        const response = await fetch(API_URL + "/api/", requestConfig); 
           if (response.status != 200) {
           console.log("Error en la solicitud. Code: ", response.status)
           return;
