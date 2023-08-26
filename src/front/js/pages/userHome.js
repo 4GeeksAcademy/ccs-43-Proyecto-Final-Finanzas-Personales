@@ -60,7 +60,7 @@ export const UserHome = () => {
     };
 
     useEffect (() => {
-        // actions.checkLogin(navigate)
+        actions.checkLogin(navigate)
       },[])
 
     const chartOptions = {

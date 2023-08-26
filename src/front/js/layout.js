@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Context } from "./store/appContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
@@ -18,23 +19,24 @@ import { Footer } from "./component/footer";
 
 const Layout = () => {
     const basename = process.env.BASENAME || "";
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
+    const { store } = useContext(Context) 
     
-        if (token) {
-          setIsLoggedIn(true);
-        }
-      }, []);
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token');
+    
+    //     if (token) {
+    //       setIsLoggedIn(true);
+    //     }
+    //   }, []);
 
     return (
         <div>
             <BrowserRouter basename={basename}>
                 <ScrollToTop>
-                {isLoggedIn ? <NavbarUserHome /> : <Navbar />}
+                {store.token ? <NavbarUserHome /> : <Navbar />}
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/Login"/>

@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			token: undefined,
+			token: localStorage.getItem("token") ?? undefined,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
