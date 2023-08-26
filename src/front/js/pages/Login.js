@@ -29,8 +29,8 @@ export const Login = () => {
             actions.savetoken(response.data.token)
             console.log("Inicio de sesión exitoso", response.data);
             // You can perform any necessary action after successful login, like redirecting the user.
-            navigate("/")
             window.location.reload();
+            navigate("/UserHome")
         } catch (error) {
             console.error("Error al iniciar sesión", error.response.data);
         }

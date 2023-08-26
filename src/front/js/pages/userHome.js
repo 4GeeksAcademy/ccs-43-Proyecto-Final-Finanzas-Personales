@@ -3,33 +3,36 @@ import axios from "axios";
 import { Context } from "../store/appContext";
 import { Chart, LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip } from 'chart.js';
 import "../../styles/UserHome.css"
+import { Link, useNavigate } from "react-router-dom";
 
 Chart.register(LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip);
 
 export const UserHome = () => {
-    const { token } = useContext(Context);
-    const [userData, setUserData] = useState(null);
+    const { actions } = useContext(Context)
+    const navigate = useNavigate()
+    // const { token } = useContext(Context);
+    // const [userData, setUserData] = useState(null);
     const currentMonth = new Date().getMonth();
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get(
-                    process.env.BACKEND_URL + "/api/protected",
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                setUserData(response.data.user);
-            } catch (error) {
-                console.error("Error fetching user data", error.response.data);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchUserData = async () => {
+    //         try {
+    //             const response = await axios.get(
+    //                 process.env.BACKEND_URL + "/api/protected",
+    //                 {
+    //                     headers: {
+    //                         Authorization: `Bearer ${token}`,
+    //                     },
+    //                 }
+    //             );
+    //             setUserData(response.data.user);
+    //         } catch (error) {
+    //             console.error("Error fetching user data", error.response.data);
+    //         }
+    //     };
 
-        fetchUserData();
-    }, [token]);
+    //     fetchUserData();
+    // }, [token]);
 
     const ingresosAgosto = [
 		1200, 1500, 1800, 1600, 2000, 2500, 2200, 2300, 2500, 2800, 2600, 2900, 3000, 3200, 3400, 3500, 3700, 3800, 4000, 4200, 4300, 4500, 4700, 500, 400, 1500, 2000, 1000, 6200, 3000, 2500,
@@ -56,6 +59,10 @@ export const UserHome = () => {
         ],
     };
 
+    useEffect (() => {
+        actions.checkLogin(navigate)
+      },[])
+
     const chartOptions = {
         scales: {
             y: {
@@ -80,7 +87,7 @@ export const UserHome = () => {
 
     return (
         <div className="container-fluid">
-            {userData ? (
+            {/* {userData ? (
                 <div>
                     <h2>Welcome, {userData.user_name}!</h2>
                     <p>Full Name: {userData.first_name} {userData.last_name}</p>
@@ -88,7 +95,7 @@ export const UserHome = () => {
                 </div>
             ) : (
                 <p>Loading user data...</p>
-            )}
+            )} */}
             <div className="container containerDeUsreHomejs">
                 <canvas id="myChart" width="5vh" height="3vh"></canvas>
             </div>
