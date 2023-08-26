@@ -15,7 +15,7 @@ import { UserHome } from "./pages/userHome";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
-const Layout = () => {
+const Layout = (props) => {
     const basename = process.env.BASENAME || "";
 
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL === "") return <BackendURL />;
@@ -27,7 +27,7 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        <Route element={<Login />} path="/Login" />
+                        <Route element={<Login setToken = { props.setToken } />} path="/Login"/>
                         <Route element={<Registro />} path="/Registrarse" />
                         <Route element={<Movimientos />} path="/Nosotros" />
                         <Route element={<Single />} path="/single/:theid" />

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/login.css"
 import { Context } from "./../store/appContext";
 
-export const Login = () => {
+export const Login = (props) => {
     const {actions} = useContext(Context)
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
@@ -29,8 +29,7 @@ export const Login = () => {
             actions.savetoken(response.data.token)
             console.log("Inicio de sesión exitoso", response.data);
             // You can perform any necessary action after successful login, like redirecting the user.
-            navigate("/")
-            window.location.reload();
+            props.setToken(true)
         } catch (error) {
             console.error("Error al iniciar sesión", error.response.data);
         }
