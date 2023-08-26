@@ -17,28 +17,6 @@ export const Movimientos = () => {
     const { actions } = useContext(Context)
     const navigate = useNavigate()
 
-    async function postMovimiento () {
-      /*solicitud a la API del dolar*/
-      try {
-        const API_URL = process.env.BACKEND_URL;
-        const requestConfig = {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json"
-          }
-        }
-        const response = await fetch(API_URL + "/api/", requestConfig); 
-          if (response.status != 200) {
-          console.log("Error en la solicitud. Code: ", response.status)
-          return;
-        }
-          const body = await response.json();
-        
-      } catch(error) {
-        console.log(error)
-      }
-    }
-
     const handleTipoChange = (event) => {
       const selectedTipo = event.target.value;
       setTipo(selectedTipo);
@@ -58,10 +36,36 @@ export const Movimientos = () => {
       setMonto('');
     };
   
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
       event.preventDefault();
+
+      const data = {
+        tipo: tipo,
+        categoria: categoria,
+        monto: monto,
+      };
     
-      console.log('Valores seleccionados:', tipo, categoria, moneda, monto);
+      console.log('Valores seleccionados:', data);
+
+      try {
+        const API_URL = process.env.BACKEND_URL;
+        const requestConfig = {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json"
+          },
+          body: JSON.stringify(data)
+        };
+        const response = await fetch(API_URL + "/api/RegistroMovimientos", requestConfig);
+        if (response.status !== 200) {
+          console.log("Error en la solicitud. Code: ", response.status);
+          return;
+        }
+        const responseBody = await response.json();
+        console.log("API response:", responseBody);
+      } catch (error) {
+        console.log(error);
+      }
     };
   
     useEffect (() => {

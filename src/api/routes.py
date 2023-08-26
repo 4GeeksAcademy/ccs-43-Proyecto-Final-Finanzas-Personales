@@ -145,37 +145,44 @@ def get_all_users():
 
 # Post de los Movimientos
 
-#@api.route('/RegistroMovimientos', methods=['POST'])
-#def registerMovement():
-#    print("Received POST request at /api/RegistroMovimientos")
-#    body = request.get_json()
-#    print("Request body:", body)
+@api.route('/RegistroMovimientos', methods=['POST'])
+def registerMovement():
+    print("Received POST request at /api/RegistroMovimientos")
+    try:
+        body = request.get_json()
+        print("Request body:", body)
 
-#    time_created = body.get("time_created")
-#    time_updated = body.get("time_updated")
-#    tipo_movimiento = body.get("tipo_movimiento")
-#    tipo_categoria = body.get("tipo_categoria")
-#    monto = body.get("monto")
+        tipo_movimiento = body.get("tipo_movimiento")
+        tipo_categoria = body.get("tipo_categoria")
+        monto = body.get("monto")
 
-#    if time_created is None or time_updated is None or tipo_movimiento is None or tipo_categoria is None or monto is None:
-#        return jsonify({
-#            "message": "Tipo de movimiento, tipo de categoria y monto are required"
-#        }), 400
+        if tipo_movimiento is None or tipo_categoria is None or monto is None:
+            return jsonify({
+                "message": "Tipo de movimiento, tipo de categoria y monto son requeridos"
+            }), 400
 
-#    movement = MoneyRegister()
-#        movement.time_created = time_created
-#        movement.time_updated = time_updated
-#        movement.tipo_movimiento = tipo_movimiento
-#        movement.tipo_categoria = tipo_categoria
-#        movement.monto = monto
-       
-#    try:
-#        db.session.add(movement)
-#        db.session.commit()
+        current_user_id = get_jwt_identity()
+        user = User.query.get(current_user_id)
+        
+        if user is None:
+            return jsonify({"message": "Usuario no encontrado"}), 404
 
-#    except Exception as error:
-#        db.session.rollback()
-#        return jsonify({"message": "Error interno", "error": str(error)}), 500
+        movement = MoneyRegister(
+            tipo_movimiento=tipo_movimiento,
+            tipo_categoria=tipo_categoria,
+            monto=monto,
+            user=user  
+        )
+        
+        db.session.add(movement)
+        db.session.commit()
+
+        return jsonify({"message": "Movimiento registrado exitosamente"}), 201
+
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({"message": "Error interno", "error": str(error)}), 500
+
 
 
 if __name__ == '__main__':
