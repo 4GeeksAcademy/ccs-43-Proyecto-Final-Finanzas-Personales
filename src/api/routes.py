@@ -145,19 +145,38 @@ def get_all_users():
 
 # Post de los Movimientos
 
-# @api.route('/RegistroMovimientos', methods=['POST'])
-# def registerMovement():
-#   print("Received POST request at /api/RegistroMovimientos")
+#@api.route('/RegistroMovimientos', methods=['POST'])
+#def registerMovement():
+#    print("Received POST request at /api/RegistroMovimientos")
+#    body = request.get_json()
+#    print("Request body:", body)
 
+#    time_created = body.get("time_created")
+#    time_updated = body.get("time_updated")
+#    tipo_movimiento = body.get("tipo_movimiento")
+#    tipo_categoria = body.get("tipo_categoria")
+#    monto = body.get("monto")
+
+#    if time_created is None or time_updated is None or tipo_movimiento is None or tipo_categoria is None or monto is None:
+#        return jsonify({
+#            "message": "Tipo de movimiento, tipo de categoria y monto are required"
+#        }), 400
+
+#    movement = MoneyRegister()
+#        movement.time_created = time_created
+#        movement.time_updated = time_updated
+#        movement.tipo_movimiento = tipo_movimiento
+#        movement.tipo_categoria = tipo_categoria
+#        movement.monto = monto
+       
 #    try:
-#        body = request.get_json()
-#        print("Request body:", body)
+#        db.session.add(movement)
+#        db.session.commit()
 
-#        time_created = body.get("time_created")
-#        time_updated = body.get("time_updated")
-#        tipo_movimiento = body.get("tipo_movimiento")
-#        tipo_categoria = body.get("tipo_categoria")
-#        monto = body.get("monto")
- 
+#    except Exception as error:
+#        db.session.rollback()
+#        return jsonify({"message": "Error interno", "error": str(error)}), 500
+
+
 if __name__ == '__main__':
     api.run(debug=True)
