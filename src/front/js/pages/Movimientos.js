@@ -39,6 +39,9 @@ export const Movimientos = () => {
     const handleSubmit = async(event) => {
       event.preventDefault();
 
+      //const montoDolares = funcionConversion()
+      //if (moneda = "Bolivares")
+
       const data = {
         tipo: tipo,
         categoria: categoria,
