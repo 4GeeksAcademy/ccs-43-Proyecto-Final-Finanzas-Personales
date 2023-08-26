@@ -60,7 +60,7 @@ export const UserHome = () => {
     };
 
     useEffect (() => {
-        actions.checkLogin(navigate)
+        // actions.checkLogin(navigate)
       },[])
 
     const chartOptions = {
@@ -86,7 +86,7 @@ export const UserHome = () => {
     }, []);
 
     return (
-        <div className="container-fluid">
+        <div className="container-fluid contarinerGeneralUserHomejs">
             {/* {userData ? (
                 <div>
                     <h2>Welcome, {userData.user_name}!</h2>
@@ -96,10 +96,41 @@ export const UserHome = () => {
             ) : (
                 <p>Loading user data...</p>
             )} */}
-            <div className="container containerDeUsreHomejs">
+            <div className="container containerDeUsreHomejsonelinea">
+                <div className="mininavbarUserHome">
+                    <h6 className="h6NicoUserHomejs"><strong>Total ingresos: $ 12.200,32</strong></h6><i className="fa-solid fa-money-bill-trend-up" style={{color: "white"}}></i>
+                </div>
+                {/* <h6>Total ingresos mes actual</h6> */}
+            </div>
+            <div className="container containerDeUsreHomejsonelinea">
+                <div className="mininavbarUserHome">
+                    <h6 className="h6NicoUserHomejs"><strong>Total egresos: $ 6.352,44</strong></h6><i className="fa-solid fa-arrow-trend-down" style={{color: "white"}}></i>
+                </div>
+                {/* <h6>Total ingresos mes actual</h6> */}
+            </div>
+            <div className="container containerDeUsreHomejsonelinea">
+                <div className="mininavbarUserHome">
+                    <h6 className="h6NicoUserHomejs"><strong>Saldo disponible: $ 5.847,88</strong></h6><i className="fa-solid fa-sack-dollar" style={{color: "white"}}></i>
+                </div>
+            </div>
+            <div className="container containerDeUsreHomejsonelinea">
+                <div className="mininavbarUserHome">
+                    <p className="h6NicoUserHomejs"><strong>¿Cuanto has mejorado desde que tienes la aplicación?: 89,28%</strong></p><i className="fa-regular fa-face-smile-beam" style={{color: "white"}}></i>
+                </div>
+            </div>
+            <div className="container containerDechartHomejs" bg-secondary>
+                {/* <h3 className="pdegrafica1Nico">Observa diariamente como se mueven tus estadísticas del mes actual!</h3> */}
                 <canvas id="myChart" width="5vh" height="3vh"></canvas>
             </div>
-
+            
+            <div className="container containerDeUsreHomejs">
+            </div>
+            <div className="container containerDeUsreHomejs">
+            </div>
+            <div className="container containerDeUsreHomejs">
+            </div>
+            <div className="container containerDeUsreHomejs">
+            </div>
         </div>
     );
 };

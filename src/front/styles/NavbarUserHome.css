@@ -1,3 +1,13 @@
 .containerDeNavbarUerHome{
     padding: 0rem 0.25rem 0rem 0.25rem !important;
 }
+#navbarNav{
+    justify-content: right;
+}
+.navbar-expand-lg{
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+/* .fixed-top{
+    position: fixed;
+    
+} */
