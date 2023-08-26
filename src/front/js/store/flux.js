@@ -51,6 +51,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			savetoken: (token) =>{
 				setStore({ token })
 				localStorage.setItem("token", token)
+			},
+			checkLogin: (redirect) => {
+				const token = localStorage.getItem("token")
+				const store = getStore()
+				if (token == null || !store.token) {
+					redirect("/Login")
+				}
 			}
 		}
 	};

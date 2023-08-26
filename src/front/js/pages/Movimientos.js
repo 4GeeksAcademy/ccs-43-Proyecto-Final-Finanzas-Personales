@@ -1,7 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/movimientos.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const categoriesByType = {
   Ingresos: ['Salario', 'Depósito', 'Inversiones'],
@@ -14,6 +14,9 @@ export const Movimientos = () => {
     const [moneda, setMoneda] = useState('');
     const [monto, setMonto] = useState('');
   
+    const { actions } = useContext(Context)
+    const navigate = useNavigate()
+
     async function postMovimiento () {
       /*solicitud a la API del dolar*/
       try {
@@ -61,6 +64,10 @@ export const Movimientos = () => {
       console.log('Valores seleccionados:', tipo, categoria, moneda, monto);
     };
   
+    useEffect (() => {
+      //actions.checkLogin(navigate)
+    },[])
+
     return (
       <div className="container mt-5">
         <form onSubmit={handleSubmit}>
