@@ -3,10 +3,13 @@ import axios from "axios";
 import { Context } from "../store/appContext";
 import { Chart, LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip } from 'chart.js';
 import "../../styles/UserHome.css"
+import { Link, useNavigate } from "react-router-dom";
 
 Chart.register(LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip);
 
 export const UserHome = () => {
+    const { actions } = useContext(Context)
+    const navigate = useNavigate()
     // const { token } = useContext(Context);
     // const [userData, setUserData] = useState(null);
     const currentMonth = new Date().getMonth();
@@ -55,6 +58,10 @@ export const UserHome = () => {
             },
         ],
     };
+
+    useEffect (() => {
+        actions.checkLogin(navigate)
+      },[])
 
     const chartOptions = {
         scales: {
