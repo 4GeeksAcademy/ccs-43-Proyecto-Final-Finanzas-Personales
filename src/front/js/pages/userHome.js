@@ -8,31 +8,32 @@ import { Link, useNavigate } from "react-router-dom";
 Chart.register(LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip);
 
 export const UserHome = () => {
-    const { actions } = useContext(Context)
+    const { actions, store } = useContext(Context)
     const navigate = useNavigate()
-    // const { token } = useContext(Context);
-    // const [userData, setUserData] = useState(null);
+    const { token } = useContext(Context);
+    const [userData, setUserData] = useState(null);
     const currentMonth = new Date().getMonth();
 
-    // useEffect(() => {
-    //     const fetchUserData = async () => {
-    //         try {
-    //             const response = await axios.get(
-    //                 process.env.BACKEND_URL + "/api/protected",
-    //                 {
-    //                     headers: {
-    //                         Authorization: `Bearer ${token}`,
-    //                     },
-    //                 }
-    //             );
-    //             setUserData(response.data.user);
-    //         } catch (error) {
-    //             console.error("Error fetching user data", error.response.data);
-    //         }
-    //     };
+    const fetchUserData = async () => {
+        const options = {
+            headers: {
+                "Authorization": "Bearer " + store.token,
+            },
+        }
+        try {
+            const response = await axios.get(
+                process.env.BACKEND_URL + "/api/protected",
+                options
+            );
+            setUserData(response.data);
+        } catch (error) {
+            console.error("Error fetching user data", error);
+        }
+    };
+    useEffect(() => {
 
-    //     fetchUserData();
-    // }, [token]);
+        fetchUserData();
+    }, []);
 
     const ingresosAgosto = [
 		1200, 1500, 1800, 1600, 2000, 2500, 2200, 2300, 2500, 2800, 2600, 2900, 3000, 3200, 3400, 3500, 3700, 3800, 4000, 4200, 4300, 4500, 4700, 500, 400, 1500, 2000, 1000, 6200, 3000, 2500,
@@ -87,26 +88,24 @@ export const UserHome = () => {
 
     return (
         <div className="container-fluid contarinerGeneralUserHomejs">
-            {/* {userData ? (
+            <div className="presentationUserHome">
+            {userData ? (
                 <div>
                     <h2>Welcome, {userData.user_name}!</h2>
-                    <p>Full Name: {userData.first_name} {userData.last_name}</p>
-                    <p>Email: {userData.email}</p>
                 </div>
             ) : (
                 <p>Loading user data...</p>
-            )} */}
+            )}
+            </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total ingresos: $ 12.200,32</strong></h6><i className="fa-solid fa-money-bill-trend-up" style={{color: "white"}}></i>
                 </div>
-                {/* <h6>Total ingresos mes actual</h6> */}
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total egresos: $ 6.352,44</strong></h6><i className="fa-solid fa-arrow-trend-down" style={{color: "white"}}></i>
                 </div>
-                {/* <h6>Total ingresos mes actual</h6> */}
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
@@ -118,7 +117,7 @@ export const UserHome = () => {
                     <p className="h6NicoUserHomejs"><strong>¿Cuanto has mejorado desde que tienes la aplicación?: 89,28%</strong></p><i className="fa-regular fa-face-smile-beam" style={{color: "white"}}></i>
                 </div>
             </div>
-            <div className="container containerDechartHomejs" bg-secondary>
+            <div className="container containerDechartHomejs">
                 {/* <h3 className="pdegrafica1Nico">Observa diariamente como se mueven tus estadísticas del mes actual!</h3> */}
                 <canvas id="myChart" width="5vh" height="3vh"></canvas>
             </div>
