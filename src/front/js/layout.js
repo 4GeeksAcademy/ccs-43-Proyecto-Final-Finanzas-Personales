@@ -13,6 +13,7 @@ import { Movimientos } from "./pages/Movimientos";
 import injectContext from "./store/appContext";
 import { UserHome } from "./pages/userHome";
 import { NavbarUserHome} from "./component/NavbarUserHome";
+import { CharDetail} from "./pages/chartDetails"
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -44,6 +45,7 @@ const Layout = () => {
                         <Route element={<Movimientos />} path="/RegistroMovimientos" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<UserHome />} path="/UserHome" />
+                        <Route element={<CharDetail />} path="/CharDetail" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
