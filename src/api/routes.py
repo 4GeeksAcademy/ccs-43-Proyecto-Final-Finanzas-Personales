@@ -116,17 +116,16 @@ def login():
     except Exception as error:
         return jsonify({"message": "Error interno", "error": str(error)}), 500
 
-@api.route('/protected', methods=['GET'])
+@api.route("/protected", methods=["GET"])
 @jwt_required()
-def protected():
+def get_protected_data():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
-    
+    print(current_user_id)
     if user:
-        user_name = user.user_name
-        return jsonify(message=f"¡Hola, {user_name}! ¡Este es un punto final protegido!")
+        return jsonify(user.serialize()), 200
     else:
-        return jsonify(message="Usuario no encontrado"), 404
+        return jsonify({"message" :"User not found"}), 404
 
 
 # Consulta de todos los uarios
