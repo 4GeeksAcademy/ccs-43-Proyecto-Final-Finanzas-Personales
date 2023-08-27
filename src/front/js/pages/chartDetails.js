@@ -34,7 +34,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, BarElement, Title, To
             labels: meses,
             datasets: [ // Cada una de las líneas del gráfico
                 {
-                    label: 'Beneficios',
+                    label: 'Ingresos',
                     data: beneficios,
                     tension: 0.5,
                     fill : true,
@@ -45,7 +45,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, BarElement, Title, To
                     pointBackgroundColor: 'rgba(255, 99, 132)',
                 },
                 {
-                    label: 'Otra línea',
+                    label: 'Egresos',
                     data: [20, 25, 60, 65, 45, 10, 0, 25, 35, 7, 20, 25]
                 },
             ],
