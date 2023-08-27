@@ -42,7 +42,7 @@ class MoneyRegister(db.Model):
     time_updated = db.Column(db.DateTime(timezone=True), onupdate=func.now())
     tipo_movimiento = db.Column(db.String(500), unique=False, nullable=False)
     tipo_categoria = db.Column(db.String(500), unique=False, nullable=False)
-    monto = db.Column(db.Integer, unique=False, nullable=False)
+    monto = db.Column(db.Float, unique=False, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User", back_populates='money_register')
 
@@ -54,6 +54,5 @@ class MoneyRegister(db.Model):
             "time_created": self.time_created,
             "tipo_movimiento": self.tipo_movimiento,
             "tipo_categoria": self.tipo_categoria,
-            "tipo_moneda": self.tipo_moneda,
             "monto": self.monto,
         }
