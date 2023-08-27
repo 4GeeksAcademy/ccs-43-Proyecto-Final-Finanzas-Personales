@@ -27,7 +27,7 @@ export const NavbarUserHome = () => {
                             <a className="nav-link" href="#">Configuraciones</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Registro de Movimientos</a>
+                            <Link to="/RegistroMovimientos" className="nav-link">Registro de Movimientos</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">Informes Detallados</a>

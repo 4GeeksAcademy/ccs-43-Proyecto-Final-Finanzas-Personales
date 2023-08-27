@@ -14,7 +14,7 @@ export const Movimientos = () => {
     const [moneda, setMoneda] = useState('');
     const [monto, setMonto] = useState('');
   
-    const { actions } = useContext(Context)
+    const { actions , store } = useContext(Context)
     const navigate = useNavigate()
 
     const handleTipoChange = (event) => {
@@ -39,6 +39,9 @@ export const Movimientos = () => {
     const handleSubmit = async(event) => {
       event.preventDefault();
 
+      //const montoDolares = funcionConversion()
+      //if (moneda = "Bolivares")
+
       const data = {
         tipo: tipo,
         categoria: categoria,
@@ -52,11 +55,12 @@ export const Movimientos = () => {
         const requestConfig = {
           method: "POST",
           headers: {
-            "Content-type": "application/json"
+            "Content-type": "application/json",
+            "Authorization": "Bearer " + store.token 
           },
           body: JSON.stringify(data)
         };
-        const response = await fetch(API_URL + "/api/RegistroMovimientos", requestConfig);
+        const response = await fetch(API_URL + "api/RegistroMovimientos", requestConfig);
         if (response.status !== 200) {
           console.log("Error en la solicitud. Code: ", response.status);
           return;
@@ -69,7 +73,7 @@ export const Movimientos = () => {
     };
   
     useEffect (() => {
-      //actions.checkLogin(navigate)
+      actions.checkLogin(navigate)
     },[])
 
     return (

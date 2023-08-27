@@ -145,14 +145,15 @@ def get_all_users():
 # Post de los Movimientos
 
 @api.route('/RegistroMovimientos', methods=['POST'])
+@jwt_required()
 def registerMovement():
     print("Received POST request at /api/RegistroMovimientos")
     try:
         body = request.get_json()
         print("Request body:", body)
 
-        tipo_movimiento = body.get("tipo_movimiento")
-        tipo_categoria = body.get("tipo_categoria")
+        tipo_movimiento = body.get("tipo")
+        tipo_categoria = body.get("categoria")
         monto = body.get("monto")
 
         if tipo_movimiento is None or tipo_categoria is None or monto is None:
