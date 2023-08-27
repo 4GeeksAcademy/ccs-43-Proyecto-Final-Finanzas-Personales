@@ -101,11 +101,13 @@ export const UserHome = () => {
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total ingresos: $ 12.200,32</strong></h6><i className="fa-solid fa-money-bill-trend-up" style={{color: "white"}}></i>
                 </div>
+                {/* <h6>Total ingresos mes actual</h6> */}
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total egresos: $ 6.352,44</strong></h6><i className="fa-solid fa-arrow-trend-down" style={{color: "white"}}></i>
                 </div>
+                {/* <h6>Total ingresos mes actual</h6> */}
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
