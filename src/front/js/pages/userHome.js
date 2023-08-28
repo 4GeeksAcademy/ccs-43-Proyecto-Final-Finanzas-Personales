@@ -13,6 +13,9 @@ export const UserHome = () => {
     const { token } = useContext(Context);
     const [userData, setUserData] = useState(null);
     const currentMonth = new Date().getMonth();
+    const [totalIngresos, setTotalIngresos] = useState(0);
+    const [totalGastos, setTotalGastos] = useState(0);
+    const [saldoDisponible, setSaldoDisponible] = useState(0);
 
     const fetchUserData = async () => {
         const options = {
@@ -26,6 +29,29 @@ export const UserHome = () => {
                 options
             );
             setUserData(response.data);
+            console.log("Registros de dinero:", response.data.money_register);
+            const registrosDinero = response.data.money_register;
+
+            const totalIngresos = registrosDinero.reduce((total, transaccion) => {
+                if (transaccion.tipo_movimiento === "Ingresos") {
+                    return total + transaccion.monto;
+                }
+                return total;
+            }, 0);
+            
+            const totalGastos = registrosDinero.reduce((total, transaccion) => {
+                if (transaccion.tipo_movimiento === "Egresos") {
+                    return total + transaccion.monto;
+                }
+                return total;
+            }, 0);
+            
+            const saldoDisponible = totalIngresos - totalGastos;
+            
+            setTotalIngresos(totalIngresos);
+            setTotalGastos(totalGastos);
+            setSaldoDisponible(saldoDisponible);
+
         } catch (error) {
             console.error("Error fetching user data", error);
         }
@@ -99,24 +125,27 @@ export const UserHome = () => {
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
-                    <h6 className="h6NicoUserHomejs"><strong>Total ingresos: $ 12.200,32</strong></h6><i className="fa-solid fa-money-bill-trend-up" style={{color: "white"}}></i>
+                    <h6 className="h6NicoUserHomejs"><strong>Total ingresos:</strong></h6><i className="fa-solid fa-money-bill-trend-up" style={{color: "white"}}></i>
                 </div>
+                    <h1 id="sumatotaldemovimientosverde" className="sumatotaldemovimientos">$ {totalIngresos.toFixed(2)}</h1>
                 {/* <h6>Total ingresos mes actual</h6> */}
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
-                    <h6 className="h6NicoUserHomejs"><strong>Total egresos: $ 6.352,44</strong></h6><i className="fa-solid fa-arrow-trend-down" style={{color: "white"}}></i>
+                    <h6 className="h6NicoUserHomejs"><strong>Total egresos:</strong></h6><i className="fa-solid fa-arrow-trend-down" style={{color: "white"}}></i>
                 </div>
+                <h1 id="sumatotaldemovimientosrojo" className="sumatotaldemovimientos">$ {totalGastos.toFixed(2)}</h1>
                 {/* <h6>Total ingresos mes actual</h6> */}
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
-                    <h6 className="h6NicoUserHomejs"><strong>Saldo disponible: $ 5.847,88</strong></h6><i className="fa-solid fa-sack-dollar" style={{color: "white"}}></i>
+                    <h6 className="h6NicoUserHomejs"><strong>Saldo disponible:</strong></h6><i className="fa-solid fa-sack-dollar" style={{color: "white"}}></i>
                 </div>
+                <h1 id="sumatotaldemovimientosamarillo" className="sumatotaldemovimientos">$ {saldoDisponible.toFixed(2)}</h1>
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
-                    <p className="h6NicoUserHomejs"><strong>¿Cuanto has mejorado desde que tienes la aplicación?: 89,28%</strong></p><i className="fa-regular fa-face-smile-beam" style={{color: "white"}}></i>
+                    <p className="h6NicoUserHomejs"><strong>Valor del $ hoy</strong></p><i className="fa-regular fa-face-smile-beam" style={{color: "white"}}></i>
                 </div>
             </div>
             <div className="container containerDechartHomejs">

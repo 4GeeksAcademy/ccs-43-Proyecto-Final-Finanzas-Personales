@@ -36,18 +36,50 @@ export const Movimientos = () => {
       setMonto('');
     };
   
+    const getConversionToDollar = async(monto) => {
+      const API_URL = "https://pydolarvenezuela-api.vercel.app";
+      const requestConfig = {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json", 
+        },
+      };
+
+      try {
+        const response = await fetch(API_URL + `/api/v1/dollar/td/${monto}/bcv`, requestConfig);
+        if (response.status !== 200) {
+          console.log("Error en la solicitud. Code: ", response.status);
+          return null;
+        }
+        const responseBody = await response.json();
+        return responseBody.value_to_dollar;
+      } catch (error) {
+        console.log(error);
+        return null;
+      }
+    };
+
     const handleSubmit = async(event) => {
       event.preventDefault();
+      
+      let montoFinal = monto;
 
-      //const montoDolares = funcionConversion()
-      //if (moneda = "Bolivares")
-
+      if (moneda === "Bolivares") {
+        const montoDolares = await getConversionToDollar(monto);
+        if (montoDolares === null) {
+          console.log("Error en la conversión de Bolívares a Dólares");
+          return;
+        }
+        console.log("Value to Dollar:", montoDolares);
+        montoFinal = montoDolares.toFixed(2);
+      }
+    
       const data = {
         tipo: tipo,
         categoria: categoria,
-        monto: monto,
-      };
-    
+        monto: montoFinal, 
+      }; 
+      
       console.log('Valores seleccionados:', data);
 
       try {
@@ -75,6 +107,13 @@ export const Movimientos = () => {
     useEffect (() => {
       actions.checkLogin(navigate)
     },[])
+
+    const limpiarCampos = () => {
+      setTipo('');
+      setCategoria('');
+      setMoneda('');
+      setMonto('');
+    };
 
     return (
       <div className="container mt-5">
@@ -120,7 +159,14 @@ export const Movimientos = () => {
             />
           </div>
           <br />
-          <button type="submit" className="btn btn-primary">Enviar</button>
+          <div className="d-flex justify-content-between">
+            <button type="submit" className="btn btn-primary">Enviar</button>
+          </div>
+          <div className="mt-3">
+            <button type="button" className="btn btn-primary" onClick={limpiarCampos}>
+              Registrar nuevo movimiento
+            </button>
+          </div>
         </form>
       </div>
     );
