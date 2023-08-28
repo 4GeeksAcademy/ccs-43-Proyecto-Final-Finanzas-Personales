@@ -17,9 +17,6 @@ export const Navbar = () => {
 					<Link to="/Registrarse" className="btn btn-outline-light text-decoration-none">
 						Registrarse
 					</Link>
-					<Link to="/CharDetail" className="btn btn-outline-light text-decoration-none">
-						Detalles
-					</Link>
 				</div>
 			</div>
 		</nav>
