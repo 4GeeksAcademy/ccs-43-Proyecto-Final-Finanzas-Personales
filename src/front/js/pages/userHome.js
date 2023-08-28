@@ -29,7 +29,6 @@ export const UserHome = () => {
                 options
             );
             setUserData(response.data);
-            console.log("Registros de dinero:", response.data.money_register);
             const registrosDinero = response.data.money_register;
 
             const totalIngresos = registrosDinero.reduce((total, transaccion) => {
@@ -145,7 +144,7 @@ export const UserHome = () => {
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
-                    <p className="h6NicoUserHomejs"><strong>Valor del $ hoy</strong></p><i className="fa-regular fa-face-smile-beam" style={{color: "white"}}></i>
+                    <p className="h6NicoUserHomejs"><strong>Valor del $ hoy:</strong></p><i className="fa-solid fa-dollar-sign" style={{color: "white"}}></i>
                 </div>
             </div>
             <div className="container containerDechartHomejs">
