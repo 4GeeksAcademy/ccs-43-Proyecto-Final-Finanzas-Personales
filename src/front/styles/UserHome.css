@@ -88,3 +88,15 @@
     justify-content: center;
     align-items: center;
 }
+.sumatotaldemovimientos{
+    margin-top: 35px;
+}
+#sumatotaldemovimientosverde{
+    color: #4BC0C0;
+}
+#sumatotaldemovimientosrojo{
+    color: red;
+}
+#sumatotaldemovimientosamarillo{
+    color: rgb(0, 214, 0);
+}

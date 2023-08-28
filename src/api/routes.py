@@ -123,7 +123,10 @@ def get_protected_data():
     user = User.query.get(current_user_id)
     print(current_user_id)
     if user:
-        return jsonify(user.serialize()), 200
+        return jsonify({
+            **user.serialize(),
+            "money_register": [transaction.serialize() for transaction in user.money_register]
+        }), 200
     else:
         return jsonify({"message" :"User not found"}), 404
 
