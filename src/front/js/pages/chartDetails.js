@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext }  from "react";
 import axios from "axios";
+import { Context } from "../store/appContext";
 import { Bar, Line, Pie } from 'react-chartjs-2';
 import {Chart as ChartJS, ArcElement, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler} from 'chart.js';
 ChartJS.register(CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler,ArcElement);
     
     export const CharDetail = () => {
-
+    const { actions, store } = useContext(Context)
     const [fechaInicio, setFechaInicio] = useState('');
     const [fechaFin, setFechaFin] = useState('');
+    const [userData, setUserData] = useState(null);
     const handleFechaInicioChange = (event) => {
         setFechaInicio(event.target.value);
       };
@@ -48,6 +50,24 @@ const dataReal = [
     }
   ]
   
+  const fetchUserData = async () => {
+    const options = {
+        headers: {
+            "Authorization": "Bearer " + store.token,
+        },
+    }
+    try {
+        const response = await axios.get(
+            process.env.BACKEND_URL + "/api/protected",
+            options
+        );
+        setUserData(response.data);
+        console.log(response.data.money_register)
+    } catch (error) {
+        console.error("Error fetching user data", error);
+    }
+};
+
 
 
   const filtrado = dataReal.filter(evento => {
