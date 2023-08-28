@@ -9,6 +9,7 @@ const categoriesByType = {
 };
 
 export const Movimientos = () => {
+    const [fecha, setFecha] = useState('');
     const [tipo, setTipo] = useState('');
     const [categoria, setCategoria] = useState('');
     const [moneda, setMoneda] = useState('');
@@ -75,6 +76,7 @@ export const Movimientos = () => {
       }
     
       const data = {
+        fecha: fecha,
         tipo: tipo,
         categoria: categoria,
         monto: montoFinal, 
@@ -109,6 +111,7 @@ export const Movimientos = () => {
     },[])
 
     const limpiarCampos = () => {
+      setFecha('');
       setTipo('');
       setCategoria('');
       setMoneda('');
@@ -118,6 +121,17 @@ export const Movimientos = () => {
     return (
       <div className="container mt-5">
         <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Fecha:</label>
+            <input
+              type="date"
+              className="form-control"
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+              required
+            />
+          </div>
+          <br />
           <div className="form-group">
             <label>Tipo:</label>
             <select className="form-control" value={tipo} onChange={handleTipoChange} required>

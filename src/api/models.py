@@ -40,6 +40,7 @@ class MoneyRegister(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     time_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
     time_updated = db.Column(db.DateTime(timezone=True), onupdate=func.now())
+    time_selected = db.Column(db.Date, unique=False, nullable=False)
     tipo_movimiento = db.Column(db.String(500), unique=False, nullable=False)
     tipo_categoria = db.Column(db.String(500), unique=False, nullable=False)
     monto = db.Column(db.Float, unique=False, nullable=False)
@@ -51,7 +52,7 @@ class MoneyRegister(db.Model):
 
     def serialize(self):
         return {
-            "time_created": self.time_created,
+            "time_selected": self.time_selected,
             "tipo_movimiento": self.tipo_movimiento,
             "tipo_categoria": self.tipo_categoria,
             "monto": self.monto,

@@ -152,6 +152,7 @@ def registerMovement():
         body = request.get_json()
         print("Request body:", body)
 
+        time_selected = body.get("fecha")
         tipo_movimiento = body.get("tipo")
         tipo_categoria = body.get("categoria")
         monto = body.get("monto")
@@ -168,6 +169,7 @@ def registerMovement():
             return jsonify({"message": "Usuario no encontrado"}), 404
 
         movement = MoneyRegister(
+            time_selected=time_selected,
             tipo_movimiento=tipo_movimiento,
             tipo_categoria=tipo_categoria,
             monto=monto,
