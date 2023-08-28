@@ -60,7 +60,7 @@ export const Movimientos = () => {
           },
           body: JSON.stringify(data)
         };
-        const response = await fetch(API_URL + "api/RegistroMovimientos", requestConfig);
+        const response = await fetch(API_URL + "/api/RegistroMovimientos", requestConfig);
         if (response.status !== 200) {
           console.log("Error en la solicitud. Code: ", response.status);
           return;

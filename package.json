@@ -76,9 +76,14 @@
 		"axios": "^1.4.0",
 		"bcrypt": "^5.1.1",
 		"chart.js": "^4.4.0",
+<<<<<<< HEAD
 		"font-awesome": "^4.7.0",
+=======
+		"passlib": "^0.3.0",
+>>>>>>> 062149ab875269c895527cd2ac4f07369b597b7a
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
+		"react-chartjs-2": "^5.2.0",
 		"react-dom": "^16.8.4",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0"
