@@ -130,12 +130,6 @@ const dataReal = [
         <p>Fecha de Fin seleccionada: {fechaFin}</p>
         </div>
 
-          <div>
-            <Bar data={midata} options={misoptions} />
-        </div>
-        <div>
-            <Line data={midata} options={misoptions}/>
-        </div>
         <div>
             <Pie data={midata} options={misoptions} />
         </div>
