@@ -17,6 +17,7 @@ import { CharDetail} from "./pages/chartDetails"
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { Nosotros } from "./pages/Nosotros";
 
 const Layout = () => {
     const basename = process.env.BASENAME || "";
@@ -41,6 +42,7 @@ const Layout = () => {
                     <Routes>
                         <Route element={<Home />} path="/" />
                         <Route element={<Login />} path="/Login"/>
+                        <Route element={<Nosotros />} path="/Nosotros"/>
                         <Route element={<Registro />} path="/Registrarse" />
                         <Route element={<Movimientos />} path="/RegistroMovimientos" />
                         <Route element={<Single />} path="/single/:theid" />
