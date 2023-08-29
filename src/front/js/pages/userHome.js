@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Context } from "../store/appContext";
-import { Chart, LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip } from 'chart.js';
+import { Chart, CategoryScale, LinearScale, BarElement, Tooltip } from 'chart.js';
 import "../../styles/UserHome.css"
 import { Link, useNavigate } from "react-router-dom";
 
-Chart.register(LineController, LinearScale, CategoryScale, PointElement, LineElement, Tooltip);
+Chart.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 export const UserHome = () => {
     const { actions, store } = useContext(Context)
@@ -16,6 +16,7 @@ export const UserHome = () => {
     const [totalIngresos, setTotalIngresos] = useState(0);
     const [totalGastos, setTotalGastos] = useState(0);
     const [saldoDisponible, setSaldoDisponible] = useState(0);
+    const [chartData, setChartData] = useState([]);
 
     const fetchUserData = async () => {
         const options = {
@@ -29,6 +30,7 @@ export const UserHome = () => {
                 options
             );
             setUserData(response.data);
+            console.log(chartData)
             const registrosDinero = response.data.money_register;
 
             const totalIngresos = registrosDinero.reduce((total, transaccion) => {
@@ -46,7 +48,7 @@ export const UserHome = () => {
             }, 0);
             
             const saldoDisponible = totalIngresos - totalGastos;
-            
+
             setTotalIngresos(totalIngresos);
             setTotalGastos(totalGastos);
             setSaldoDisponible(saldoDisponible);
@@ -60,56 +62,83 @@ export const UserHome = () => {
         fetchUserData();
     }, []);
 
-    const ingresosAgosto = [
-		1200, 1500, 1800, 1600, 2000, 2500, 2200, 2300, 2500, 2800, 2600, 2900, 3000, 3200, 3400, 3500, 3700, 3800, 4000, 4200, 4300, 4500, 4700, 500, 400, 1500, 2000, 1000, 6200, 3000, 2500,
-	  ];
-	  const egresosAgosto = [
-		800, 1000, 900, 1200, 1300, 1500, 1400, 1600, 1700, 1900, 2100, 3000, 2500, 2600, 2800, 3100, 2900, 3200, 2800, 3000, 1000, 1500, 2500, 500, 3200, 100, 2000, 3100, 2000, 1500, 1800,
-	  ];
+    useEffect(() => {
+        if (userData) {
+            const now = new Date();
+            const last7Days = Array.from({ length: 7 }, (_, i) => {
+                const date = new Date();
+                date.setDate(date.getDate() - (6 - i));
+                return formatDate(date);
+            });
+    
+            const data = last7Days.map(date => {
+                const dailyIncomes = userData.money_register.reduce((total, transaction) => {
+                    if (formatDate(new Date(transaction.time_selected)) === date && transaction.tipo_movimiento === "Ingresos") {
+                        return total + transaction.monto;
+                    }
+                    return total;
+                }, 0);
+    
+                const dailyExpenses = userData.money_register.reduce((total, transaction) => {
+                    if (formatDate(new Date(transaction.time_selected)) === date && transaction.tipo_movimiento === "Egresos") {
+                        return total + transaction.monto;
+                    }
+                    return total;
+                }, 0);
+    
+                return {
+                    date,
+                    dailyIncomes,
+                    dailyExpenses
+                };
+            });
+    
+            setChartData(data);
+        }
+    }, [userData]);
+    
+    function formatDate(date) {
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${month}/${day}/${year}`;
+    }
+    
+    useEffect(() => {
+        if (chartData.length > 0) {
+            const ctx = document.getElementById("myChart").getContext("2d");
 
-    const chartData = {
-        labels: Array.from({ length: 31 }, (_, i) => (i + 1).toString()),
-        datasets: [
-            {
-                label: "Ingresos",
-                borderColor: "rgba(75, 192, 192, 1)",
-                backgroundColor: "rgba(75, 192, 192, 0.2)",
-                data: ingresosAgosto,
-            },
-            {
-                label: "Egresos",
-                borderColor: "rgba(255, 99, 132, 1)",
-                backgroundColor: "rgba(255, 99, 132, 0.2)",
-                data: egresosAgosto,
-            },
-        ],
-    };
+            new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: chartData.map(data => data.date),
+                    datasets: [
+                        {
+                            label: "Ingresos",
+                            backgroundColor: "rgba(75, 192, 192, 0.2)",
+                            data: chartData.map(data => data.dailyIncomes),
+                        },
+                        {
+                            label: "Egresos",
+                            backgroundColor: "rgba(255, 99, 132, 0.2)",
+                            data: chartData.map(data => data.dailyExpenses),
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+        }
+    }, [chartData]);
 
     useEffect (() => {
         actions.checkLogin(navigate)
       },[])
-
-    const chartOptions = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
-    };
-
-    useEffect(() => {
-        const ctx = document.getElementById("myChart").getContext("2d");
-
-        const myChart = new Chart(ctx, {
-            type: "line",
-            data: chartData,
-            options: chartOptions,
-        });
-
-        return () => {
-            myChart.destroy();
-        };
-    }, []);
 
     return (
         <div className="container-fluid contarinerGeneralUserHomejs">
