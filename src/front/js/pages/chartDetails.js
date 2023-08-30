@@ -123,12 +123,9 @@ const fetchUserData = async () => {
                 }
             ],
         };
-
-
        
     return (
     <div class=" container row justify-content-center col-md-4"  >
-
             <h1>Selecciona dos fechas</h1>
         <div>
         <label>Fecha de Inicio:</label>
