@@ -17,6 +17,8 @@ export const UserHome = () => {
     const [totalGastos, setTotalGastos] = useState(0);
     const [saldoDisponible, setSaldoDisponible] = useState(0);
     const [chartData, setChartData] = useState([]);
+    const [dolarBcv, getDollarBCV] = useState('');
+    const [dolarParalelo, getDollarParelelo] = useState('');
 
     const fetchUserData = async () => {
         const options = {
@@ -137,6 +139,11 @@ export const UserHome = () => {
     }, [chartData]);
 
     useEffect (() => {
+        actions.getDollarBCV()
+        actions.getDollarParelelo()
+      },[])
+
+    useEffect (() => {
         actions.checkLogin(navigate)
       },[])
 
@@ -175,6 +182,8 @@ export const UserHome = () => {
                 <div className="mininavbarUserHome">
                     <p className="h6NicoUserHomejs"><strong>Valor del $ hoy:</strong></p><i className="fa-solid fa-dollar-sign" style={{color: "white"}}></i>
                 </div>
+                <h1 id="sumatotaldemovimientosnegro" className="sumatotaldemovimientos">BCV: $ {store.dolarBcv}</h1>
+                <h1 id="sumatotaldemovimientosnegro" className="sumatotaldemovimientos">Paralelo: $ {store.dolarParalelo}</h1>
             </div>
             <div className="container containerDechartHomejs">
                 {/* <h3 className="pdegrafica1Nico">Observa diariamente como se mueven tus estadísticas del mes actual!</h3> */}
