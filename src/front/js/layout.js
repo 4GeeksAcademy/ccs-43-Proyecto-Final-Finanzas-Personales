@@ -14,6 +14,7 @@ import injectContext from "./store/appContext";
 import { UserHome } from "./pages/userHome";
 import { NavbarUserHome} from "./component/NavbarUserHome";
 import { CharDetail} from "./pages/chartDetails"
+import { TypesOfCategories } from "./pages/TypesOfCategories";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -48,6 +49,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<UserHome />} path="/UserHome" />
                         <Route element={<CharDetail />} path="/CharDetail" />
+                        <Route element={<TypesOfCategories />} path="/Categorias" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

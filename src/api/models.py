@@ -15,6 +15,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(500), unique=False, nullable=False)
     money_register = db.relationship('MoneyRegister', back_populates='user')
+    type_of_categories = db.relationship("TypeOfCategories", back_populates='user')
 
     def __repr__(self):
         return f'<User {self.email}>'
@@ -57,3 +58,21 @@ class MoneyRegister(db.Model):
             "tipo_categoria": self.tipo_categoria,
             "monto": self.monto,
         }
+
+class TypeOfCategories(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    movement_type = db.Column(db.String(120), nullable=False)
+    category = db.Column(db.String(120), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship("User", back_populates='type_of_categories')
+
+    def __repr__(self):
+        return f'<TypeOfCategories {self.movement_type} - {self.category}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "movement_type": self.movement_type,
+            "category": self.category,
+        }
+

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify, session
-from api.models import db, User, MoneyRegister
+from api.models import db, User, MoneyRegister, TypeOfCategories
 from api.utils import generate_sitemap, APIException
 import bcrypt
 from werkzeug.security import generate_password_hash
@@ -188,7 +188,77 @@ def registerMovement():
         db.session.rollback()
         return jsonify({"message": "Error interno", "error": str(error)}), 500
 
+@api.route('/RegistroCategorias', methods=['POST'])
+@jwt_required()
+def registerCategory():
+    try:
+        body = request.get_json()
+
+        movement_type = body.get("tipo")
+        category = body.get("categoria")
+
+        if movement_type is None or category is None:
+            return jsonify({
+                "message": "Tipo de movimiento y categoría son requeridos"
+            }), 400
+
+        current_user_id = get_jwt_identity()
+        user = User.query.get(current_user_id)
+        
+        if user is None:
+            return jsonify({"message": "Usuario no encontrado"}), 404
+
+        new_category = TypeOfCategories(
+            movement_type=movement_type,
+            category=category,
+            user=user  
+        )
+        
+        db.session.add(new_category)
+        db.session.commit()
+
+        return jsonify({"message": "Categoría registrada exitosamente"}), 201
+
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({"message": "Error interno", "error": str(error)}), 500
+
+@api.route('/ObtenerCategorias', methods=['GET'])
+@jwt_required()
+def get_categories():
+    try:
+        current_user_id = get_jwt_identity()
+        user = User.query.get(current_user_id)
+
+        if user is None:
+            return jsonify({"error": "Usuario no encontrado"}), 404
+
+        categories = TypeOfCategories.query.filter_by(user=user).all()
+        serialized_categories = [category.serialize() for category in categories]
+
+        return jsonify({"categories": serialized_categories}), 200
+    except Exception as e:
+        return jsonify({"error": "Error al obtener categorías", "details": str(e)}), 500
+
+
+@api.route('/EliminarCategoria/<int:category_id>', methods=['DELETE'])
+@jwt_required()
+def delete_category(category_id):
+    try:
+        category = TypeOfCategories.query.get(category_id)
+
+        if category is None:
+            return jsonify({"error": "Categoría no encontrada"}), 404
+
+        db.session.delete(category)
+        db.session.commit()
+
+        return jsonify({"message": "Categoría eliminada exitosamente"}), 200
+    except Exception as e:
+        return jsonify({"error": "Error al eliminar categoría", "details": str(e)}), 500
 
 
 if __name__ == '__main__':
     api.run(debug=True)
+
+

@@ -30,7 +30,6 @@ export const UserHome = () => {
                 options
             );
             setUserData(response.data);
-            console.log(chartData)
             const registrosDinero = response.data.money_register;
 
             const totalIngresos = registrosDinero.reduce((total, transaccion) => {
@@ -72,26 +71,32 @@ export const UserHome = () => {
             });
     
             const data = last7Days.map(date => {
+                const utcDate = new Date(date);
                 const dailyIncomes = userData.money_register.reduce((total, transaction) => {
-                    if (formatDate(new Date(transaction.time_selected)) === date && transaction.tipo_movimiento === "Ingresos") {
+                    const transactionDate = new Date(transaction.time_selected);
+                    if (transactionDate.toISOString().split('T')[0] === utcDate.toISOString().split('T')[0] &&
+                        transaction.tipo_movimiento === "Ingresos") {
                         return total + transaction.monto;
                     }
                     return total;
                 }, 0);
-    
+            
                 const dailyExpenses = userData.money_register.reduce((total, transaction) => {
-                    if (formatDate(new Date(transaction.time_selected)) === date && transaction.tipo_movimiento === "Egresos") {
+                    const transactionDate = new Date(transaction.time_selected);
+                    if (transactionDate.toISOString().split('T')[0] === utcDate.toISOString().split('T')[0] &&
+                        transaction.tipo_movimiento === "Egresos") {
                         return total + transaction.monto;
                     }
                     return total;
                 }, 0);
-    
+            
                 return {
                     date,
                     dailyIncomes,
                     dailyExpenses
                 };
             });
+            
     
             setChartData(data);
         }
