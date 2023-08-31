@@ -18,9 +18,6 @@ Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, BarElement,
         setFechaFin(event.target.value);
       };
 
-     
-
-console.log(fechaInicio, fechaFin , "fechas")
 const dataReal =[
     {
         "monto": 308,
@@ -39,10 +36,15 @@ const dataReal =[
         "time_selected": "Wed, 30 Aug 2023 00:00:00 GMT",
         "tipo_categoria": "Salario",
         "tipo_movimiento": "Ingresos"
-    }
+    },
+    {
+      "monto": 5000,
+      "time_selected": "Wed, 03 Aug 2023 00:00:00 GMT",
+      "tipo_categoria": "Salarios",
+      "tipo_movimiento": "Ingresos"
+  }
 ]
 
-  
 const fetchUserData = async () => {
     const options = {
       headers: {
@@ -58,7 +60,6 @@ const fetchUserData = async () => {
       console.log(response.data.money_register);
     } catch (error) {
       console.error("Error fetching user data", error);
-      // Aquí puedes mostrar un mensaje de error al usuario o tomar alguna otra acción
     }
   };
   
@@ -73,16 +74,14 @@ const fetchUserData = async () => {
   }
   
   const resultado = Object.values(datosUnificados);
-
-
-
-
-
+ 
   const miMetodo = () => {
-    console.log('El botón fue clicado y el método fue ejecutado.');
-    
-    const filtrado = resultado.filter(evento => {
-      return evento.time_selected >= fechaInicio && evento.time_selected <= fechaFin;
+     const filtrado = resultado.filter(evento => {
+      const eventTime= new Date(evento.time_selected)
+      const tempFechaInicio = new Date(fechaInicio)
+      const tempFechaFin = new Date(fechaFin)
+      console.log(eventTime, tempFechaInicio)
+      return eventTime >= tempFechaInicio && eventTime <= tempFechaFin;
     });
     
     setResultadoFilter(filtrado);

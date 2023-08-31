@@ -17,6 +17,8 @@ export const UserHome = () => {
     const [totalGastos, setTotalGastos] = useState(0);
     const [saldoDisponible, setSaldoDisponible] = useState(0);
     const [chartData, setChartData] = useState([]);
+    const [dolarBcv, getDollarBCV] = useState('');
+    const [dolarParalelo, getDollarParelelo] = useState('');
 
     const fetchUserData = async () => {
         const options = {
@@ -142,6 +144,11 @@ export const UserHome = () => {
     }, [chartData]);
 
     useEffect (() => {
+        actions.getDollarBCV()
+        actions.getDollarParelelo()
+      },[])
+
+    useEffect (() => {
         actions.checkLogin(navigate)
       },[])
 
@@ -160,15 +167,19 @@ export const UserHome = () => {
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total ingresos:</strong></h6><i className="fa-solid fa-money-bill-trend-up" style={{color: "white"}}></i>
                 </div>
-                    <h1 id="sumatotaldemovimientosverde" className="sumatotaldemovimientos">$ {totalIngresos.toFixed(2)}</h1>
+                <Link to="/Ingresos" className="sumatotaldemovimientos">
+                    <h1 id="sumatotaldemovimientosverde" Link to="/Ingresos" className="sumatotaldemovimientos">$ {totalIngresos.toFixed(2)}</h1>
                 {/* <h6>Total ingresos mes actual</h6> */}
+                </Link>
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total egresos:</strong></h6><i className="fa-solid fa-arrow-trend-down" style={{color: "white"}}></i>
                 </div>
-                <h1 id="sumatotaldemovimientosrojo" className="sumatotaldemovimientos">$ {totalGastos.toFixed(2)}</h1>
+                <Link to="/Egresos" className="sumatotaldemovimientos">
+                    <h1 id="sumatotaldemovimientosrojo" className="sumatotaldemovimientos">$ {totalGastos.toFixed(2)}</h1>
                 {/* <h6>Total ingresos mes actual</h6> */}
+                </Link>
             </div>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
@@ -180,6 +191,8 @@ export const UserHome = () => {
                 <div className="mininavbarUserHome">
                     <p className="h6NicoUserHomejs"><strong>Valor del $ hoy:</strong></p><i className="fa-solid fa-dollar-sign" style={{color: "white"}}></i>
                 </div>
+                <h1 id="sumatotaldemovimientosnegro" className="sumatotaldemovimientos">BCV: Bs {store.dolarBcv}</h1>
+                <h1 id="sumatotaldemovimientosnegro" className="sumatotaldemovimientos">Paralelo: Bs {store.dolarParalelo}</h1>
             </div>
             <div className="container containerDechartHomejs">
                 {/* <h3 className="pdegrafica1Nico">Observa diariamente como se mueven tus estadísticas del mes actual!</h3> */}

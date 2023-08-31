@@ -119,7 +119,7 @@ export const Movimientos = () => {
     };
 
     return (
-      <div className="container mt-5">
+      <div className="container mt-5 p-5">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Fecha:</label>
@@ -185,4 +185,5 @@ export const Movimientos = () => {
       </div>
     );
   }
-  
+
+

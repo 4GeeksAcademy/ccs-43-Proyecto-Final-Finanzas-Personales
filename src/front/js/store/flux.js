@@ -15,6 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			token: localStorage.getItem("token") ?? undefined,
+			dolarBcv: [],
+			dolarParelelo: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -58,7 +60,51 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (token == null || !store.token) {
 					redirect("/Login")
 				}
-			}
+			},
+			getDollarBCV: async() => {
+				const API_URL = "https://pydolarvenezuela-api.vercel.app";
+				const requestConfig = {
+				  method: "GET",
+				  headers: {
+					"Content-type": "application/json", 
+				  },
+				};
+			
+				try {
+				  const response = await fetch(API_URL + "/api/v1/dollar/bcv_oficial/bcv", requestConfig);
+				  if (response.status !== 200) {
+					console.log("Error en la solicitud. Code: ", response.status);
+					return null;
+				  }
+				  const responseBody = await response.json();
+				  setStore({ dolarBcv: responseBody.price });
+				} catch (error) {
+				  console.log(error);
+				  return null;
+				}
+			},
+			getDollarParelelo: async() => {
+				const API_URL = "https://pydolarvenezuela-api.vercel.app";
+				const requestConfig = {
+				  method: "GET",
+				  headers: {
+					"Content-type": "application/json", 
+				  },
+				};
+			
+				try {
+				  const response = await fetch(API_URL + "/api/v1/dollar/dolar_promedio/enparalelovzla", requestConfig);
+				  if (response.status !== 200) {
+					console.log("Error en la solicitud. Code: ", response.status);
+					return null;
+				  }
+				  const responseBody = await response.json();
+				  setStore({ dolarParalelo: responseBody.price });
+				} catch (error) {
+				  console.log(error);
+				  return null;
+				}
+			  },
 		}
 	};
 };

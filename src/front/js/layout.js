@@ -10,6 +10,8 @@ import { Login } from "./pages/Login";
 import { Single } from "./pages/single";
 import { Registro } from "./pages/Registro";
 import { Movimientos } from "./pages/Movimientos";
+import { Ingresos } from "./pages/Ingresos";
+import { Egresos } from "./pages/Egresos";
 import injectContext from "./store/appContext";
 import { UserHome } from "./pages/userHome";
 import { NavbarUserHome} from "./component/NavbarUserHome";
@@ -46,6 +48,8 @@ const Layout = () => {
                         <Route element={<Nosotros />} path="/Nosotros"/>
                         <Route element={<Registro />} path="/Registrarse" />
                         <Route element={<Movimientos />} path="/RegistroMovimientos" />
+                        <Route element={<Ingresos />} path="/Ingresos" />
+                        <Route element={<Egresos />} path="/Egresos" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<UserHome />} path="/UserHome" />
                         <Route element={<CharDetail />} path="/CharDetail" />
