@@ -66,32 +66,6 @@ def signup():
 
 
 
-# @api.route('/sign-in', methods=['POST'])
-# def handle_login():
-#     data = request.data
-#     body = request.get_json()
-#     print("Request body:", body)
-#     print("Request data:", data)
-
-#     email = body.get("email")
-#     password = body.get("password")
-    
-#     data_decode = json.loads(data)
-#     user = User.query.filter_by(email).first()
-#     if user is None:
-#         response_body = {
-#             "message": user
-#         }
-#         return jsonify(response_body), 400
-#     else:
-#         response_body = {
-#             "message": "usuario logeado con exito",
-#         }
-#         return jsonify(response_body), 200
-    
-
-
-
 # probando acceso a bd y creando el sign-in falta la password
 @api.route('/login', methods=['POST'])
 def login():
