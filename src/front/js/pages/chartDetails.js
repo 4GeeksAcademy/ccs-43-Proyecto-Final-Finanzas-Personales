@@ -2,11 +2,13 @@ import React, { useState, useEffect, useContext }  from "react";
 import axios from "axios";
 import { Context } from "../store/appContext";
 import { Pie } from 'react-chartjs-2';
+import { Link, useNavigate } from "react-router-dom";
 import { Chart, ArcElement, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler } from 'chart.js/auto';
 Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler);
 
 export const CharDetail = () => {
   const { actions, store } = useContext(Context);
+  const navigate = useNavigate()
   const [fechaInicio, setFechaInicio] = useState('');
   const [fechaFin, setFechaFin] = useState('');
   const [userData, setUserData] = useState(null);
@@ -39,6 +41,7 @@ export const CharDetail = () => {
     };
 
     fetchUserData();
+    actions.checkLogin(navigate)
   }, []);
 
   const moneyRegister = userData ? userData.money_register : [];
@@ -69,6 +72,25 @@ export const CharDetail = () => {
     setResultadoFilter(filtrado);
   };
 
+
+  function generarColorPastelAleatorio() {
+    // Genera valores aleatorios para los componentes de color (rojo, verde, azul y alfa)
+    const r = Math.floor(Math.random() * 156 + 100); // Valores entre 100 y 255 para colores pastel
+    const g = Math.floor(Math.random() * 156 + 100);
+    const b = Math.floor(Math.random() * 156 + 100);
+    const a = Math.random() * 0.4 + 0.6; // Valores de opacidad entre 0.6 y 1.0
+  
+    // Crea el color RGBA en formato CSS
+    const colorRGBA = `rgba(${r}, ${g}, ${b}, ${a})`;
+  
+    return colorRGBA;
+  }
+  
+  // Ejemplo de uso
+  const colorAleatorio = generarColorPastelAleatorio();
+  console.log(colorAleatorio);
+
+  
   const options = {
     responsive: true,
     animation: {
@@ -86,12 +108,12 @@ export const CharDetail = () => {
         min: -25,
         max: 100,
         grid: {
-          color: 'rgba(0, 0, 0, 0.1)',
+          color: generarColorPastelAleatorio(), // Generar un color aleatorio aquí
         },
       },
       x: {
         ticks: {
-          color: 'rgba(0, 220, 195)',
+          color: generarColorPastelAleatorio(), // Generar un color aleatorio aquí
           font: {
             size: 12,
           },
@@ -106,6 +128,7 @@ export const CharDetail = () => {
       {
         label: '',
         data: resultadoFilter.map(data => data.monto),
+        backgroundColor: generarColorPastelAleatorio(),
       }
     ],
   };
