@@ -24,7 +24,7 @@ export const NavbarUserHome = () => {
                             <Link className="nav-link active" aria-current="page" to="/UserHome">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Configuraciones</a>
+                            <Link className="nav-link" to="/Categorias">Personalizar Categorias</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/RegistroMovimientos" className="nav-link">Registro de Movimientos</Link>
