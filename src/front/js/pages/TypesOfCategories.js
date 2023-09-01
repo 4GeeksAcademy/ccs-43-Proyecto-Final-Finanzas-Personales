@@ -32,7 +32,6 @@ export const TypesOfCategories = () => {
           }
 
           const data = await response.json();
-          console.log("Datos de la API:", data);
           setCategorias(data.categories);
       } catch (error) {
           console.log(error);
@@ -84,7 +83,6 @@ export const TypesOfCategories = () => {
             return;
         }
         const responseBody = await response.json();
-        console.log("Respuesta de la API:", responseBody);
 
         fetchCategories();
         
@@ -130,12 +128,12 @@ export const TypesOfCategories = () => {
             </form>
             <div className="mt-4">
                 <h2>Registros de Categorías</h2>
-                <table className="table">
-                    <thead>
+                <table className="table tableNicoTypesOfCategories">
+                    <thead className="HeadTableNicoTypesOfCategories">
                         <tr>
                             <th>Tipo</th>
                             <th>Categoría</th>
-                            <th>Acción</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
