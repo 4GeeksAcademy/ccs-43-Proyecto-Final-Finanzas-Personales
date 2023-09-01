@@ -21,6 +21,7 @@
     min-height: 25vh;
     margin-top: 50px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
 }
 .mininavbarUserHome{
     border: none;
@@ -90,13 +91,27 @@
 }
 .sumatotaldemovimientos{
     margin-top: 35px;
+    text-decoration: none;
+}
+.sumatotaldemovimientossegundo{
+    margin-top: 15px;
+    text-decoration: none;
 }
 #sumatotaldemovimientosverde{
     color: #4BC0C0;
+    text-decoration: none;
 }
 #sumatotaldemovimientosrojo{
     color: #FF6384;
+    text-decoration: none;
+
 }
 #sumatotaldemovimientosamarillo{
     color: rgb(0, 214, 0);
+    text-decoration: none;
+}
+#sumatotaldemovimientosnegro{
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
 }
