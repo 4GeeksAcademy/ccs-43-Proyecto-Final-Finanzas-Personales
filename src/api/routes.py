@@ -8,7 +8,6 @@ import json
 from passlib.hash import bcrypt_sha256
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
-
 api = Blueprint('api', __name__)
 
 @api.route('/hello', methods=['POST', 'GET'])
@@ -187,8 +186,7 @@ def registerMovement():
     except Exception as error:
         db.session.rollback()
         return jsonify({"message": "Error interno", "error": str(error)}), 500
-
-
+   
 
 if __name__ == '__main__':
     api.run(debug=True)
