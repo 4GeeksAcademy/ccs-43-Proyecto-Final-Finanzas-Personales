@@ -13,6 +13,7 @@ export const CharDetail = () => {
   const [fechaFin, setFechaFin] = useState('');
   const [userData, setUserData] = useState(null);
   const [resultadoFilter, setResultadoFilter] = useState([]);
+  console.log(resultadoFilter,"resultadoFilter")
 
   const handleFechaInicioChange = (event) => {
     setFechaInicio(event.target.value);
@@ -88,7 +89,6 @@ export const CharDetail = () => {
   
   // Ejemplo de uso
   const colorAleatorio = generarColorPastelAleatorio();
-  console.log(colorAleatorio);
 
   
   const options = {
@@ -122,16 +122,27 @@ export const CharDetail = () => {
     },
   };
 
-  const data = {
-    labels: resultadoFilter.map(data => data.tipo_categoria),
-    datasets: [
-      {
-        label: '',
-        data: resultadoFilter.map(data => data.monto),
-        backgroundColor: generarColorPastelAleatorio(),
-      }
-    ],
-  };
+
+  const ingresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Ingresos');
+const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
+
+
+const data = {
+  labels: [...ingresos.map(data => data.tipo_categoria), ...egresos.map(data => data.tipo_categoria)],
+  datasets: [
+    {
+      label: 'Ingresos',
+      data: ingresos.map(data => data.monto),
+      backgroundColor: generarColorPastelAleatorio(),
+    },
+    {
+      label: 'Egresos',
+      data: egresos.map(data => data.monto),
+      backgroundColor: generarColorPastelAleatorio(),
+    },
+  ],
+};
+
 
   return (
     <div className="container">
