@@ -157,7 +157,7 @@ export const UserHome = () => {
             <div className="presentationUserHome">
             {userData ? (
                 <div>
-                    <h2>Welcome, {userData.user_name}!</h2>
+                    <h2>Bienvenido, {userData.user_name}!</h2>
                 </div>
             ) : (
                 <p>Loading user data...</p>
