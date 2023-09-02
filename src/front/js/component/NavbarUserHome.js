@@ -21,19 +21,19 @@ export const NavbarUserHome = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/UserHome">Home</Link>
+                            <Link className="nav-link active text-light" aria-current="page" to="/UserHome">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/Categorias">Personalizar Categorias</Link>
+                            <Link className="nav-link text-light" to="/Categorias">Personalizar Categorias</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/RegistroMovimientos" className="nav-link">Registro de Movimientos</Link>
+                            <Link to="/RegistroMovimientos" className="nav-link text-light">Registro de Movimientos</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link"  href="/Informe-Detallado">Informes Detallados</a>
+                            <a className="nav-link text-light"  href="/Informe-Detallado">Informes Detallados</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#" onClick={handleLogout}>Cerrar sesión</a>
+                            <a className="nav-link text-light" href="#" onClick={handleLogout}>Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>
