@@ -97,10 +97,12 @@ export const TypesOfCategories = () => {
       actions.checkLogin(navigate)
       fetchCategories()
     },[])
+    
 
     return (
         <div className="container containerDeTypeOfCategories">
-            <h2>Personaliza tus categorías!</h2>
+            <div className="container containerNicoTypeOfCategoriesprimero">
+            <h2>Personaliza tus categorías</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Tipo:</label>
@@ -126,7 +128,8 @@ export const TypesOfCategories = () => {
                     <button type="submit" className="btn btn-primary">Enviar</button>
                 </div>
             </form>
-            <div className="mt-4">
+            </div>
+            <div className="container containerRegistroCategoriesNicoTypeOfCategories">
                 <h2>Registros de Categorías</h2>
                 <table className="table tableNicoTypesOfCategories">
                     <thead className="HeadTableNicoTypesOfCategories">
