@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
-    color: #8ab3cf;
+    color: #4180ab;
 }
 .containerDeRegistroM{
     justify-content: center;
@@ -32,5 +32,5 @@
     flex-direction: column;
 }
 .botonDeRegistroM {
-    background-color: #8ab3cf;
+    background-color:#4180ab;
 }
