@@ -19,6 +19,7 @@ export const UserHome = () => {
     const [chartData, setChartData] = useState([]);
     const [dolarBcv, getDollarBCV] = useState('');
     const [dolarParalelo, getDollarParelelo] = useState('');
+    const [moneyRegisterData, setMoneyRegisterData] = useState([]);
 
     const fetchUserData = async () => {
         const options = {
@@ -143,6 +144,23 @@ export const UserHome = () => {
         }
     }, [chartData]);
 
+    const fetchMoneyRegisterData = async () => {
+        const options = {
+            headers: {
+                "Authorization": "Bearer " + store.token,
+            },
+        }
+        try {
+            const response = await axios.get(
+                process.env.BACKEND_URL + "/api/money-register-data",
+                options
+            );
+            setMoneyRegisterData(response.data);
+        } catch (error) {
+            console.error("Error fetching money register data", error);
+        }
+    };
+
     useEffect (() => {
         actions.getDollarBCV()
         actions.getDollarParelelo()
@@ -150,19 +168,25 @@ export const UserHome = () => {
 
     useEffect (() => {
         actions.checkLogin(navigate)
+        fetchMoneyRegisterData()
       },[])
+
+      const formatDateForTable = (dateString) => {
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
 
     return (
         <div className="container-fluid contarinerGeneralUserHomejs">
-            <div className="presentationUserHome">
-            {userData ? (
-                <div>
-                    <h2>Welcome, {userData.user_name}!</h2>
+                <div className="presentationUserHome">
+                    {userData ? (
+                        <div className="welcomeMessage">
+                        <h2 className="welcomeText">Bienvenido, {userData.user_name}</h2>
+                        </div>
+                    ) : (
+                        <p className="loadingMessage">Loading user data...</p>
+                    )}
                 </div>
-            ) : (
-                <p>Loading user data...</p>
-            )}
-            </div>
             <Link className="container containerDeUsreHomejsonelinea" to="/Ingresos">
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total ingresos:</strong></h6><i className="fa-solid fa-money-bill-trend-up" style={{color: "white"}}></i>
@@ -196,12 +220,27 @@ export const UserHome = () => {
             </div>
             
             <div className="container containerDeUsreHomejs">
-            </div>
-            <div className="container containerDeUsreHomejs">
-            </div>
-            <div className="container containerDeUsreHomejs">
-            </div>
-            <div className="container containerDeUsreHomejs">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tipo de Movimiento</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {moneyRegisterData
+                            .slice() // Copia el array para no modificar el original
+                            .sort((a, b) => new Date(b.time_selected) - new Date(a.time_selected)) // Ordena por time_selected en orden descendente
+                            .map((transaction, index) => (
+                                <tr key={index}>
+                                    <td>{formatDateForTable(transaction.time_selected)}</td>
+                                    <td>{transaction.tipo_movimiento}</td>
+                                    <td>{transaction.monto}</td>
+                                </tr>
+                            ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

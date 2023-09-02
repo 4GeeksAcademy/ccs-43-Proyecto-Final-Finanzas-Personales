@@ -53,6 +53,7 @@ class MoneyRegister(db.Model):
 
     def serialize(self):
         return {
+            "id": self.id,
             "time_selected": self.time_selected,
             "tipo_movimiento": self.tipo_movimiento,
             "tipo_categoria": self.tipo_categoria,

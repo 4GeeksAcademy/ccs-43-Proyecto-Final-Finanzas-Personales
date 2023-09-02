@@ -231,6 +231,97 @@ def delete_category(category_id):
         return jsonify({"message": "Categoría eliminada exitosamente"}), 200
     except Exception as e:
         return jsonify({"error": "Error al eliminar categoría", "details": str(e)}), 500
+    
+@api.route('/ObtenerIngresos', methods=['GET'])
+@jwt_required()
+def get_ingresos():
+    try:
+        current_user_id = get_jwt_identity()
+        user = User.query.get(current_user_id)
+
+        if user is None:
+            return jsonify({"error": "Usuario no encontrado"}), 404
+
+        ingresos = MoneyRegister.query.filter_by(user=user, tipo_movimiento="Ingresos").all()
+        serialized_ingresos = [ingreso.serialize() for ingreso in ingresos]
+
+        return jsonify({"ingresos": serialized_ingresos}), 200
+    except Exception as e:
+        return jsonify({"error": "Error al obtener ingresos", "details": str(e)}), 500
+
+@api.route('/EliminarIngreso/<int:ingreso_id>', methods=['DELETE'])
+@jwt_required()
+def delete_ingreso(ingreso_id):
+    try:
+        ingreso = MoneyRegister.query.get(ingreso_id)
+
+        if ingreso is None:
+            return jsonify({"error": "Ingreso no encontrado"}), 404
+
+        if ingreso.tipo_movimiento != "Ingresos":
+            return jsonify({"error": "El registro no es un ingreso"}), 400
+
+        db.session.delete(ingreso)
+        db.session.commit()
+
+        return jsonify({"message": "Ingreso eliminado exitosamente"}), 200
+    except Exception as e:
+        return jsonify({"error": "Error al eliminar ingreso", "details": str(e)}), 500
+
+@api.route('/ObtenerEgresos', methods=['GET'])
+@jwt_required()
+def get_egresos():
+    try:
+        current_user_id = get_jwt_identity()
+        user = User.query.get(current_user_id)
+
+        if user is None:
+            return jsonify({"error": "Usuario no encontrado"}), 404
+
+        egresos = MoneyRegister.query.filter_by(user=user, tipo_movimiento="Egresos").all()
+        serialized_egresos = [egreso.serialize() for egreso in egresos]
+
+        return jsonify({"egresos": serialized_egresos}), 200
+    except Exception as e:
+        return jsonify({"error": "Error al obtener egresos", "details": str(e)}), 500
+
+@api.route('/EliminarEgreso/<int:egreso_id>', methods=['DELETE'])
+@jwt_required()
+def delete_egreso(egreso_id):
+    try:
+        egreso = MoneyRegister.query.get(egreso_id)
+
+        if egreso is None:
+            return jsonify({"error": "Egreso no encontrado"}), 404
+
+        if egreso.tipo_movimiento != "Egresos":
+            return jsonify({"error": "El registro no es un egreso"}), 400
+
+        db.session.delete(egreso)
+        db.session.commit()
+
+        return jsonify({"message": "Egreso eliminado exitosamente"}), 200
+    except Exception as e:
+        return jsonify({"error": "Error al eliminar egreso", "details": str(e)}), 500
+    
+@api.route("/money-register-data", methods=["GET"])
+@jwt_required()
+def get_money_register_data():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    if user:
+        money_register_data = [
+            {
+                "time_selected": transaction.time_selected,
+                "tipo_movimiento": transaction.tipo_movimiento,
+                "monto": transaction.monto
+            }
+            for transaction in user.money_register
+        ]
+        return jsonify(money_register_data), 200
+    else:
+        return jsonify({"message": "User not found"}), 404
+
 
 
 if __name__ == '__main__':

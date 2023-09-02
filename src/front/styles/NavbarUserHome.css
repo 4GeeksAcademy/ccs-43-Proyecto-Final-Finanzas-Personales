@@ -11,3 +11,10 @@
     position: fixed;
     
 } */
+#navUserHomeNicoSupremo{
+    background: #4180ab !important;
+}
+.NicoNavbarUSerHomeImg{
+    height: 35px !important;
+    object-fit: cover !important;
+}

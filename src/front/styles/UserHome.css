@@ -1,5 +1,5 @@
 .containerDeUsreHomejs{
-    justify-content: center;
+    /* justify-content: center; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,6 +9,8 @@
     min-height: 40vh;
     margin-top: 50px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    max-height: 80vh;
+    overflow-y: scroll;
 }
 .containerDeUsreHomejsonelinea{
     /* justify-content: center; */
@@ -28,7 +30,7 @@
     border-radius: 25px 25px 0px 0px;
     width: 45vh;
     height: 6vh;
-    background: linear-gradient(to right, #72366D, #B4567B);
+    background: linear-gradient(to right, #4180ab, #8ab3cf);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -45,7 +47,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-top: 6rem;
+    margin-top: 7rem;
 }
 .containerDechartHomejs{
     justify-content: center;
@@ -88,6 +90,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
 }
 .sumatotaldemovimientos{
     margin-top: 35px;
@@ -111,7 +114,7 @@
     text-decoration: none;
 }
 #sumatotaldemovimientosnegro{
-    color: black;
+    color: rgb(0, 225, 255);
     text-decoration: none;
-    font-size: 30px;
+    font-size: 28px;
 }
