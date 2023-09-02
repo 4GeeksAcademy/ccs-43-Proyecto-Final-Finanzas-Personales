@@ -3,10 +3,6 @@ import { Context } from "../store/appContext";
 import "../../styles/movimientos.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const categoriesByType = {
-  Ingresos: ['Salario', 'Depósito', 'Inversiones'],
-  Egresos: ['Pago de servicios', 'Alimentación', 'Salud y medicinas', 'Hogar', 'Ocio', 'Gasolina', 'Carro', 'Deporte', 'Ropa']
-};
 
 export const Movimientos = () => {
     const [fecha, setFecha] = useState('');
@@ -14,6 +10,10 @@ export const Movimientos = () => {
     const [categoria, setCategoria] = useState('');
     const [moneda, setMoneda] = useState('');
     const [monto, setMonto] = useState('');
+    const [categoriasPorTipo, setCategoriasPorTipo] = useState({
+      Ingresos: [],
+      Egresos: [],
+    });
   
     const { actions , store } = useContext(Context)
     const navigate = useNavigate()
@@ -106,6 +106,44 @@ export const Movimientos = () => {
       }
     };
   
+    useEffect(() => {
+      const obtenerCategoriasDinamicas = async () => {
+        try {
+          const API_URL = process.env.BACKEND_URL;
+          const response = await fetch(API_URL + "/api/ObtenerCategorias", {
+            headers: {
+              Authorization: "Bearer " + store.token,
+            },
+          });
+  
+          if (response.status !== 200) {
+            console.log("Error en la solicitud. Código: ", response.status);
+            return;
+          }
+  
+          const data = await response.json();
+          const categorias = data.categories;
+  
+          const categoriasIngresos = categorias.filter(
+            (cat) => cat.movement_type === "Ingresos"
+          );
+          const categoriasEgresos = categorias.filter(
+            (cat) => cat.movement_type === "Egresos"
+          );
+  
+          setCategoriasPorTipo({
+            Ingresos: categoriasIngresos.map((cat) => cat.category),
+            Egresos: categoriasEgresos.map((cat) => cat.category),
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+  
+      obtenerCategoriasDinamicas();
+    }, [store.token]);
+  
+
     useEffect (() => {
       actions.checkLogin(navigate)
     },[])
@@ -119,8 +157,10 @@ export const Movimientos = () => {
     };
 
     return (
-      <div className="container mt-5 p-5">
-        <form onSubmit={handleSubmit}>
+      <div className="container-fluid containerDeRegistroM mx-auto p-2">
+      <div className="container containerDeRegistroM2">
+        <h2 id="tituloDeRegistroM" className="text-center mt-4 mb-5">Registro de Movimientos</h2>
+        <form onSubmit={handleSubmit} className="formularioDeRegistroM mx-auto col-md-10">
           <div className="form-group">
             <label>Fecha:</label>
             <input
@@ -145,7 +185,7 @@ export const Movimientos = () => {
             <label>Categoría:</label>
             <select className="form-control" value={categoria} onChange={handleCategoriaChange} required>
               <option value="">Selecciona una categoría</option>
-              {categoriesByType[tipo]?.map((cat, index) => (
+              {categoriasPorTipo[tipo]?.map((cat, index) => (
                 <option key={index} value={cat}>
                   {cat}
                 </option>
@@ -160,13 +200,18 @@ export const Movimientos = () => {
               <option value="Bolivares">Bolívares</option>
               <option value="Dolares">Dólares</option>
             </select>
+              {moneda === 'Bolivares' && (
+                <small className="text-muted">
+                  Los montos ingresados en Bolívares se registrarán de modo automático en Dólares a la tasa BCV al momento de hacer el registro.
+                </small>
+              )}
           </div>
           <br />
           <div className="form-group">
             <label>Monto:</label>
             <input
               type="number"
-              className="form-control"
+              className="form-control mb-2"
               value={monto}
               onChange={(e) => setMonto(e.target.value)}
               required
@@ -174,14 +219,15 @@ export const Movimientos = () => {
           </div>
           <br />
           <div className="d-flex justify-content-between">
-            <button type="submit" className="btn btn-primary">Enviar</button>
+            <button type="submit" className="botonDeRegistroM btn btn-primary mx-auto">Enviar</button>
           </div>
           <div className="mt-3">
-            <button type="button" className="btn btn-primary" onClick={limpiarCampos}>
+            <button type="button" className="botonDeRegistroM btn btn-primary mb-4" onClick={limpiarCampos}>
               Registrar nuevo movimiento
             </button>
           </div>
         </form>
+      </div>
       </div>
     );
   }
