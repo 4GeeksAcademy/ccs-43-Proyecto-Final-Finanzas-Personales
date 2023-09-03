@@ -123,12 +123,12 @@ export const UserHome = () => {
                     datasets: [
                         {
                             label: "Ingresos",
-                            backgroundColor: "rgba(75, 192, 192, 0.2)",
+                            backgroundColor: "rgba(75, 192, 192, 0.5)",
                             data: chartData.map(data => data.dailyIncomes),
                         },
                         {
                             label: "Egresos",
-                            backgroundColor: "rgba(255, 99, 132, 0.2)",
+                            backgroundColor: "rgba(255, 99, 132, 0.5)",
                             data: chartData.map(data => data.dailyExpenses),
                         },
                     ],
