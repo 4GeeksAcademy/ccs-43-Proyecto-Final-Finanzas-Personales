@@ -147,34 +147,33 @@ const data = {
 
 
   return (
-    <div className="container-fluid containerDeRegistroM mx-auto p-2">
-    <div className="header">
-    <h1>Selecciona dos fechas</h1>
-  </div>
+<div className="container containerDefinitivoRuben">
+      <h1 className="h1rubenSuperDfinitivo">Selecciona dos fechas</h1>
+<div className="container-fluid containerChartDetailRuben">
   <div className="date-section">
-  <div className="date-picker">
-    <div className="date-input">
-      <label htmlFor="fechaInicio">Fecha de Inicio:</label>
-      <input
-        type="date"
-        id="fechaInicio"
-        value={fechaInicio}
-        onChange={handleFechaInicioChange}
-        className="form-control form-control-large"
-        style={{ width: '200px' }}
-      />
-    </div>
-    <div className="date-input">
-      <label htmlFor="fechaFin">Fecha de Fin:</label>
-      <input
-        type="date"
-        id="fechaFin"
-        value={fechaFin}
-        onChange={handleFechaFinChange}
-        className="form-control form-control-large"
-        style={{ width: '200px' }}
-      />
-    </div>
+    <div className="date-picker">
+        <div className="date-input">
+          <label htmlFor="fechaInicio">Fecha de Inicio:</label>
+          <input
+            type="date"
+            id="fechaInicio"
+            value={fechaInicio}
+            onChange={handleFechaInicioChange}
+            className="form-control form-control-large"
+            style={{ width: '200px' }}
+          />
+        </div>
+        <div className="date-input">
+          <label htmlFor="fechaFin">Fecha de Fin:</label>
+          <input
+            type="date"
+            id="fechaFin"
+            value={fechaFin}
+            onChange={handleFechaFinChange}
+            className="form-control form-control-large"
+            style={{ width: '200px' }}
+          />
+      </div>
   </div>
   <div className="button-container">
     <button onClick={miMetodo} className="btn btn-success" style={{ backgroundColor: '#4180ab' }}>
@@ -184,9 +183,11 @@ const data = {
 </div>
   <div className="chart-section">
     <div className="chart-container">
-      <Pie data={data} options={options} style={{ width: '100%' }} />
+      {/* <canvas id="myChart" width="100vh" height="50vh"></canvas> */}
+      <Pie data={data} options={options} />
     </div>
   </div>
 </div> 
+</div>
   );
 };
