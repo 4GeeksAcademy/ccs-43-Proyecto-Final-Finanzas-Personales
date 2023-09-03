@@ -19,16 +19,28 @@ export const Nosotros = () => {
                     </div>
                 </div>
             </div>
-            <div className="container tech d-inline-flex justify-content-center align-items-center mt-5 mb-5">
-                <h3 className="container tecnologias col-md-5 col-12 text-center">Tecnologías</h3>
-                <div className="container logo col-md-7 col-12 mt-4 mb-3">
-                    <div class="logo-row justify-content-center mb-3">
+            <div className="container containerNosotrosTodos">
+                <div className="container containerPrincipalFotoNosotros">
+                    <div className="container containerCirculoParaFotoNosotros">
+                    </div>
+                    <div className="containerFotoNombresNosotros">
+
+                    </div>
+                    {/* <h3 className="h3DeTodosNosotros">Nicolas Yanez</h3> */}
+                </div>
+            </div>
+            <div className="container tech align-items-center d-flex">
+                <div className="containerTituloTecnologiaNosotros">
+                    <h3 className="container tecnologias col-md-5 col-12 text-center">Tecnologías</h3>
+                </div>
+                <div className="container logo">
+                    <div class="logo-row justify-content-center">
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269073/html_slnwee.png" className="icon" alt="HTML Logo"/></span>
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269078/css3_bit3fz.png" className="icon" alt="CSS Logo"/></span>
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269115/bootstrap_aiuuuw.png" className="icon" alt="Bootstrap Logo"/></span>
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269111/javascript_ebr6td.png" className="icon" alt="JavaScript Logo"/></span>
                     </div>
-                    <div className="logo-row justify-content-center mt-3">
+                    <div className="logo-row justify-content-center">
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269107/react_vnhobk.png" className="icon" alt="React Logo"/></span>
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269097/postgresql_jp7vii.png" className="icon" alt="PostgreSQL Logo"/></span>
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269086/flask_yi0gfl.png" className="icon" alt="Flask Logo"/></span>
@@ -37,10 +49,10 @@ export const Nosotros = () => {
                     </div>
                 </div>
             </div>
-            <div className="container proyeccion d-inline-flex justify-content-center align-items-center mb-5">
+            <div className="container proyeccion justify-content-center align-items-center">
                 <h3 className="container titulo col-md-5 col-12">Proyección</h3>
-                <div className="container roadmap col-md-7 col-12 mt-4 mb-3">
-                    <span className="roadmap"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693768156/Five_Rectangle_Flow_Diagram_Graph_1_qc9bv0.png" className="iconroadmap" alt="map"/></span>
+                <div className="container roadmap col-md-7 col-12">
+                    <span className="roadmap"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693770125/Proyeccion_sin_fondo_sgxivj.png" className="iconroadmap" alt="map"/></span>
                 </div>
             </div>
     </div>

@@ -104,20 +104,20 @@
     text-decoration: none;
 }
 #sumatotaldemovimientosverde{
-    color: #4BC0C0;
+    color: rgba(75, 192, 192, 0.6);
     text-decoration: none;
 }
 #sumatotaldemovimientosrojo{
-    color: #FF6384;
+    color: #ff3c66;
     text-decoration: none;
 
 }
 #sumatotaldemovimientosamarillo{
-    color: rgb(0, 214, 0);
+    color: #A9973A;
     text-decoration: none;
 }
 #sumatotaldemovimientosnegro{
-    color: #4180ab;
+    color: black;
     text-decoration: none;
     font-size: 28px;
 }
@@ -130,7 +130,6 @@
 }
 .welcomeText{
     color: #000000;
-    font-weight: 700;
 }
 .inspirationalMessage{
     color: #A9973A;
@@ -164,11 +163,11 @@
 }
 
 .custom-table .ingresos {
-  background-color: #DAF1F0;
+  background-color: rgba(75, 192, 192, 0.3);
 }
 
 .custom-table .egresos {
-  background-color: #FDDEE4;
+  background-color: rgba(255, 99, 132, 0.3);
 }
 
 .custom-table tbody tr:hover {
