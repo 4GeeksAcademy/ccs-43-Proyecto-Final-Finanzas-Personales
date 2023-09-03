@@ -9,7 +9,7 @@ export const Navbar = () => {
 					<Link to="/">
 						<span className="navbar-brand mb-0 h1">
 							<img
-							src="https://res.cloudinary.com/dronv3ars/image/upload/v1692704267/Wallet-Rack_Logo_sinFondo_gs85ru.png"
+							src="https://res.cloudinary.com/dronv3ars/image/upload/v1693774740/zyro-image__4_-removebg-preview_qxdzft.png"
 							className="logo-img img-fluid"
 							alt="Logo"
 							/>

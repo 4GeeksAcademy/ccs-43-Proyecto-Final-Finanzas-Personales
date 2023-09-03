@@ -14,7 +14,7 @@ export const NavbarUserHome = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top px-lg-5" id="navUserHomeNicoSupremo">
             <div className="container-fluid containerDeNavbarUerHome">
-                <a className="navbar-brand" href="#"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1692704267/Wallet-Rack_Logo_sinFondo_gs85ru.png" className="logo-img img-fluid NicoNavbarUSerHomeImg"/></a>
+                <a className="navbar-brand" href="#"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693774740/zyro-image__4_-removebg-preview_qxdzft.png" className="logo-img img-fluid NicoNavbarUSerHomeImg"/></a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
-    color: #4180ab;
+    color: black;
 }
 .containerDeRegistroM{
     justify-content: center;
@@ -15,6 +15,7 @@
     min-height: 75vh;
     margin-top: 120px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
 }
 .fondoDeRegistroM{
     margin: 0;
@@ -32,5 +33,5 @@
     flex-direction: column;
 }
 .botonDeRegistroM {
-    background-color:#4180ab;
+    background-color:black;
 }

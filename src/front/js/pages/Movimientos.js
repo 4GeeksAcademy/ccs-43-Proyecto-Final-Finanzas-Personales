@@ -161,9 +161,9 @@ export const Movimientos = () => {
     const mostrarAlerta1 = () => {
       swal({
         title: 'Registro de movimiento',
-        text: `¿Se agregara este Movimiento`,
+        text: `Registro exitoso`,
         icon: 'success',
-        timer: '500'
+        timer: '3000'
       });
     }
 
@@ -183,34 +183,45 @@ export const Movimientos = () => {
               className="form-control border-0 border-bottom border-dark"
               value={fecha}
               onChange={(e) => setFecha(e.target.value)}
-              required
             />
           </div>
           <br />
           <div className="form-group">
-            <select className="form-control border-0 border-bottom border-dark" value={tipo} onChange={handleTipoChange} required>
-              <option value="">Selecciona un tipo</option>
-              <option value="Ingresos">Ingresos</option>
-              <option value="Egresos">Egresos</option>
+            <select 
+              className="form-control border-0 border-bottom border-dark" 
+              value={tipo} 
+              onChange={handleTipoChange}
+              >
+                <option value="">Selecciona un tipo</option>
+                <option value="Ingresos">Ingresos</option>
+                <option value="Egresos">Egresos</option>
             </select>
           </div>
           <br />
           <div className="form-group">
-            <select className="form-control border-0 border-bottom border-dark" value={categoria} onChange={handleCategoriaChange} required>
-              <option value="">Selecciona una categoría</option>
-              {categoriasPorTipo[tipo]?.map((cat, index) => (
-                <option key={index} value={cat}>
-                  {cat}
-                </option>
-              ))}
+            <select 
+              className="form-control border-0 border-bottom border-dark" 
+              value={categoria} 
+              onChange={handleCategoriaChange}
+              >
+                <option value="">Selecciona una categoría</option>
+                {categoriasPorTipo[tipo]?.map((cat, index) => (
+                  <option key={index} value={cat}>
+                    {cat}
+                  </option>
+                ))}
             </select>
           </div>
           <br />
           <div className="form-group">
-            <select className="form-control border-0 border-bottom border-dark" value={moneda} onChange={handleMonedaChange} required>
-              <option value="">Selecciona una moneda</option>
-              <option value="Bolivares">Bolívares</option>
-              <option value="Dolares">Dólares</option>
+            <select 
+              className="form-control border-radius-0 border-0 border-bottom border-dark" 
+              value={moneda} 
+              onChange={handleMonedaChange}
+              >
+                <option value="">Selecciona una moneda</option>
+                <option value="Bolivares">Bolívares</option>
+                <option value="Dolares">Dólares</option>
             </select>
               {moneda === 'Bolivares' && (
                 <small className="text-muted">
@@ -226,17 +237,18 @@ export const Movimientos = () => {
               placeholder="Registra un monto p.ej. 34.5"
               value={monto}
               onChange={(e) => setMonto(e.target.value)}
-              required
             />
           </div>
           <br />
           <div className="d-flex justify-content-between">
-            <button  onClick={ejecutarMetodos} type="submit" className="botonDeRegistroM btn btn-primary mx-auto">Enviar</button>
-          </div>
-          <div className="mt-3">
-            <button type="button" className="botonDeRegistroM btn btn-primary mb-4" onClick={limpiarCampos}>
-              Registrar nuevo movimiento
-            </button>
+            <button  
+              onClick={ejecutarMetodos} 
+              type="submit" 
+              disabled={!fecha, !tipo, !categoria, !moneda, !monto}
+              className="botonDeRegistroM btn btn-secondary mx-auto mb-4"
+              >
+                Enviar
+              </button>
           </div>
         </form>
       </div>
