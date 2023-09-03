@@ -15,7 +15,7 @@ export const Nosotros = () => {
                         <img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693696394/Beige_Simple_Photo_Signature_Twitter_Profile_Picture_1_o6g1iu.png" className="nico img-fluid" alt="Photo" />
                     </div>
                     <div className="col-12 col-md-4 animate__animated animate__headShake">
-                        <img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693696394/Beige_Simple_Photo_Signature_Twitter_Profile_Picture_hkaj6b.png" className="ruben img-fluid" alt="Photo" />
+                        <img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693767896/Beige_Simple_Photo_Signature_Twitter_Profile_Picture_2_aimkro.png" className="ruben img-fluid" alt="Photo" />
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@ export const Nosotros = () => {
             <div className="container proyeccion d-inline-flex justify-content-center align-items-center mb-5">
                 <h3 className="container titulo col-md-5 col-12">Proyección</h3>
                 <div className="container roadmap col-md-7 col-12 mt-4 mb-3">
-                    <span className="roadmap"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693703992/Five_Rectangle_Flow_Diagram_Graph_pq8ugk.png" className="iconroadmap" alt="map"/></span>
+                    <span className="roadmap"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693768156/Five_Rectangle_Flow_Diagram_Graph_1_qc9bv0.png" className="iconroadmap" alt="map"/></span>
                 </div>
             </div>
     </div>
