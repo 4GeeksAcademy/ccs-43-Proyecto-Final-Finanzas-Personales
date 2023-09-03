@@ -44,7 +44,7 @@ export const Login = () => {
             <form onSubmit={handleSubmit} className="formularioDeLogin">
                 <input className="inputDeLogin" type="email" name="email" placeholder="Correo electrónico" required />
                 <input className="inputDeLogin" type="password" name="password" placeholder="Contraseña" required />
-                <button className="buttonCargadeDatosDeLogin btn btn-outline-primary" type="submit">Iniciar sesión  <i className="fa-solid fa-arrow-right"></i></button>
+                <button className="buttonCargadeDatosDeLogin btn btn-outline-dark" type="submit">Iniciar sesión  <i className="fa-solid fa-arrow-right"></i></button>
             </form>
             <p style={{whiteSpace: 'nowrap', display: 'inline-block'}} className="d-flex">¿Aún no tienes una cuenta? <Link to="/registro" style={{marginLeft: '5px'}}>Registrarse</Link></p>
         </div>
