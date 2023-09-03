@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
-    color: #4180ab;
+    color: black;
 }
 .containerDeLoginjs{
     justify-content: center;
@@ -33,12 +33,12 @@
     background-color: transparent;
 }
 .inputDeLogin:focus{
-    border-bottom: 3px solid #4180ab;
+    border-bottom: 3px solid #A9973A;
 }
 .buttonCargadeDatosDeLogin{
     margin-top: 20px;
     margin-bottom: 10px;
-    background-color: #4180ab;
+    background-color: black;
     color: white;
     text-align: center;
     align-items: center;
