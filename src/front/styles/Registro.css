@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 15px;
-    color: #4654a3;
+    color: #4180ab;
 }
 .containerDeRegistrojs{
     justify-content: center;
@@ -19,8 +19,9 @@
     border: solid rgb(201, 201, 201) 1px;
     border-radius: 25px;
     min-height: 75vh;
-    margin-top: 50px;
+    margin-top: 15vh !important;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
 }
 .inputRegistroDeUsuario{
     margin-top: 20px;
@@ -29,11 +30,15 @@
     border: none;
     border-bottom: 2px solid gray;
     outline: none;
+    background-color: transparent;
+}
+.inputRegistroDeUsuario:focus{
+    border-bottom: 3px solid #4180ab;
 }
 .buttonCargadeDatosDeRegistroDeUsuario{
     margin-top: 20px;
     margin-bottom: 10px;
-    background-color: #4654a3;
+    background-color: #4180ab;
     color: white;
     text-align: center;
     align-items: center;
@@ -54,7 +59,7 @@
     margin-top: 5px;
 }
 .fa-user{
-    color: #4654a3;
+    color: #4180ab;
     margin-right: 10px;
 }
 .containerDeRegistrojsSegundo{
