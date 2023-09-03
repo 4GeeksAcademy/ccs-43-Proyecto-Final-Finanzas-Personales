@@ -30,7 +30,7 @@ export const NavbarUserHome = () => {
                             <Link to="/RegistroMovimientos" className="nav-link text-light">Registro de Movimientos</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link text-light"  href="/Informe-Detallado">Informes Detallados</a>
+                        <Link to="/InformeDetallado" className="nav-link text-light">Informes Detallados</Link>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link text-light" href="#" onClick={handleLogout}>Cerrar sesión</a>
