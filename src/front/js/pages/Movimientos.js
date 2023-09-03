@@ -162,10 +162,9 @@ export const Movimientos = () => {
         <h2 id="tituloDeRegistroM" className="text-center mt-4 mb-5">Registro de Movimientos</h2>
         <form onSubmit={handleSubmit} className="formularioDeRegistroM mx-auto col-md-10">
           <div className="form-group">
-            <label>Fecha:</label>
             <input
               type="date"
-              className="form-control"
+              className="form-control border-0 border-bottom border-dark"
               value={fecha}
               onChange={(e) => setFecha(e.target.value)}
               required
@@ -173,8 +172,7 @@ export const Movimientos = () => {
           </div>
           <br />
           <div className="form-group">
-            <label>Tipo:</label>
-            <select className="form-control" value={tipo} onChange={handleTipoChange} required>
+            <select className="form-control border-0 border-bottom border-dark" value={tipo} onChange={handleTipoChange} required>
               <option value="">Selecciona un tipo</option>
               <option value="Ingresos">Ingresos</option>
               <option value="Egresos">Egresos</option>
@@ -182,8 +180,7 @@ export const Movimientos = () => {
           </div>
           <br />
           <div className="form-group">
-            <label>Categoría:</label>
-            <select className="form-control" value={categoria} onChange={handleCategoriaChange} required>
+            <select className="form-control border-0 border-bottom border-dark" value={categoria} onChange={handleCategoriaChange} required>
               <option value="">Selecciona una categoría</option>
               {categoriasPorTipo[tipo]?.map((cat, index) => (
                 <option key={index} value={cat}>
@@ -194,8 +191,7 @@ export const Movimientos = () => {
           </div>
           <br />
           <div className="form-group">
-            <label>Moneda:</label>
-            <select className="form-control" value={moneda} onChange={handleMonedaChange} required>
+            <select className="form-control border-0 border-bottom border-dark" value={moneda} onChange={handleMonedaChange} required>
               <option value="">Selecciona una moneda</option>
               <option value="Bolivares">Bolívares</option>
               <option value="Dolares">Dólares</option>
@@ -208,10 +204,10 @@ export const Movimientos = () => {
           </div>
           <br />
           <div className="form-group">
-            <label>Monto:</label>
             <input
               type="number"
-              className="form-control mb-2"
+              className="form-control border-0 border-bottom border-dark mb-2"
+              placeholder="Registra un monto p.ej. 34.5"
               value={monto}
               onChange={(e) => setMonto(e.target.value)}
               required

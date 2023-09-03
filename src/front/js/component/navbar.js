@@ -1,25 +1,61 @@
 import React from "react";
-import "../../styles/navbar.css"
+import "../../styles/navbar.css";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbarLeo d-flex justify-content-around navbar-light p-0">
-			<div className="wrap d-flex align-items-center justify-content-between" style={{width: "90%"}}>
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1692704267/Wallet-Rack_Logo_sinFondo_gs85ru.png" className="logo-img img-fluid"/></span>
-				</Link>
-				<div className="navbarButtons d-flex justify-content-between gap-4">
-					<Link to="/Nosotros" className="text-light text-decoration-none">Nosotros</Link>
-					<Link to="/Login" className="btn btn-outline-light text-decoration-none">
-						Iniciar sesión
+		<nav className="navbar navbar-expand-lg fixed-top navbar-light p-0 px-lg-5">
+			<div className="container-fluid containerDeNavbarHome">
+					<Link to="/">
+						<span className="navbar-brand mb-0 h1">
+							<img
+							src="https://res.cloudinary.com/dronv3ars/image/upload/v1692704267/Wallet-Rack_Logo_sinFondo_gs85ru.png"
+							className="logo-img img-fluid"
+							alt="Logo"
+							/>
+						</span> 
 					</Link>
-					<Link to="/Registrarse" className="btn btn-outline-light text-decoration-none">
-						Registrarse
-					</Link>
+					<a
+						className="navbar-toggler"
+						type="link"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNav"
+						aria-controls="navbarNav"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+						>
+							<span className="landingButton"><i class="fa-solid fa-bars fa-lg"></i></span>
+					</a>
+				<div className="collapse navbar-collapse ml-auto" id="navbarNav">
+					<ul className="navbar-nav landingNav">
+						<li className="nav-item itemNav">
+							<Link
+								className="nav-link active text-light text-decoration-none"
+								aria-current="page"
+								to="/Nosotros"
+								>
+									Nosotros
+							</Link>
+						</li>
+						<li className="nav-item itemNav">
+							<Link
+								className="nav-link text-light text-decoration-none"
+								to="/Login"
+								>
+									Iniciar sesión
+							</Link>
+						</li>
+						<li className="nav-item itemNav">
+							<Link
+								className="nav-link text-light text-decoration-none"
+								to="/Registrarse"
+							>
+								Registrarse
+							</Link>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</nav>
 	);
 };
-

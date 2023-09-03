@@ -3,6 +3,7 @@ import axios from "axios";
 import { Context } from "../store/appContext";
 import { Pie } from 'react-chartjs-2';
 import { Link, useNavigate } from "react-router-dom";
+import "../../styles/chartDetails.css"
 import { Chart, ArcElement, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler } from 'chart.js/auto';
 Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, BarElement, Title, Tooltip, Legend, Filler);
 
@@ -130,60 +131,62 @@ const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos
 const data = {
   labels: [...ingresos.map(data => data.tipo_categoria), ...egresos.map(data => data.tipo_categoria)],
   datasets: [
-    {
-      label: 'Ingresos',
-      data: ingresos.map(data => data.monto),
-      backgroundColor: generarColorPastelAleatorio(),
-    },
+    
     {
       label: 'Egresos',
       data: egresos.map(data => data.monto),
       backgroundColor: generarColorPastelAleatorio(),
     },
+    {
+      label: 'Ingresos',
+      data: ingresos.map(data => data.monto),
+      backgroundColor: generarColorPastelAleatorio(),
+    }
   ],
 };
 
 
   return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-sm-12">
-          <h1>Selecciona dos fechas</h1>
-          <div>
-            <label>Fecha de Inicio:</label>
-            <input
-              type="date"
-              value={fechaInicio}
-              onChange={handleFechaInicioChange}
-              className="form-control"
-            />
-          </div>
-          <div>
-            <label>Fecha de Fin:</label>
-            <input
-              type="date"
-              value={fechaFin}
-              onChange={handleFechaFinChange}
-              className="form-control"
-            />
-          </div>
-          <div>
-            <p>Fecha de Inicio seleccionada: {fechaInicio}</p>
-            <p>Fecha de Fin seleccionada: {fechaFin}</p>
-          </div>
-          <div>
-            <Pie data={data} options={options} />
-            <div className="d-flex justify-content-between">
-              <button onClick={miMetodo} className="btn btn-success">
-                Buscar
-              </button>
-              <button type="submit" className="btn btn-danger">
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className="container-fluid containerDeRegistroM mx-auto p-2">
+    <div className="header">
+    <h1>Selecciona dos fechas</h1>
+  </div>
+  <div className="date-section">
+  <div className="date-picker">
+    <div className="date-input">
+      <label htmlFor="fechaInicio">Fecha de Inicio:</label>
+      <input
+        type="date"
+        id="fechaInicio"
+        value={fechaInicio}
+        onChange={handleFechaInicioChange}
+        className="form-control form-control-large"
+        style={{ width: '200px' }}
+      />
     </div>
+    <div className="date-input">
+      <label htmlFor="fechaFin">Fecha de Fin:</label>
+      <input
+        type="date"
+        id="fechaFin"
+        value={fechaFin}
+        onChange={handleFechaFinChange}
+        className="form-control form-control-large"
+        style={{ width: '200px' }}
+      />
+    </div>
+  </div>
+  <div className="button-container">
+    <button onClick={miMetodo} className="btn btn-success" style={{ backgroundColor: '#4180ab' }}>
+      Buscar
+    </button>
+  </div>
+</div>
+  <div className="chart-section">
+    <div className="chart-container">
+      <Pie data={data} options={options} style={{ width: '100%' }} />
+    </div>
+  </div>
+</div> 
   );
 };
