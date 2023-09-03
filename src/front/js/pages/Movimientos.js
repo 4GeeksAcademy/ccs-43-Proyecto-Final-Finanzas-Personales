@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/movimientos.css";
 import { Link, useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 
 export const Movimientos = () => {
@@ -106,6 +107,7 @@ export const Movimientos = () => {
       }
     };
   
+    
     useEffect(() => {
       const obtenerCategoriasDinamicas = async () => {
         try {
@@ -155,6 +157,20 @@ export const Movimientos = () => {
       setMoneda('');
       setMonto('');
     };
+
+    const mostrarAlerta1 = () => {
+      swal({
+        title: 'Registro de movimiento',
+        text: `¿Se agregara este Movimiento`,
+        icon: 'success',
+        timer: '500'
+      });
+    }
+
+    const ejecutarMetodos = () => {
+      mostrarAlerta1(); // Ejecuta el primer método
+      limpiarCampos(); // Ejecuta el segundo método
+    }
 
     return (
       <div className="container-fluid containerDeRegistroM mx-auto p-2">
@@ -215,7 +231,7 @@ export const Movimientos = () => {
           </div>
           <br />
           <div className="d-flex justify-content-between">
-            <button type="submit" className="botonDeRegistroM btn btn-primary mx-auto">Enviar</button>
+            <button  onClick={ejecutarMetodos} type="submit" className="botonDeRegistroM btn btn-primary mx-auto">Enviar</button>
           </div>
           <div className="mt-3">
             <button type="button" className="botonDeRegistroM btn btn-primary mb-4" onClick={limpiarCampos}>

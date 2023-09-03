@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../styles/Registro.css"
 import { Link, useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 export const Registro = () => {
     const navigate = useNavigate()
@@ -34,6 +35,14 @@ export const Registro = () => {
             console.error("Error al registrar", error);
         }
     };
+    const mostrarAlerta1 = () => {
+        swal({
+          title: 'Registro de Usuario',
+          text: `Se Registro de Forma Exitosa`,
+          icon: 'success',
+          timer: '500'
+        });
+      }
 
     return (
         <div className="container-fluid containerDeRegistrojs">
@@ -47,7 +56,7 @@ export const Registro = () => {
                 <input className="inputRegistroDeUsuario" type="text" name="last_name" placeholder="Apellido" required />
                 <input className="inputRegistroDeUsuario" type="email" name="email" placeholder="Correo electrónico" required />
                 <input className="inputRegistroDeUsuario" type="password" name="password" placeholder="Contraseña" required />
-                <button className="buttonCargadeDatosDeRegistroDeUsuario btn btn-outline-primary" type="submit">Registrarse  <i className="fa-solid fa-arrow-right"></i></button>
+                <button className="buttonCargadeDatosDeRegistroDeUsuario btn btn-outline-primary" type="submit" onClick={mostrarAlerta1}>Registrarse  <i className="fa-solid fa-arrow-right"></i></button>
             </form>
             <p style={{whiteSpace: 'nowrap', display: 'inline-block', flexDirection: 'row'}}>¿Ya te registraste?<Link to="/Login" style={{marginLeft: '5px'}}>Iniciar sesión</Link></p>
         </div>
