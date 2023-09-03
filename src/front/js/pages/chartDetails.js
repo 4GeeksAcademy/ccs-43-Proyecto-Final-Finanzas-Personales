@@ -145,6 +145,22 @@ const data = {
   ],
 };
 
+const mostrarAlerta1 = () => {
+  swal({
+    title: 'Fechas',
+    text: `¿Está seguro de que este es el rango que quiere? ${fechaInicio} - ${fechaFin}`,
+    icon: 'success',
+    buttons: ["No", "Si"],
+  }).then(respuesta => {
+    if (respuesta) {
+      miMetodo(); // Llama a tu función miMetodo si el usuario hace clic en "Sí"
+    } else {
+      swal({ text: "Escoja su nuevo rango de fechas" });
+    }
+  });
+}
+
+
 
   return (
     <div className="container-fluid containerDeRegistroM mx-auto p-2">
@@ -177,7 +193,14 @@ const data = {
     </div>
   </div>
   <div className="button-container">
-    <button onClick={miMetodo} className="btn btn-success" style={{ backgroundColor: '#4180ab' }}>
+
+
+
+
+
+
+    
+    <button onClick={mostrarAlerta1} className="btn btn-success" style={{ backgroundColor: '#4180ab' }}>
       Buscar
     </button>
   </div>

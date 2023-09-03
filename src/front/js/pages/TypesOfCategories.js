@@ -3,6 +3,7 @@ import axios from "axios";
 import "../../styles/TypeOfCategories.css"
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert';
 
 
 export const TypesOfCategories = () => {
@@ -98,6 +99,14 @@ export const TypesOfCategories = () => {
       fetchCategories()
     },[])
     
+    const mostrarAlerta1 = () => {
+        swal({
+          title: 'Registro de Categoria',
+          text: `Se agrego esta categoria`,
+          icon: 'success',
+          timer: '500'
+        });
+      }
 
     return (
         <div className="container containerDeTypeOfCategories">
@@ -125,7 +134,7 @@ export const TypesOfCategories = () => {
                 </div>
                 <br />
                 <div className="d-flex justify-content-between">
-                    <button type="submit" className="btn btn-primary">Enviar</button>
+                    <button onClick={mostrarAlerta1} type="submit" className="btn btn-primary">Enviar</button>
                 </div>
             </form>
             </div>
