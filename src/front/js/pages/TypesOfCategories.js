@@ -145,7 +145,7 @@ export const TypesOfCategories = () => {
                         <tr>
                             <th>Tipo</th>
                             <th>Categoría</th>
-                            <th></th>
+                            <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody>

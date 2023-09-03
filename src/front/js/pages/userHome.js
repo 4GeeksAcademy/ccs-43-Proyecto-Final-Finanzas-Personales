@@ -161,6 +161,57 @@ export const UserHome = () => {
         }
     };
 
+    const mensajesDeInspiracion = [
+        "Cada pequeño ahorro te acerca a tus metas financieras.",
+        "La disciplina financiera es la clave para la libertad económica.",
+        "El control de gastos es el camino hacia la estabilidad financiera.",
+        "Invierte en conocimiento financiero; es tu mejor inversión.",
+        "El ahorro constante es la base de la riqueza futura.",
+        "Gasta sabiamente hoy para disfrutar de un mañana más seguro.",
+        "Cada inversión es un paso hacia un futuro financiero más sólido.",
+        "El éxito financiero comienza con una planificación cuidadosa.",
+        "Las deudas pueden ser cadenas; rompe esas cadenas con responsabilidad.",
+        "El tiempo es tu aliado en el mundo de las inversiones.",
+        "La paciencia en las finanzas te llevará lejos.",
+        "El dinero no es el fin, sino el medio para lograr tus objetivos.",
+        "El conocimiento financiero te empodera a tomar decisiones informadas.",
+        "La consistencia en tus hábitos financieros marca la diferencia.",
+        "La diversificación de tus inversiones reduce los riesgos financieros.",
+        "Cada gasto innecesario es un obstáculo en el camino hacia la riqueza.",
+        "El ahorro es una inversión en tu futuro financiero.",
+        "El presupuesto es tu brújula hacia el éxito financiero.",
+        "Las pequeñas inversiones hoy pueden generar grandes recompensas mañana.",
+        "La planificación financiera te da el control de tu destino económico.",
+        "Aprender de los errores financieros es una lección valiosa.",
+        "La inversión en educación financiera siempre tiene un alto rendimiento.",
+        "La consistencia en el ahorro te sorprenderá con el tiempo.",
+        "Cada decisión financiera importa; elige sabiamente.",
+        "La inversión en ti mismo es la inversión más valiosa que puedes hacer.",
+        "La gratificación retrasada te acerca a tus objetivos financieros.",
+        "El conocimiento de tus gastos es el primer paso hacia el ahorro.",
+        "La inversión en activos genera ingresos pasivos.",
+        "Cuida tu crédito; es una herramienta poderosa en las finanzas.",
+        "La paciencia y la perseverancia son tus aliados en la inversión.",
+        "El ahorro consistente es la base de la seguridad financiera.",
+        "El dinero no duerme, pero tú debes descansar; diversifica tus ingresos.",
+        "La educación financiera es la puerta de entrada a la libertad económica.",
+        "Mide tu riqueza en tiempo y libertad, no solo en dinero.",
+        "La inversión en bienestar y salud es una inversión en tu riqueza.",
+        "Cada día es una oportunidad para mejorar tu situación financiera.",
+        "La riqueza no es solo cuánto tienes, sino cómo lo usas.",
+        "Los sueños financieros requieren acción; comienza hoy mismo.",
+        "La inversión en habilidades siempre tiene un retorno positivo.",
+        "El camino hacia la riqueza es un maratón, no una carrera.",
+        "La diversificación de tus fuentes de ingresos es una estrategia inteligente.",
+        "La perseverancia en las dificultades financieras te hace más fuerte.",
+        "La inversión en relaciones sólidas también es una inversión financiera.",
+    ];
+    
+    const mensajeInspiradorAleatorio = () => {
+        const indiceAleatorio = Math.floor(Math.random() * mensajesDeInspiracion.length);
+        return mensajesDeInspiracion[indiceAleatorio];
+    };
+
     useEffect (() => {
         actions.getDollarBCV()
         actions.getDollarParelelo()
@@ -181,7 +232,8 @@ export const UserHome = () => {
                 <div className="presentationUserHome">
                     {userData ? (
                         <div className="welcomeMessage">
-                        <h2 className="welcomeText">Bienvenido, {userData.user_name}</h2>
+                        <h1 className="welcomeText">Bienvenido, {userData.user_name}</h1>
+                        <p className="inspirationalMessage">{mensajeInspiradorAleatorio()}</p>
                         </div>
                     ) : (
                         <p className="loadingMessage">Loading user data...</p>
@@ -218,27 +270,26 @@ export const UserHome = () => {
                 {/* <h3 className="pdegrafica1Nico">Observa diariamente como se mueven tus estadísticas del mes actual!</h3> */}
                 <canvas id="myChart" width="5vh" height="3vh"></canvas>
             </div>
-            
             <div className="container containerDeUsreHomejs">
-                <table>
+                <table className="custom-table">
                     <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Tipo de Movimiento</th>
-                            <th>Monto</th>
-                        </tr>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Tipo de Movimiento</th>
+                        <th>Monto</th>
+                    </tr>
                     </thead>
                     <tbody>
-                            {moneyRegisterData
-                            .slice() // Copia el array para no modificar el original
-                            .sort((a, b) => new Date(b.time_selected) - new Date(a.time_selected)) // Ordena por time_selected en orden descendente
-                            .map((transaction, index) => (
-                                <tr key={index}>
-                                    <td>{formatDateForTable(transaction.time_selected)}</td>
-                                    <td>{transaction.tipo_movimiento}</td>
-                                    <td>{transaction.monto}</td>
-                                </tr>
-                            ))}
+                    {moneyRegisterData
+                        .slice()
+                        .sort((a, b) => new Date(b.time_selected) - new Date(a.time_selected))
+                        .map((transaction, index) => (
+                        <tr key={index} className={transaction.tipo_movimiento === "Ingresos" ? "ingresos" : "egresos"}>
+                            <td>{formatDateForTable(transaction.time_selected)}</td>
+                            <td>{transaction.tipo_movimiento}</td>
+                            <td>{transaction.monto}</td>
+                        </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
