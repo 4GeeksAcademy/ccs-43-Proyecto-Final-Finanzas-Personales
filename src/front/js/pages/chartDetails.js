@@ -14,7 +14,7 @@ export const CharDetail = () => {
   const [fechaFin, setFechaFin] = useState('');
   const [userData, setUserData] = useState(null);
   const [resultadoFilter, setResultadoFilter] = useState([]);
-  console.log(resultadoFilter,"resultadoFilter")
+  console.log(resultadoFilter, "resultadoFilter")
 
   const handleFechaInicioChange = (event) => {
     setFechaInicio(event.target.value);
@@ -74,24 +74,17 @@ export const CharDetail = () => {
     setResultadoFilter(filtrado);
   };
 
-
-  function generarColorPastelAleatorio() {
-    // Genera valores aleatorios para los componentes de color (rojo, verde, azul y alfa)
-    const r = Math.floor(Math.random() * 156 + 100); // Valores entre 100 y 255 para colores pastel
+  const generarColorPastelAleatorio = () => {
+    const r = Math.floor(Math.random() * 156 + 100);
     const g = Math.floor(Math.random() * 156 + 100);
     const b = Math.floor(Math.random() * 156 + 100);
-    const a = Math.random() * 0.4 + 0.6; // Valores de opacidad entre 0.6 y 1.0
-  
-    // Crea el color RGBA en formato CSS
+    const a = Math.random() * 0.4 + 0.6;
     const colorRGBA = `rgba(${r}, ${g}, ${b}, ${a})`;
-  
     return colorRGBA;
-  }
-  
-  // Ejemplo de uso
+  };
+
   const colorAleatorio = generarColorPastelAleatorio();
 
-  
   const options = {
     responsive: true,
     animation: {
@@ -109,12 +102,12 @@ export const CharDetail = () => {
         min: -25,
         max: 100,
         grid: {
-          color: generarColorPastelAleatorio(), // Generar un color aleatorio aquí
+          color: generarColorPastelAleatorio(),
         },
       },
       x: {
         ticks: {
-          color: generarColorPastelAleatorio(), // Generar un color aleatorio aquí
+          color: generarColorPastelAleatorio(),
           font: {
             size: 12,
           },
@@ -123,94 +116,83 @@ export const CharDetail = () => {
     },
   };
 
-
   const ingresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Ingresos');
-const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
+  const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
 
+  const data = {
+    labels: [...ingresos.map(data => data.tipo_categoria), ...egresos.map(data => data.tipo_categoria)],
+    datasets: [
+      {
+        label: 'Egresos',
+        data: egresos.map(data => data.monto),
+        backgroundColor: generarColorPastelAleatorio(),
+      },
+      {
+        label: 'Ingresos',
+        data: ingresos.map(data => data.monto),
+        backgroundColor: generarColorPastelAleatorio(),
+      }
+    ],
+  };
 
-const data = {
-  labels: [...ingresos.map(data => data.tipo_categoria), ...egresos.map(data => data.tipo_categoria)],
-  datasets: [
-    
-    {
-      label: 'Egresos',
-      data: egresos.map(data => data.monto),
-      backgroundColor: generarColorPastelAleatorio(),
-    },
-    {
-      label: 'Ingresos',
-      data: ingresos.map(data => data.monto),
-      backgroundColor: generarColorPastelAleatorio(),
-    }
-  ],
-};
-
-const mostrarAlerta1 = () => {
-  swal({
-    title: 'Fechas',
-    text: `¿Está seguro de que este es el rango que quiere? ${fechaInicio} - ${fechaFin}`,
-    icon: 'success',
-    buttons: ["No", "Si"],
-  }).then(respuesta => {
-    if (respuesta) {
-      miMetodo(); // Llama a tu función miMetodo si el usuario hace clic en "Sí"
-    } else {
-      swal({ text: "Escoja su nuevo rango de fechas" });
-    }
-  });
-}
-
-
+  const mostrarAlerta1 = () => {
+    swal({
+      title: 'Fechas',
+      text: `¿Está seguro de que este es el rango que quiere? ${fechaInicio} - ${fechaFin}`,
+      icon: 'success',
+      buttons: ["No", "Si"],
+    }).then(respuesta => {
+      if (respuesta) {
+        miMetodo();
+      } else {
+        swal({ text: "Escoja su nuevo rango de fechas" });
+      }
+    });
+  }
 
   return (
-<div className="container containerDefinitivoRuben">
+    <div className="container containerDefinitivoRuben">
       <h1 className="h1rubenSuperDfinitivo">Selecciona dos fechas</h1>
-<div className="container-fluid containerChartDetailRuben">
-  <div className="date-section">
-    <div className="date-picker">
-        <div className="date-input">
-          <label htmlFor="fechaInicio">Fecha de Inicio:</label>
-          <input
-            type="date"
-            id="fechaInicio"
-            value={fechaInicio}
-            onChange={handleFechaInicioChange}
-            className="form-control form-control-large"
-            style={{ width: '200px' }}
-          />
+      <div className="container-fluid containerChartDetailRuben">
+        <div className="date-section">
+          <div className="date-picker">
+            <div className="date-input">
+              <label htmlFor="fechaInicio">Fecha de Inicio:</label>
+              <input
+                type="date"
+                id="fechaInicio"
+                value={fechaInicio}
+                onChange={handleFechaInicioChange}
+                className="form-control form-control-large"
+                style={{ width: '100%' }} // Cambiar a 100% para dispositivos móviles
+              />
+            </div>
+            <div className="date-input">
+              <label htmlFor="fechaFin">Fecha de Fin:</label>
+              <input
+                type="date"
+                id="fechaFin"
+                value={fechaFin}
+                onChange={handleFechaFinChange}
+                className="form-control form-control-large"
+                style={{ width: '100%' }} // Cambiar a 100% para dispositivos móviles
+              />
+            </div>
+          </div>
+          <div>
+            <button onClick={mostrarAlerta1} className=" botonDeBusqueda btn btn-secondary mx-auto mb-4"
+             disabled={!fechaInicio, !fechaFin}
+            >
+              Buscar
+            </button>
+          </div>
         </div>
-        <div className="date-input">
-          <label htmlFor="fechaFin">Fecha de Fin:</label>
-          <input
-            type="date"
-            id="fechaFin"
-            value={fechaFin}
-            onChange={handleFechaFinChange}
-            className="form-control form-control-large"
-            style={{ width: '200px' }}
-          />
+        <div className="chart-section">
+          <div className="chart-container" style={{ width: '100%', height: '100%' }}>
+            <Pie data={data} options={options} />
+          </div>
+        </div>
       </div>
-  </div>
-  <div className="button-container">
-
-
-
-
-
-
-    
-    <button onClick={mostrarAlerta1} className="btn btn-success" style={{ backgroundColor: '#4180ab' }}>
-      Buscar
-    </button>
-  </div>
-</div>
-  <div className="chart-section">
-    <div className="chart-container">
-      {/* <canvas id="myChart" width="100vh" height="50vh"></canvas> */}
-      <Pie data={data} options={options} />
     </div>
-  </div>
-</div> 
-</div>
   );
 };
