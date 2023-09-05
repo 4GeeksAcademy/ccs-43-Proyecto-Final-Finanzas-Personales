@@ -55,7 +55,7 @@ export const Ingresos = () => {
     };
 
     const formatDate = (dateString) => {
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
     
@@ -65,8 +65,16 @@ export const Ingresos = () => {
         fetchIngresos();
     }, []);
 
+    const sortIngresosByDate = (ingresos) => {
+        return ingresos.sort((a, b) => {
+            const dateA = new Date(a.time_selected);
+            const dateB = new Date(b.time_selected);
+            return dateB - dateA;
+        });
+    };
+
     return (
-        <div className="container">
+        <div className="container mt-25">
             <h2>Ingresos</h2>
             <table className="table">
                 <thead>
@@ -78,24 +86,24 @@ export const Ingresos = () => {
                         <th></th>
                     </tr>
                 </thead>
-                    <tbody>
-                        {ingresos.map((ingreso) => (
-                            <tr key={ingreso.id}>
-                                <td>{formatDate(ingreso.time_selected)}</td>
-                                <td>{ingreso.tipo_movimiento}</td>
-                                <td>{ingreso.tipo_categoria}</td>
-                                <td>{ingreso.monto}</td>
-                                <td>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => handleDelete(ingreso.id)}
-                                    >
-                                        Eliminar
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
+                <tbody>
+                    {sortIngresosByDate(ingresos).map((ingreso) => (
+                        <tr key={ingreso.id}>
+                            <td>{formatDate(ingreso.time_selected)}</td>
+                            <td>{ingreso.tipo_movimiento}</td>
+                            <td>{ingreso.tipo_categoria}</td>
+                            <td>{ingreso.monto}</td>
+                            <td>
+                                <button
+                                    className="btn btn-danger"
+                                    onClick={() => handleDelete(ingreso.id)}
+                                >
+                                    Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
             </table>
         </div>
     );

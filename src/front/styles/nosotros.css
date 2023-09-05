@@ -48,8 +48,8 @@
   border-radius: 50%;
   background-image: url("https://res.cloudinary.com/dronv3ars/image/upload/v1693769133/yoka_monj8e.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-size: 140%;
+  background-position: center 70%;
 }
 .containerFotoNombresNosotros{
   background-image: url("https://res.cloudinary.com/dronv3ars/image/upload/v1693769973/Nombre_Nico_sin_fondo_xhnd6i.png");

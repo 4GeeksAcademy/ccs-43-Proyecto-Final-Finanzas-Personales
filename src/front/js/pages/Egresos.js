@@ -55,7 +55,7 @@ export const Egresos = () => {
     };
 
     const formatDate = (dateString) => {
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
@@ -63,6 +63,14 @@ export const Egresos = () => {
         actions.checkLogin(navigate);
         fetchEgresos();
     }, []);
+
+    const sortEgresosByDate = (egresos) => {
+        return egresos.sort((a, b) => {
+            const dateA = new Date(a.time_selected);
+            const dateB = new Date(b.time_selected);
+            return dateB - dateA;
+        });
+    };
 
     return (
         <div className="container">
@@ -78,7 +86,7 @@ export const Egresos = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {egresos.map((egreso) => (
+                    {sortEgresosByDate(egresos).map((egreso) => (
                         <tr key={egreso.id}>
                             <td>{formatDate(egreso.time_selected)}</td>
                             <td>{egreso.tipo_movimiento}</td>

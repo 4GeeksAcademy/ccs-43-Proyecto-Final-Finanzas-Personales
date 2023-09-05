@@ -223,7 +223,7 @@ export const UserHome = () => {
       },[])
 
       const formatDateForTable = (dateString) => {
-        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
         return new Date(dateString).toLocaleDateString(undefined, options);
     };
 
@@ -236,7 +236,7 @@ export const UserHome = () => {
                         <p className="inspirationalMessage">{mensajeInspiradorAleatorio()}</p>
                         </div>
                     ) : (
-                        <p className="loadingMessage">Loading user data...</p>
+                        <p className="loadingMessage">Cargando...</p>
                     )}
                 </div>
             <Link className="container containerDeUsreHomejsonelinea" to="/Ingresos">
