@@ -108,38 +108,45 @@ export const TypesOfCategories = () => {
         });
       }
 
+      const placeholderText = tipo === "" ? "Escoge un tipo de categoría" : (tipo === "Ingresos" ? "Tipo de Categoría. Ejemplo: Salario" : "Tipo de Categoría. Ejemplo: Medicinas");
+
     return (
         <div className="container containerDeTypeOfCategories">
             <div className="container containerNicoTypeOfCategoriesprimero">
-            <h2>Personaliza tus categorías</h2>
+                <div className="container containerlapiztypesofcategoriesNico">
+                    <i className="fa-solid fa-user-pen"></i>
+                    <h5 className="TituloTypesOfCategories">Personaliza tus categorías</h5>
+                </div>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Tipo:</label>
-                    <select className="form-control" value={tipo} onChange={handleTipoChange} required>
-                        <option value="">Selecciona un tipo</option>
+                    <select className="inputDeLogin" placeholder="Selecciona Tipo de Categoría" value={tipo} onChange={handleTipoChange} required>
+                        <option disabled value="">Selecciona un tipo</option>
                         <option value="Ingresos">Ingresos</option>
                         <option value="Egresos">Egresos</option>
                     </select>
                 </div>
                 <br />
                 <div className="form-group">
-                    <label>Categoría:</label>
                     <input
                         type="text"
-                        className="form-control"
+                        className="inputDeLogin"
+                        placeholder={placeholderText}
                         value={categoria}
                         onChange={(e) => setCategoria(e.target.value)}
                         required
                     />
                 </div>
                 <br />
-                <div className="d-flex justify-content-between">
-                    <button onClick={mostrarAlerta1} type="submit" className="btn btn-primary">Enviar</button>
+                <div className="d-flex justify-content-center">
+                    <button onClick={mostrarAlerta1} type="submit" className="btn btn-dark buttonCargadeDatosDeLogin">Enviar<i className="fa-solid fa-arrow-right"></i></button>
                 </div>
             </form>
             </div>
             <div className="container containerRegistroCategoriesNicoTypeOfCategories">
-                <h2>Registros de Categorías</h2>
+                <div className="container containerlapiztypesofcategoriesNico">
+                    <i class="fa-solid fa-pencil"></i>
+                    <h5 className="TituloTypesOfCategories">Registro de Categorías</h5>
+                </div>
                 <table className="table tableNicoTypesOfCategories">
                     <thead className="HeadTableNicoTypesOfCategories">
                         <tr>
@@ -149,7 +156,7 @@ export const TypesOfCategories = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr className="EgresosTypesOfCategoriesTablaback">
                             <td colSpan="3"><strong>Ingresos</strong></td>
                         </tr>
                         {categorias.map((cat) => (
@@ -168,7 +175,7 @@ export const TypesOfCategories = () => {
                                 </tr>
                             )
                         ))}
-                        <tr>
+                        <tr className="IngresosTypesOfCategoriesTablaback">
                             <td colSpan="3"><strong>Egresos</strong></td>
                         </tr>
                         {categorias.map((cat) => (
