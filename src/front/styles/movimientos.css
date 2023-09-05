@@ -35,3 +35,16 @@
 .botonDeRegistroM {
     background-color:black;
 }
+
+.form-control {
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid black !important;
+    outline: none !important;
+    border-radius: 0%;
+}
+
+
+  
+  
+  

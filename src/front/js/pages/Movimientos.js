@@ -176,84 +176,87 @@ export const Movimientos = () => {
       <div className="container-fluid containerDeRegistroM mx-auto p-2">
       <div className="container containerDeRegistroM2">
         <h2 id="tituloDeRegistroM" className="text-center mt-4 mb-5">Registro de Movimientos</h2>
-        <form onSubmit={handleSubmit} className="formularioDeRegistroM mx-auto col-md-10">
-          <div className="form-group">
-            <input
-              type="date"
-              className="form-control border-0 border-bottom border-dark"
-              value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
-            />
-          </div>
-          <br />
-          <div className="form-group">
-            <select 
-              className="form-control border-0 border-bottom border-dark" 
-              value={tipo} 
-              onChange={handleTipoChange}
-              >
-                <option value="">Selecciona un tipo</option>
-                <option value="Ingresos">Ingresos</option>
-                <option value="Egresos">Egresos</option>
-            </select>
-          </div>
-          <br />
-          <div className="form-group">
-            <select 
-              className="form-control border-0 border-bottom border-dark" 
-              value={categoria} 
-              onChange={handleCategoriaChange}
-              >
-                <option value="">Selecciona una categoría</option>
-                {categoriasPorTipo[tipo]?.map((cat, index) => (
-                  <option key={index} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-            </select>
-          </div>
-          <br />
-          <div className="form-group">
-            <select 
-              className="form-control border-radius-0 border-0 border-bottom border-dark" 
-              value={moneda} 
-              onChange={handleMonedaChange}
-              >
-                <option value="">Selecciona una moneda</option>
-                <option value="Bolivares">Bolívares</option>
-                <option value="Dolares">Dólares</option>
-            </select>
-              {moneda === 'Bolivares' && (
-                <small className="text-muted">
-                  Los montos ingresados en Bolívares se registrarán de modo automático en Dólares a la tasa BCV al momento de hacer el registro.
-                </small>
-              )}
-          </div>
-          <br />
-          <div className="form-group">
-            <input
-              type="number"
-              className="form-control border-0 border-bottom border-dark mb-2"
-              placeholder="Registra un monto p.ej. 34.5"
-              value={monto}
-              onChange={(e) => setMonto(e.target.value)}
-            />
-          </div>
-          <br />
-          <div className="d-flex justify-content-between">
-            <button  
-              onClick={ejecutarMetodos} 
-              type="submit" 
-              disabled={!fecha, !tipo, !categoria, !moneda, !monto}
-              className="botonDeRegistroM btn btn-secondary mx-auto mb-4"
-              >
-                Enviar
-              </button>
-          </div>
+        <form 
+          onSubmit={handleSubmit} 
+          className="formularioDeRegistroM mx-auto col-md-10"
+          >
+            <div className="form-group col-sm-8 mx-auto">
+              <input
+                type="date"
+                className="form-control"
+                value={fecha}
+                onChange={(e) => setFecha(e.target.value)}
+              />
+            </div>
+            <br />
+            <div className="form-group col-sm-8 mx-auto">
+              <select 
+                className="form-control" 
+                value={tipo} 
+                onChange={handleTipoChange}
+                >
+                  <option value="">Selecciona un tipo</option>
+                  <option value="Ingresos">Ingresos</option>
+                  <option value="Egresos">Egresos</option>
+              </select>
+            </div>
+            <br />
+            <div className="form-group col-sm-8 mx-auto">
+              <select 
+                className="form-control" 
+                value={categoria} 
+                onChange={handleCategoriaChange}
+                >
+                  <option value="">Selecciona una categoría</option>
+                  {categoriasPorTipo[tipo]?.map((cat, index) => (
+                    <option key={index} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <br />
+            <div className="form-group col-sm-8 mx-auto">
+              <select 
+                className="form-control" 
+                value={moneda} 
+                onChange={handleMonedaChange}
+                >
+                  <option value="">Selecciona una moneda</option>
+                  <option value="Bolivares">Bolívares</option>
+                  <option value="Dolares">Dólares</option>
+              </select>
+                {moneda === 'Bolivares' && (
+                  <small className="text-muted">
+                    Los montos ingresados en Bolívares se registrarán de modo automático en Dólares a la tasa BCV al momento de hacer el registro.
+                  </small>
+                )}
+            </div>
+            <br />
+            <div className="form-group col-sm-8 mx-auto">
+              <input
+                type="number"
+                className="form-control"
+                placeholder="Registra un monto p.ej. 34.5"
+                value={monto}
+                onChange={(e) => setMonto(e.target.value)}
+              />
+            </div>
+            <br />
+            <div className="d-flex justify-content-between mt-3">
+              <button  
+                type="submit" 
+                //onClick={ejecutarMetodos} 
+                disabled={!fecha || !tipo || !categoria || !moneda || !monto}
+                className="botonDeRegistroM btn btn-dark mx-auto mb-4"
+                >
+                  Enviar
+                </button>
+            </div>
         </form>
       </div>
       </div>
     );
-  }
+}
 
 
