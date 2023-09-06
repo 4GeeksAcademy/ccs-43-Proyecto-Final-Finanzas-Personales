@@ -3,6 +3,7 @@ import axios from "axios";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/Ingresos&Egresos.css"
+import swal from 'sweetalert';
 
 export const Ingresos = () => {
     const { store, actions } = useContext(Context);
@@ -30,31 +31,7 @@ export const Ingresos = () => {
         }
     };
 
-    const handleDelete = async (ingresoId) => {
-        if (!ingresoId || typeof ingresoId !== 'number' || isNaN(ingresoId)) {
-            console.log("ID de ingreso no válido");
-            return;
-        }
-        try {
-            const API_URL = process.env.BACKEND_URL;
-            const response = await fetch(API_URL + `/api/EliminarIngreso/${ingresoId}`, {
-                method: "DELETE",
-                headers: {
-                    "Authorization": "Bearer " + store.token
-                }
-            });
-    
-            if (response.status !== 200) {
-                console.log("Error en la solicitud. Código: ", response.status);
-                return;
-            }
-    
-            await fetchIngresos();
-            mostrarAlerta3()
-        } catch (error) {
-            console.log(error);
-        }
-    };
+
 
     const formatDate = (dateString) => {
         const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
@@ -75,25 +52,53 @@ export const Ingresos = () => {
         });
     };
 
-    const mostrarAlerta3 = () => {
-        swal({
-            title: 'Listado de Ingesos',
-            text: `Ingreso Eliminado`,
-            icon: 'success',
-            timer: '3000',
-          buttons: {
-            yes: {
-              text: "Si",
-              value: true,
-              className: "custom-button-yes",
-            },
-          },
-          customClass: {
-            modal: 'custom-modal', 
-          },
-        })
-      };
-
+    const handleDelete = async (ingresoId) => {
+        if (!ingresoId || typeof ingresoId !== 'number' || isNaN(ingresoId)) {
+            return;
+        }
+    
+        try {
+            const API_URL = process.env.BACKEND_URL;
+            swal({
+                title: 'Esta Seguro que desea Eliminar el Ingreso?',
+                icon: 'warning',
+                buttons: {
+                    no: {
+                        text: "No",
+                        value: false,
+                        className: "custom-button-no",
+                    },
+                    yes: {
+                        text: "Si",
+                        value: true,
+                        className: "custom-button-yes",
+                    },
+                },
+                customClass: {
+                    modal: 'custom-modal', 
+                },
+            }).then(async (respuesta) => {
+                if (respuesta) {
+                    const response = await fetch(API_URL + `/api/EliminarIngreso/${ingresoId}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Authorization": "Bearer " + store.token
+                        }
+                    });
+    
+                    if (response.status !== 200) {
+                        console.log("Error en la solicitud. Código: ", response.status);
+                        return;
+                    }
+    
+                    await fetchIngresos();
+                }
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    };
+      
 
     return (
         <div className="container containerIngresosNicoSuper">

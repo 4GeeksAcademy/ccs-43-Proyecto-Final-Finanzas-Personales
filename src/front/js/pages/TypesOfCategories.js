@@ -39,7 +39,12 @@ export const TypesOfCategories = () => {
       }
   };
   
-  const handleDelete = async (categoryId) => {
+  const handleDelete = (categoryId) => {
+    mostrarAlerta3(categoryId);
+};
+
+
+const handleDeleteConfirmed = async (categoryId) => {
     try {
         const API_URL = process.env.BACKEND_URL;
         const response = await fetch(API_URL + `/api/EliminarCategoria/${categoryId}`, {
@@ -55,11 +60,38 @@ export const TypesOfCategories = () => {
         }
 
         await fetchCategories();
-        mostrarAlerta3()
+        mostrarAlerta4();
     } catch (error) {
         console.log(error);
     }
 };
+
+const mostrarAlerta3 = (categoryId) => {
+    swal({
+        title: `¿Está seguro que desea eliminar esta Categoría? ${categoria}`,
+        icon: 'warning',
+        buttons: {
+            no: {
+                text: "No",
+                value: false,
+                className: "custom-button-no",
+            },
+            yes: {
+                text: "Si",
+                value: true,
+                className: "custom-button-yes",
+            },
+        },
+        customClass: {
+            modal: 'custom-modal', 
+        },
+    }).then((respuesta) => {
+        if (respuesta) {
+            handleDeleteConfirmed(categoryId);
+        }
+    });
+};
+
 
  const handleSubmit = async (event) => {
     event.preventDefault();
@@ -104,13 +136,12 @@ export const TypesOfCategories = () => {
     
       const mostrarAlerta1 = () => {
         swal({
-            title: 'Registro de Categoria',
-            text: `Categoria Agregada ${categoria}`,
+            title: `Categoria Agregada ${categoria}`,
             icon: 'success',
             timer: '3000',
           buttons: {
             yes: {
-              text: "Si",
+              text: "Ok",
               value: true,
               className: "custom-button-yes",
             },
@@ -123,13 +154,12 @@ export const TypesOfCategories = () => {
 
       const mostrarAlerta2 = () => {
         swal({
-            title: 'Registro de Categoria',
-            text: `Categoria Repetida ${categoria}`,
-            icon: 'success',
+            title: `Categoria Repetida ${categoria}`,
+            icon: 'warning',
             timer: '3000',
           buttons: {
             yes: {
-              text: "Si",
+              text: "Ok",
               value: true,
               className: "custom-button-yes",
             },
@@ -140,15 +170,14 @@ export const TypesOfCategories = () => {
         })
       };
 
-      const mostrarAlerta3 = () => {
+      const mostrarAlerta4 = () => {
         swal({
-            title: 'Registro de Categoria',
-            text: `Categoria Eliminada ${categoria}`,
+            title: `Categoria Eliminada ${categoria}`,
             icon: 'success',
             timer: '3000',
           buttons: {
             yes: {
-              text: "Si",
+              text: "Ok",
               value: true,
               className: "custom-button-yes",
             },
@@ -189,7 +218,7 @@ export const TypesOfCategories = () => {
                 </div>
                 <br />
                 <div className="d-flex justify-content-center">
-                    <button type="submit" className="btn btn-dark buttonCargadeDatosDeLogin">Enviar<i className="fa-solid fa-arrow-right"></i></button>
+                    <button disabled={!categoria || !categoria} type="submit" className="btn btn-dark buttonCargadeDatosDeLogin">Enviar<i className="fa-solid fa-arrow-right"></i></button>
                 </div>
             </form>
             </div>
