@@ -188,7 +188,7 @@ export const Movimientos = () => {
             <div className="form-group col-sm-8 mx-auto">
               <input
                 type="date"
-                className="form-control"
+                className="form-control inputsMovimientos"
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value)}
               />
@@ -196,7 +196,7 @@ export const Movimientos = () => {
             <br />
             <div className="form-group col-sm-8 mx-auto">
               <select 
-                className="form-control" 
+                className="form-control inputsMovimientos" 
                 value={tipo} 
                 onChange={handleTipoChange}
                 >
@@ -208,7 +208,7 @@ export const Movimientos = () => {
             <br />
             <div className="form-group col-sm-8 mx-auto">
               <select 
-                className="form-control" 
+                className="form-control inputsMovimientos" 
                 value={categoria} 
                 onChange={handleCategoriaChange}
                 >
@@ -223,7 +223,7 @@ export const Movimientos = () => {
             <br />
             <div className="form-group col-sm-8 mx-auto">
               <select 
-                className="form-control" 
+                className="form-control inputsMovimientos" 
                 value={moneda} 
                 onChange={handleMonedaChange}
                 >
@@ -241,7 +241,7 @@ export const Movimientos = () => {
             <div className="form-group col-sm-8 mx-auto">
               <input
                 type="number"
-                className="form-control"
+                className="form-control inputsMovimientos"
                 placeholder="Registra un monto p.ej. 34.5"
                 value={monto}
                 onChange={(e) => setMonto(e.target.value)}
