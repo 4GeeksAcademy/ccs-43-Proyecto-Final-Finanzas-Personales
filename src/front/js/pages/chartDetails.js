@@ -205,7 +205,7 @@ export const CharDetail = () => {
           </div>
           <div>
             <button onClick={mostrarAlerta1} className=" botonDeBusqueda btn btn-secondary mx-auto mb-4"
-             disabled={!fechaInicio, !fechaFin}
+             disabled={!fechaInicio || !fechaFin}
             >
               Buscar
             </button>
