@@ -36,7 +36,7 @@
     background-color:black;
 }
 
-.form-control {
+.inputsMovimientos {
     background-color: transparent !important;
     border: none !important;
     border-bottom: 2px solid gray !important;
@@ -46,7 +46,7 @@
     min-width: 40vh;
     min-height: 6vh;
 }
-.form-control:focus {
+.inputsMovimientos:focus {
     border-bottom: 3px solid #A9973A !important;
 }
 .fa-credit-card{
