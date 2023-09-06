@@ -45,28 +45,10 @@ export const CharDetail = () => {
     actions.checkLogin(navigate)
   }, []);
 
-  console.log(userData,"userData")
-
   const moneyRegister = userData ? userData.money_register : [];
 
-  const datosUnificados = {};
-  for (const dato of moneyRegister) {
-    if (datosUnificados[dato.tipo_categoria]) {
-      datosUnificados[dato.tipo_categoria].monto += dato.monto;
-    } else {
-      datosUnificados[dato.tipo_categoria] = {
-        monto: dato.monto,
-        time_selected: dato.time_selected,
-        tipo_categoria: dato.tipo_categoria,
-        tipo_movimiento: dato.tipo_movimiento,
-      };
-    }
-  }
-
-  const resultado = Object.values(datosUnificados);
-
   const miMetodo = () => {
-    const filtrado = resultado.filter(evento => {
+    const filtrado = moneyRegister.filter(evento => {
       const eventTime =  formatDateForTable(evento.time_selected);
       const tempFechaInicio = formatDateForTable(fechaInicio);
       const tempFechaFin = formatDateForTable(fechaFin);
@@ -84,8 +66,7 @@ export const CharDetail = () => {
     return colorRGBA;
   };
 
-  const colorAleatorio = generarColorPastelAleatorio();
-
+ 
   const options = {
     responsive: true,
     animation: {
@@ -118,23 +99,37 @@ export const CharDetail = () => {
   };
 
   const ingresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Ingresos');
-  const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
+const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
 
-  const data = {
-    labels: [...ingresos.map(data => data.tipo_categoria), ...egresos.map(data => data.tipo_categoria)],
-    datasets: [
-      {
-        label: 'Egresos',
-        data: egresos.map(data => data.monto),
-        backgroundColor: generarColorPastelAleatorio(),
-      },
-      {
-        label: 'Ingresos',
-        data: ingresos.map(data => data.monto),
-        backgroundColor: generarColorPastelAleatorio(),
-      }
-    ],
-  };
+// Obtener todas las categorías únicas
+const allCategories = [...new Set(resultadoFilter.map(data => data.tipo_categoria))];
+
+// Calcular los montos para ingresos y egresos para cada categoría
+const ingresosData = allCategories.map(category => {
+  const filteredData = ingresos.filter(data => data.tipo_categoria === category);
+  return filteredData.reduce((total, data) => total + data.monto, 0);
+});
+
+const egresosData = allCategories.map(category => {
+  const filteredData = egresos.filter(data => data.tipo_categoria === category);
+  return filteredData.reduce((total, data) => total + data.monto, 0);
+});
+
+const data = {
+  labels: allCategories,
+  datasets: [
+    {
+      label: 'Egresos',
+      data: egresosData,
+      backgroundColor: egresosData.map(() => generarColorPastelAleatorio()),
+    },
+    {
+      label: 'Ingresos',
+      data: ingresosData,
+      backgroundColor: ingresosData.map(() => generarColorPastelAleatorio()),
+    },
+  ],
+};
 
   const mostrarAlerta1 = () => {
     swal({
@@ -171,8 +166,6 @@ export const CharDetail = () => {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
     return new Date(dateString).toLocaleDateString(undefined, options);
 };
-
-  
 
   return (
     <div className="container containerDefinitivoRuben">
