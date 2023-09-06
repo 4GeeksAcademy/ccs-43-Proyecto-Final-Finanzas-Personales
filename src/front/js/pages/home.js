@@ -52,6 +52,18 @@ export const Home = () => {
 								alt="Imagen para dispositivos medianos y pequeños"
                         	/>
 						</div>
+						<div className="carousel-item">	
+							<img
+								src="https://res.cloudinary.com/dronv3ars/image/upload/v1694017258/Manera_mqjaee.png"
+								className="mx-auto img-fluid d-none d-lg-block large-img"
+								alt="Imagen para dispositivos grandes"
+							/>
+                       		<img
+								src="https://res.cloudinary.com/dronv3ars/image/upload/v1694017267/ManeraMobile_vp72co.png"
+								className="mx-auto img-fluid d-lg-none" 
+								alt="Imagen para dispositivos medianos y pequeños"
+                        	/>
+						</div>
                     </div>
                 </div>    
             </div>
