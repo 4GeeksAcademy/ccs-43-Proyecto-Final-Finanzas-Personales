@@ -169,30 +169,32 @@ const data = {
 
   return (
     <div className="container containerDefinitivoRuben">
-      <h1 className="h1rubenSuperDfinitivo">Selecciona dos fechas</h1>
-      <div className="container-fluid containerChartDetailRuben">
+      <div className="container containerChartDetailRuben">
         <div className="date-section">
           <div className="date-picker">
+          <h4 className="h1rubenSuperDfinitivo"><i className="fa-solid fa-calendar-days"></i>Selecciona dos fechas</h4>
             <div className="date-input">
-              <label htmlFor="fechaInicio">Fecha de Inicio:</label>
+              <div className="labelDeInputRuben">
+                <label htmlFor="fechaInicio">Fecha de Inicio:</label>
+              </div>
               <input
                 type="date"
                 id="fechaInicio"
                 value={fechaInicio}
                 onChange={handleFechaInicioChange}
-                className="form-control form-control-large"
-                style={{ width: '100%' }} // Cambiar a 100% para dispositivos móviles
+                className="inputDeLogin inputRubenChartDetail"
               />
             </div>
-            <div className="date-input">
-              <label htmlFor="fechaFin">Fecha de Fin:</label>
+            <div className="date-input segundoInputRubenChartDetail">
+              <div className="labelDeInputRuben">
+                <label htmlFor="fechaFin">Fecha de Fin:</label>
+              </div>
               <input
                 type="date"
                 id="fechaFin"
                 value={fechaFin}
                 onChange={handleFechaFinChange}
-                className="form-control form-control-large"
-                style={{ width: '100%' }} // Cambiar a 100% para dispositivos móviles
+                className="inputDeLogin inputRubenChartDetail"
               />
             </div>
           </div>
@@ -205,7 +207,7 @@ const data = {
           </div>
         </div>
         <div className="chart-section">
-          <div className="chart-container" style={{ width: '90%', height: '90%' }}>
+          <div className="chart-container" style={{ width: '95%', height: '95%' }}>
             <Pie data={data} options={options} />
           </div>
         </div>
