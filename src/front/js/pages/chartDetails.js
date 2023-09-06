@@ -45,9 +45,56 @@ export const CharDetail = () => {
     actions.checkLogin(navigate)
   }, []);
 
-  console.log(userData,"userData")
 
-  const moneyRegister = userData ? userData.money_register : [];
+  const datePrueba = {
+    "email": "snay208@gmail.com",
+    "first_name": "Ruben",
+    "id": 1,
+    "last_name": "Reyes",
+    "money_register": [
+        {
+            "id": 1,
+            "monto": 1000,
+            "time_selected": "Fri, 01 Sep 2023 00:00:00 GMT",
+            "tipo_categoria": "Sueldo",
+            "tipo_movimiento": "Ingresos"
+        },
+        {
+            "id": 2,
+            "monto": 250,
+            "time_selected": "Sat, 02 Sep 2023 00:00:00 GMT",
+            "tipo_categoria": "Mercado",
+            "tipo_movimiento": "Egresos"
+        },
+        {
+            "id": 3,
+            "monto": 230,
+            "time_selected": "Sat, 02 Sep 2023 00:00:00 GMT",
+            "tipo_categoria": "Prestaciones",
+            "tipo_movimiento": "Ingresos"
+        },
+        {
+            "id": 4,
+            "monto": 500,
+            "time_selected": "Mon, 04 Sep 2023 00:00:00 GMT",
+            "tipo_categoria": "Bono Productividad ",
+            "tipo_movimiento": "Ingresos"
+        },
+        {
+            "id": 5,
+            "monto": 400,
+            "time_selected": "Wed, 06 Sep 2023 00:00:00 GMT",
+            "tipo_categoria": "Alquiler",
+            "tipo_movimiento": "Egresos"
+        }
+    ],
+    "user_name": "Screin208"
+}
+
+  // console.log(userData,"userData")
+
+  const moneyRegister = datePrueba ? datePrueba.money_register : [];
+  // const moneyRegister = userData ? userData.money_register : [];
 
   const datosUnificados = {};
   for (const dato of moneyRegister) {
@@ -66,7 +113,7 @@ export const CharDetail = () => {
   const resultado = Object.values(datosUnificados);
 
   const miMetodo = () => {
-    const filtrado = resultado.filter(evento => {
+    const filtrado = moneyRegister.filter(evento => {
       const eventTime =  formatDateForTable(evento.time_selected);
       const tempFechaInicio = formatDateForTable(fechaInicio);
       const tempFechaFin = formatDateForTable(fechaFin);
@@ -120,8 +167,13 @@ export const CharDetail = () => {
   const ingresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Ingresos');
   const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
 
+  const labelsIngresos = ingresos.map(data => data.tipo_categoria);
+const labelsEgresos = egresos.map(data => data.tipo_categoria);
+
+
+
   const data = {
-    labels: [...ingresos.map(data => data.tipo_categoria), ...egresos.map(data => data.tipo_categoria)],
+    labels: [...labelsIngresos, ...labelsEgresos], // Etiquetas combinadas
     datasets: [
       {
         label: 'Egresos',
