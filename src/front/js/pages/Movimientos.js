@@ -185,34 +185,34 @@ export const Movimientos = () => {
           onSubmit={handleSubmit} 
           className="formularioDeRegistroM mx-auto col-md-12"
           >
-            <div className="form-group col-sm-8 mx-auto">
+            <div className="form-group">
               <input
                 type="date"
-                className="form-control inputsMovimientos"
+                className="inputDeLogin inputsMovimientos"
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value)}
               />
             </div>
             <br />
-            <div className="form-group col-sm-8 mx-auto">
+            <div className="form-group mx-auto">
               <select 
-                className="form-control inputsMovimientos" 
+                className="inputDeLogin inputsMovimientos" 
                 value={tipo} 
                 onChange={handleTipoChange}
                 >
-                  <option value="">Selecciona un tipo</option>
+                  <option disabled value="">Selecciona un tipo</option>
                   <option value="Ingresos">Ingresos</option>
                   <option value="Egresos">Egresos</option>
               </select>
             </div>
             <br />
-            <div className="form-group col-sm-8 mx-auto">
+            <div className="form-group mx-auto">
               <select 
-                className="form-control inputsMovimientos" 
+                className="inputDeLogin inputsMovimientos" 
                 value={categoria} 
                 onChange={handleCategoriaChange}
                 >
-                  <option value="">Selecciona una categoría</option>
+                  <option disabled value="">Selecciona una categoría</option>
                   {categoriasPorTipo[tipo]?.map((cat, index) => (
                     <option key={index} value={cat}>
                       {cat}
@@ -221,27 +221,29 @@ export const Movimientos = () => {
               </select>
             </div>
             <br />
-            <div className="form-group col-sm-8 mx-auto">
+            <div className="form-group inputMoneda mx-auto">
               <select 
-                className="form-control inputsMovimientos" 
+                className="inputDeLogin inputsMovimientos" 
                 value={moneda} 
                 onChange={handleMonedaChange}
                 >
-                  <option value="">Selecciona una moneda</option>
+                  <option disabled value="">Selecciona una moneda</option>
                   <option value="Bolivares">Bolívares</option>
                   <option value="Dolares">Dólares</option>
               </select>
+              <div>
                 {moneda === 'Bolivares' && (
                   <small className="text-muted">
                     Los montos ingresados en Bolívares se registrarán de modo automático en Dólares a la tasa BCV al momento de hacer el registro.
                   </small>
                 )}
+              </div>
             </div>
             <br />
-            <div className="form-group col-sm-8 mx-auto">
+            <div className="form-group mx-auto">
               <input
                 type="number"
-                className="form-control inputsMovimientos"
+                className="inputDeLogin inputsMovimientos"
                 placeholder="Registra un monto p.ej. 34.5"
                 value={monto}
                 onChange={(e) => setMonto(e.target.value)}
@@ -254,7 +256,7 @@ export const Movimientos = () => {
                 disabled={!fecha || !tipo || !categoria || !moneda || !monto}
                 className="botonDeRegistroM btn btn-dark mx-auto mb-4"
                 >
-                  Enviar
+                  Enviar <i className="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
         </form>

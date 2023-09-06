@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import axios from "axios";
+import swal from 'sweetalert';
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/Ingresos&Egresos.css"
@@ -35,23 +35,47 @@ export const Egresos = () => {
             console.log("ID de egreso no válido");
             return;
         }
+
         try {
             const API_URL = process.env.BACKEND_URL;
-            const response = await fetch(API_URL + `/api/EliminarEgreso/${egresoId}`, {
-                method: "DELETE",
-                headers: {
-                    "Authorization": "Bearer " + store.token
+            // Mostrar la alerta antes de enviar la solicitud de eliminación
+            swal({
+                title: '¿Está seguro de que desea eliminar el egreso',
+                icon: 'warning',
+                buttons: {
+                    no: {
+                        text: "No",
+                        value: false,
+                        className: "custom-button-no",
+                    },
+                    yes: {
+                        text: "Si",
+                        value: true,
+                        className: "custom-button-yes",
+                    },
+                },
+                customClass: {
+                    modal: 'custom-modal', 
+                },
+            }).then(async (respuesta) => {
+                if (respuesta) {
+                    // Si el usuario confirma, procede con la eliminación
+                    const response = await fetch(API_URL + `/api/EliminarEgreso/${egresoId}`, {
+                        method: "DELETE",
+                        headers: {
+                            "Authorization": "Bearer " + store.token
+                        }
+                    });
+
+                    if (response.status !== 200) {
+                        console.log("Error en la solicitud. Código: ", response.status);
+                        return;
+                    }
+
+                    await fetchEgresos();
+                    mostrarAlerta3(); // Mostrar la alerta de éxito después de eliminar
                 }
             });
-
-            if (response.status !== 200) {
-                console.log("Error en la solicitud. Código: ", response.status);
-                return;
-            }
-
-            await fetchEgresos();
-            mostrarAlerta3()
-            
         } catch (error) {
             console.log(error);
         }
@@ -77,22 +101,22 @@ export const Egresos = () => {
 
     const mostrarAlerta3 = () => {
         swal({
-            title: 'Listado de Egresos',
-            text: `Egreso Eliminado`,
+            title: `Egreso Eliminado`,
+            // text: `Egreso Eliminado`,
             icon: 'success',
             timer: '3000',
-          buttons: {
-            yes: {
-              text: "Si",
-              value: true,
-              className: "custom-button-yes",
+            buttons: {
+                yes: {
+                    text: "Si",
+                    value: true,
+                    className: "custom-button-yes",
+                },
             },
-          },
-          customClass: {
-            modal: 'custom-modal', 
-          },
-        })
-      };
+            customClass: {
+                modal: 'custom-modal', 
+            },
+        });
+    };
 
     return (
         <div className="container containerIngresosNicoSuper">

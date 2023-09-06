@@ -37,14 +37,9 @@
 }
 
 .inputsMovimientos {
-    background-color: transparent !important;
-    border: none !important;
-    border-bottom: 2px solid gray !important;
-    outline: none !important;
-    border-radius: 0%;
-    width: 100%;
-    min-width: 40vh;
-    min-height: 6vh;
+    margin: 2px !important;
+    max-width: 45vh !important;
+    min-width: 40vh !important;
 }
 .inputsMovimientos:focus {
     border-bottom: 3px solid #A9973A !important;
@@ -54,6 +49,11 @@
     padding: 2px;
     margin-right: 5px;
 }
+.inputMoneda {
+    justify-content:center !important;
+    flex-direction: column;
+}
+
 
 
   
