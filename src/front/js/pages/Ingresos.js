@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import "../../styles/Ingresos&Egresos.css"
 
 export const Ingresos = () => {
     const { store, actions } = useContext(Context);
@@ -95,37 +96,41 @@ export const Ingresos = () => {
 
 
     return (
-        <div className="container mt-25">
-            <h2>Ingresos</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Fecha de Registro</th>
-                        <th>Tipo de Movimiento</th>
-                        <th>Tipo de Categoría</th>
-                        <th>Monto</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortIngresosByDate(ingresos).map((ingreso) => (
-                        <tr key={ingreso.id}>
-                            <td>{formatDate(ingreso.time_selected)}</td>
-                            <td>{ingreso.tipo_movimiento}</td>
-                            <td>{ingreso.tipo_categoria}</td>
-                            <td>{ingreso.monto}</td>
-                            <td>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleDelete(ingreso.id)}
-                                >
-                                    Eliminar
-                                </button>
-                            </td>
+        <div className="container containerIngresosNicoSuper">
+            <div className="containerTituloIngresosyEgresosNico">
+                <h2><i className="fa-solid fa-money-bill-trend-up iconDeIngresosIngresos" style={{color: "black"}}></i>Ingresos</h2>
+            </div>
+            <div className="table-responsive">
+                <table className="table custom-table">
+                    <thead style={{background: "rgba(75, 192, 192, 0.4)"}}>
+                        <tr>
+                            <th className="custom-header">Fecha</th>
+                            <th className="custom-header">Movimiento</th>
+                            <th className="custom-header">Categoría</th>
+                            <th className="custom-header">Monto</th>
+                            <th></th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {sortIngresosByDate(ingresos).map((ingreso) => (
+                            <tr key={ingreso.id} className="custom-row">
+                                <td className="custom-cell">{formatDate(ingreso.time_selected)}</td>
+                                <td className="custom-cell">{ingreso.tipo_movimiento}</td>
+                                <td className="custom-cell">{ingreso.tipo_categoria}</td>
+                                <td className="custom-cell">{ingreso.monto}</td>
+                                <td className="custom-cell">
+                                    <button
+                                        className="btn btn-danger btnNicoIngresos"
+                                        onClick={() => handleDelete(ingreso.id)}
+                                    >
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    );
-};
+    );     
+    }
