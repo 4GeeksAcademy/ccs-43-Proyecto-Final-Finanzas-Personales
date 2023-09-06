@@ -218,7 +218,7 @@ const mostrarAlerta3 = (categoryId) => {
                 </div>
                 <br />
                 <div className="d-flex justify-content-center">
-                    <button type="submit" className="btn btn-dark buttonCargadeDatosDeLogin">Enviar<i className="fa-solid fa-arrow-right"></i></button>
+                    <button disabled={!categoria || !categoria} type="submit" className="btn btn-dark buttonCargadeDatosDeLogin">Enviar<i className="fa-solid fa-arrow-right"></i></button>
                 </div>
             </form>
             </div>
