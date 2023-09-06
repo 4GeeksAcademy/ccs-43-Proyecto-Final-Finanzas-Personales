@@ -14,7 +14,6 @@ export const CharDetail = () => {
   const [fechaFin, setFechaFin] = useState('');
   const [userData, setUserData] = useState(null);
   const [resultadoFilter, setResultadoFilter] = useState([]);
-  console.log(resultadoFilter, "resultadoFilter")
 
   const handleFechaInicioChange = (event) => {
     setFechaInicio(event.target.value);
@@ -46,6 +45,8 @@ export const CharDetail = () => {
     actions.checkLogin(navigate)
   }, []);
 
+  console.log(userData,"userData")
+
   const moneyRegister = userData ? userData.money_register : [];
 
   const datosUnificados = {};
@@ -66,9 +67,9 @@ export const CharDetail = () => {
 
   const miMetodo = () => {
     const filtrado = resultado.filter(evento => {
-      const eventTime = new Date(evento.time_selected);
-      const tempFechaInicio = new Date(fechaInicio);
-      const tempFechaFin = new Date(fechaFin);
+      const eventTime =  formatDateForTable(evento.time_selected);
+      const tempFechaInicio = formatDateForTable(fechaInicio);
+      const tempFechaFin = formatDateForTable(fechaFin);
       return eventTime >= tempFechaInicio && eventTime <= tempFechaFin;
     });
     setResultadoFilter(filtrado);
@@ -140,15 +141,38 @@ export const CharDetail = () => {
       title: 'Fechas',
       text: `¿Está seguro de que este es el rango que quiere? ${fechaInicio} - ${fechaFin}`,
       icon: 'success',
-      buttons: ["No", "Si"],
-    }).then(respuesta => {
+      buttons: {
+        no: {
+          text: "No",
+          value: false,
+          className: "custom-button-no",
+        },
+        yes: {
+          text: "Si",
+          value: true,
+          className: "custom-button-yes",
+        },
+      },
+      
+      customClass: {
+        modal: 'custom-modal', 
+      },
+    }).then((respuesta) => {
       if (respuesta) {
         miMetodo();
       } else {
         swal({ text: "Escoja su nuevo rango de fechas" });
       }
     });
-  }
+  };
+  
+
+  const formatDateForTable = (dateString) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+};
+
+  
 
   return (
     <div className="container containerDefinitivoRuben">
@@ -181,14 +205,14 @@ export const CharDetail = () => {
           </div>
           <div>
             <button onClick={mostrarAlerta1} className=" botonDeBusqueda btn btn-secondary mx-auto mb-4"
-             disabled={!fechaInicio, !fechaFin}
+             disabled={!fechaInicio || !fechaFin}
             >
               Buscar
             </button>
           </div>
         </div>
         <div className="chart-section">
-          <div className="chart-container" style={{ width: '100%', height: '100%' }}>
+          <div className="chart-container" style={{ width: '90%', height: '90%' }}>
             <Pie data={data} options={options} />
           </div>
         </div>

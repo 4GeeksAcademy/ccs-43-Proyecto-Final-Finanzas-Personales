@@ -24,7 +24,7 @@ export const Navbar = () => {
 						aria-expanded="false"
 						aria-label="Toggle navigation"
 						>
-							<span className="landingButton"><i class="fa-solid fa-bars fa-lg"></i></span>
+							<span className="landingButton"><i className="fa-solid fa-bars fa-lg"></i></span>
 					</a>
 				<div className="collapse navbar-collapse ml-auto" id="navbarNav">
 					<ul className="navbar-nav landingNav">

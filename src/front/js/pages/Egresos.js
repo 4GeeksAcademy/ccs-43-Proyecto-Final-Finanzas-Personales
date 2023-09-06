@@ -49,6 +49,8 @@ export const Egresos = () => {
             }
 
             await fetchEgresos();
+            mostrarAlerta3()
+            
         } catch (error) {
             console.log(error);
         }
@@ -71,6 +73,25 @@ export const Egresos = () => {
             return dateB - dateA;
         });
     };
+
+    const mostrarAlerta3 = () => {
+        swal({
+            title: 'Listado de Egresos',
+            text: `Egreso Eliminado`,
+            icon: 'success',
+            timer: '3000',
+          buttons: {
+            yes: {
+              text: "Si",
+              value: true,
+              className: "custom-button-yes",
+            },
+          },
+          customClass: {
+            modal: 'custom-modal', 
+          },
+        })
+      };
 
     return (
         <div className="container containerIngresosNicoSuper">
