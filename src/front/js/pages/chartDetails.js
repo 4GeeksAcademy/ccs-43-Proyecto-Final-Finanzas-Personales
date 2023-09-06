@@ -44,48 +44,8 @@ export const CharDetail = () => {
     fetchUserData();
     actions.checkLogin(navigate)
   }, []);
-
-  console.log(userData)
-
-const userData1 = {
-  "email": "snay208@gmail.com",
-  "first_name": "Ruben",
-  "id": 1,
-  "last_name": "Reyes",
-  "money_register": [
-      {
-          "id": 1,
-          "monto": 1000,
-          "time_selected": "Fri, 01 Sep 2023 00:00:00 GMT",
-          "tipo_categoria": "Sueldo",
-          "tipo_movimiento": "Ingresos"
-      },
-      {
-          "id": 2,
-          "monto": 250,
-          "time_selected": "Sat, 02 Sep 2023 00:00:00 GMT",
-          "tipo_categoria": "Mercado",
-          "tipo_movimiento": "Egresos"
-      },
-      {
-          "id": 4,
-          "monto": 500,
-          "time_selected": "Mon, 04 Sep 2023 00:00:00 GMT",
-          "tipo_categoria": "Bono Productividad ",
-          "tipo_movimiento": "Ingresos"
-      },
-      {
-          "id": 5,
-          "monto": 400,
-          "time_selected": "Wed, 06 Sep 2023 00:00:00 GMT",
-          "tipo_categoria": "Alquiler",
-          "tipo_movimiento": "Egresos"
-      }
-  ],
-  "user_name": "Screin208"
-}
-  
-  const moneyRegister = userData1 ? userData1.money_register : [];
+ 
+  const moneyRegister = userData ? userData.money_register : [];
 
   const miMetodo = () => {
     const filtrado = moneyRegister.filter(evento => {
