@@ -104,13 +104,12 @@ export const TypesOfCategories = () => {
     
       const mostrarAlerta1 = () => {
         swal({
-            title: 'Registro de Categoria',
-            text: `Categoria Agregada ${categoria}`,
+            title: `Categoria Agregada ${categoria}`,
             icon: 'success',
             timer: '3000',
           buttons: {
             yes: {
-              text: "Si",
+              text: "Ok",
               value: true,
               className: "custom-button-yes",
             },
@@ -123,13 +122,12 @@ export const TypesOfCategories = () => {
 
       const mostrarAlerta2 = () => {
         swal({
-            title: 'Registro de Categoria',
-            text: `Categoria Repetida ${categoria}`,
-            icon: 'success',
+            title: `Categoria Repetida ${categoria}`,
+            icon: 'warning',
             timer: '3000',
           buttons: {
             yes: {
-              text: "Si",
+              text: "Ok",
               value: true,
               className: "custom-button-yes",
             },
