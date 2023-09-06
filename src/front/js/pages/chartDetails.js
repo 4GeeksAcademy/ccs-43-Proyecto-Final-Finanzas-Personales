@@ -45,72 +45,7 @@ export const CharDetail = () => {
     actions.checkLogin(navigate)
   }, []);
 
-
-  const datePrueba = {
-    "email": "snay208@gmail.com",
-    "first_name": "Ruben",
-    "id": 1,
-    "last_name": "Reyes",
-    "money_register": [
-        {
-            "id": 1,
-            "monto": 1000,
-            "time_selected": "Fri, 01 Sep 2023 00:00:00 GMT",
-            "tipo_categoria": "Sueldo",
-            "tipo_movimiento": "Ingresos"
-        },
-        {
-            "id": 2,
-            "monto": 250,
-            "time_selected": "Sat, 02 Sep 2023 00:00:00 GMT",
-            "tipo_categoria": "Mercado",
-            "tipo_movimiento": "Egresos"
-        },
-        {
-            "id": 3,
-            "monto": 230,
-            "time_selected": "Sat, 02 Sep 2023 00:00:00 GMT",
-            "tipo_categoria": "Prestaciones",
-            "tipo_movimiento": "Ingresos"
-        },
-        {
-            "id": 4,
-            "monto": 500,
-            "time_selected": "Mon, 04 Sep 2023 00:00:00 GMT",
-            "tipo_categoria": "Bono Productividad ",
-            "tipo_movimiento": "Ingresos"
-        },
-        {
-            "id": 5,
-            "monto": 400,
-            "time_selected": "Wed, 06 Sep 2023 00:00:00 GMT",
-            "tipo_categoria": "Alquiler",
-            "tipo_movimiento": "Egresos"
-        }
-    ],
-    "user_name": "Screin208"
-}
-
-  // console.log(userData,"userData")
-
-  const moneyRegister = datePrueba ? datePrueba.money_register : [];
-  // const moneyRegister = userData ? userData.money_register : [];
-
-  const datosUnificados = {};
-  for (const dato of moneyRegister) {
-    if (datosUnificados[dato.tipo_categoria]) {
-      datosUnificados[dato.tipo_categoria].monto += dato.monto;
-    } else {
-      datosUnificados[dato.tipo_categoria] = {
-        monto: dato.monto,
-        time_selected: dato.time_selected,
-        tipo_categoria: dato.tipo_categoria,
-        tipo_movimiento: dato.tipo_movimiento,
-      };
-    }
-  }
-
-  const resultado = Object.values(datosUnificados);
+  const moneyRegister = userData ? userData.money_register : [];
 
   const miMetodo = () => {
     const filtrado = moneyRegister.filter(evento => {
@@ -131,8 +66,7 @@ export const CharDetail = () => {
     return colorRGBA;
   };
 
-  const colorAleatorio = generarColorPastelAleatorio();
-
+ 
   const options = {
     responsive: true,
     animation: {
@@ -165,28 +99,37 @@ export const CharDetail = () => {
   };
 
   const ingresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Ingresos');
-  const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
+const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
 
-  const labelsIngresos = ingresos.map(data => data.tipo_categoria);
-const labelsEgresos = egresos.map(data => data.tipo_categoria);
+// Obtener todas las categorías únicas
+const allCategories = [...new Set(resultadoFilter.map(data => data.tipo_categoria))];
 
+// Calcular los montos para ingresos y egresos para cada categoría
+const ingresosData = allCategories.map(category => {
+  const filteredData = ingresos.filter(data => data.tipo_categoria === category);
+  return filteredData.reduce((total, data) => total + data.monto, 0);
+});
 
+const egresosData = allCategories.map(category => {
+  const filteredData = egresos.filter(data => data.tipo_categoria === category);
+  return filteredData.reduce((total, data) => total + data.monto, 0);
+});
 
-  const data = {
-    labels: [...labelsIngresos, ...labelsEgresos], // Etiquetas combinadas
-    datasets: [
-      {
-        label: 'Egresos',
-        data: egresos.map(data => data.monto),
-        backgroundColor: generarColorPastelAleatorio(),
-      },
-      {
-        label: 'Ingresos',
-        data: ingresos.map(data => data.monto),
-        backgroundColor: generarColorPastelAleatorio(),
-      }
-    ],
-  };
+const data = {
+  labels: allCategories,
+  datasets: [
+    {
+      label: 'Egresos',
+      data: egresosData,
+      backgroundColor: egresosData.map(() => generarColorPastelAleatorio()),
+    },
+    {
+      label: 'Ingresos',
+      data: ingresosData,
+      backgroundColor: ingresosData.map(() => generarColorPastelAleatorio()),
+    },
+  ],
+};
 
   const mostrarAlerta1 = () => {
     swal({
@@ -223,8 +166,6 @@ const labelsEgresos = egresos.map(data => data.tipo_categoria);
     const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
     return new Date(dateString).toLocaleDateString(undefined, options);
 };
-
-  
 
   return (
     <div className="container containerDefinitivoRuben">
