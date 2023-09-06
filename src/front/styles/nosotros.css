@@ -72,6 +72,15 @@
   width: 50vh;
   height: 15vh;
 }
+.containerCirculoParaFotoNosotrosRuben{
+  width: 43vh;
+  height: 43vh;
+  border-radius: 50%;
+  background-image: url("https://res.cloudinary.com/dronv3ars/image/upload/v1694001255/jf2rkt8ykfhhsc5qikwo.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
 .tech{
   flex-wrap: wrap;
   justify-content: space-evenly;
