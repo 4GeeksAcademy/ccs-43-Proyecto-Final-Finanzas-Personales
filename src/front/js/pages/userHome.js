@@ -244,14 +244,14 @@ export const UserHome = () => {
                     <h6 className="h6NicoUserHomejs"><strong>Total ingresos:</strong></h6><i className="fa-solid fa-money-bill-trend-up iconfontawesomeIngresos" style={{color: "white"}}></i>
                 </div>
                     <h1 id="sumatotaldemovimientosverde" className="sumatotaldemovimientos">$ {totalIngresos.toFixed(2)}</h1>
-                {/* <h6>Total ingresos mes actual</h6> */}
+                    <p className="letrasPequenasEnUserHomeDetalles">Haz Click para ver el detalle</p>
             </Link>
             <Link className="container containerDeUsreHomejsonelinea" to="/Egresos">
                 <div className="mininavbarUserHome">
                     <h6 className="h6NicoUserHomejs"><strong>Total egresos:</strong></h6><i className="fa-solid fa-arrow-trend-down iconEgresosUserHomeNico" style={{color: "white"}}></i>
                 </div>
                     <h1 id="sumatotaldemovimientosrojo" className="sumatotaldemovimientos">$ {totalGastos.toFixed(2)}</h1>
-                {/* <h6>Total ingresos mes actual</h6> */}
+                    <p className="letrasPequenasEnUserHomeDetalles">Haz Click para ver el detalle</p>
             </Link>
             <div className="container containerDeUsreHomejsonelinea">
                 <div className="mininavbarUserHome">
@@ -269,6 +269,7 @@ export const UserHome = () => {
             <div className="container containerDechartHomejs">
                 {/* <h3 className="pdegrafica1Nico">Observa diariamente como se mueven tus estadísticas del mes actual!</h3> */}
                 <canvas id="myChart" width="5vh" height="3vh"></canvas>
+                <p className="letrasPequenasEnUserHomeDetalles">Últimos 7 días de movimientos</p>
             </div>
             <div className="container containerDeUsreHomejs">
                 <table className="custom-table">
