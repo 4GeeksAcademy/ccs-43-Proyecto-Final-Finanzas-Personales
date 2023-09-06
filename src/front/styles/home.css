@@ -13,4 +13,20 @@
 .carousel {
     margin-top: 30px;
 }
+.large-img {
+    max-width: 100%;
+    height: auto; 
+}
+
+@media (min-width: 1200px) {
+    .large-img {
+        max-width: 70%; 
+    }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: black; 
+    color: white;
+}
 

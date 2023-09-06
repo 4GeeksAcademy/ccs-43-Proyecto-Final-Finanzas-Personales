@@ -19,7 +19,7 @@ export const Home = () => {
 						<div className="carousel-item active">	
 							<img
 								src="https://res.cloudinary.com/dronv3ars/image/upload/v1694015259/Control_poe1p7.png"
-								className="mx-auto img-fluid d-none d-lg-block"
+								className="mx-auto img-fluid d-none d-lg-block large-img"
 								alt="Imagen para dispositivos grandes"
 							/>
 							<img
@@ -31,7 +31,7 @@ export const Home = () => {
 						<div className="carousel-item">	
 							<img
 								src="https://res.cloudinary.com/dronv3ars/image/upload/v1694015266/Progreso_zd4y6m.png"
-								className="mx-auto img-fluid d-none d-lg-block"
+								className="mx-auto img-fluid d-none d-lg-block large-img"
 								alt="Imagen para dispositivos grandes"
 							/>
                        		<img
@@ -43,7 +43,7 @@ export const Home = () => {
 						<div className="carousel-item">	
 							<img
 								src="https://res.cloudinary.com/dronv3ars/image/upload/v1694015280/Conversion_nlonf7.png"
-								className="mx-auto img-fluid d-none d-lg-block"
+								className="mx-auto img-fluid d-none d-lg-block large-img"
 								alt="Imagen para dispositivos grandes"
 							/>
                        		<img
