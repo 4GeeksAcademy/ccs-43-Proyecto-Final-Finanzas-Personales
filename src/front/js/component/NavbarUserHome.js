@@ -16,7 +16,7 @@ export const NavbarUserHome = () => {
             <div className="container-fluid containerDeNavbarUerHome">
                 <Link className="navbar-brand" to="/UserHome"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693774740/zyro-image__4_-removebg-preview_qxdzft.png" className="logo-img img-fluid NicoNavbarUSerHomeImg"/></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa-solid fa-bars fa-lg" style={{color: "white"}}></i>
+                        <i className="fa-solid fa-bars fa-lg" style={{color: "white"}}></i>
                     </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">

@@ -144,7 +144,7 @@ export const TypesOfCategories = () => {
             </div>
             <div className="container containerRegistroCategoriesNicoTypeOfCategories">
                 <div className="container containerlapiztypesofcategoriesNico">
-                    <i class="fa-solid fa-pencil"></i>
+                    <i className="fa-solid fa-pencil"></i>
                     <h5 className="TituloTypesOfCategories">Registro de Categorías</h5>
                 </div>
                 <table className="table tableNicoTypesOfCategories">
