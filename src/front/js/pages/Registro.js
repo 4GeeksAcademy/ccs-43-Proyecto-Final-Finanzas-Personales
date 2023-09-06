@@ -38,9 +38,9 @@ export const Registro = () => {
     const mostrarAlerta1 = () => {
         swal({
           title: 'Registro de Usuario',
-          text: `Se Registro de Forma Exitosa`,
+          text: `Registro exitoso`,
           icon: 'success',
-          timer: '500'
+          timer: '3000'
         });
       }
 

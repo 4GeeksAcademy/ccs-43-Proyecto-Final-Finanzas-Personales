@@ -96,11 +96,12 @@ export const Movimientos = () => {
           body: JSON.stringify(data)
         };
         const response = await fetch(API_URL + "/api/RegistroMovimientos", requestConfig);
-        if (response.status !== 200) {
+        if (response.status !== 201) {
           console.log("Error en la solicitud. Code: ", response.status);
           return;
         }
         const responseBody = await response.json();
+        ejecutarMetodos();
         console.log("API response:", responseBody);
       } catch (error) {
         console.log(error);
@@ -159,6 +160,7 @@ export const Movimientos = () => {
     };
 
     const mostrarAlerta1 = () => {
+      console.log("alerta funcionando")
       swal({
         title: 'Registro de movimiento',
         text: `Registro exitoso`,
@@ -168,17 +170,20 @@ export const Movimientos = () => {
     }
 
     const ejecutarMetodos = () => {
+      console.log("metodos funcionando")
       mostrarAlerta1(); // Ejecuta el primer método
       limpiarCampos(); // Ejecuta el segundo método
     }
 
     return (
-      <div className="container-fluid containerDeRegistroM mx-auto p-2">
-      <div className="container containerDeRegistroM2">
-        <h2 id="tituloDeRegistroM" className="text-center mt-4 mb-5">Registro de Movimientos</h2>
+      <div className="container-fluid containerDeRegistroM mx-auto p-0">
+      <div className="container containerDeRegistroM2 p-0">
+          <h5 id="tituloDeRegistroM" className="text-center mt-4 mb-4">
+          <i className="fa-regular fa-credit-card"></i>Registro de Movimientos
+          </h5>
         <form 
           onSubmit={handleSubmit} 
-          className="formularioDeRegistroM mx-auto col-md-10"
+          className="formularioDeRegistroM mx-auto col-md-12"
           >
             <div className="form-group col-sm-8 mx-auto">
               <input
@@ -246,7 +251,6 @@ export const Movimientos = () => {
             <div className="d-flex justify-content-between mt-3">
               <button  
                 type="submit" 
-                //onClick={ejecutarMetodos} 
                 disabled={!fecha || !tipo || !categoria || !moneda || !monto}
                 className="botonDeRegistroM btn btn-dark mx-auto mb-4"
                 >
