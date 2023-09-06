@@ -6,6 +6,7 @@ import 'animate.css'
 export const Nosotros = () => {
     return (
         <div className="container principalNosotros">
+            <h2 className="titulo text-center">Desarrolladores</h2>
             <div className="container containerNosotrosTodos">
                 <div className="container containerPrincipalFotoNosotros">
                     <div className="container containerCirculoParaFotoNosotrosLeo">
@@ -30,7 +31,7 @@ export const Nosotros = () => {
                 </div>
             </div>
             <div className="container tech d-flex">
-                    <h3 className="tecnologias">Tecnologías</h3>
+                    <h2 className="tecnologias">Tecnologías</h2>
                 <div className="logo containerlogosTecnologiasSuperNico">
                     <div class="logo-row justify-content-center d-flex mb-3">
                         <span className="logo"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693269073/html_slnwee.png" className="icon" alt="HTML Logo"/></span>
@@ -48,7 +49,7 @@ export const Nosotros = () => {
                 </div>
             </div>
             <div className="container proyeccion align-items-center d-flex">
-                <h3 className="titulo">Proyección</h3>
+                <h2 className="titulo">Proyección</h2>
                 <div className="roadmap">
                     <span className="roadmap"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693770125/Proyeccion_sin_fondo_sgxivj.png" className="iconroadmap" alt="map"/></span>
                 </div>
