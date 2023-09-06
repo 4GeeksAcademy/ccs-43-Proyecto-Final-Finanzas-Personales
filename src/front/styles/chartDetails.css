@@ -14,7 +14,7 @@
     text-align: center;
 }
 .h1rubenSuperDfinitivo{
-    margin-bottom: 5vh;
+    /* margin-bottom: 5vh; */
 }
 .date-section{
     display: flex;
@@ -54,3 +54,30 @@
     margin-top: 9%;
     background-color:black;
 }
+
+.swal-modal {
+    background-color: #f7f4f4; /* Cambia el color de fondo de la alerta */
+    border-radius: 10px; /* Agrega esquinas redondeadas */
+    padding: 20px; /* Ajusta el espaciado interior */
+  }
+
+
+  .swal-button {
+    background-color: #007bff; /* Cambia el color de fondo */
+    color: #fff; /* Cambia el color del texto */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Agrega esquinas redondeadas */
+    padding: 10px 20px; /* Ajusta el espaciado interior */
+  }
+  
+
+  .custom-button-no {
+    background-color: #141313; /* Cambia el color de fondo del botón "No" */
+    color: #fff; /* Cambia el color del texto del botón "No" */
+  }
+  
+  .custom-button-yes {
+    background-color: #0d0d0e; /* Cambia el color de fondo del botón "Si" */
+    color: #fff; /* Cambia el color del texto del botón "Si" */
+  }
+  
