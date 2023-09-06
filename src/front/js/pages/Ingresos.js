@@ -60,7 +60,7 @@ export const Ingresos = () => {
         try {
             const API_URL = process.env.BACKEND_URL;
             swal({
-                title: 'Esta Seguro que desea Eliminar el Ingreso?',
+                title: '¿Está seguro de que desea eliminar el ingreso?',
                 icon: 'warning',
                 buttons: {
                     no: {

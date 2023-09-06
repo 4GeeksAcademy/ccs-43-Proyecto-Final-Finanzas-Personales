@@ -40,7 +40,7 @@ export const Egresos = () => {
             const API_URL = process.env.BACKEND_URL;
             // Mostrar la alerta antes de enviar la solicitud de eliminación
             swal({
-                title: 'Esta Seguro que desea Eliminar el Egreso?',
+                title: '¿Está seguro de que desea eliminar el egreso',
                 icon: 'warning',
                 buttons: {
                     no: {
@@ -101,8 +101,8 @@ export const Egresos = () => {
 
     const mostrarAlerta3 = () => {
         swal({
-            title: 'Listado de Egresos',
-            text: `Egreso Eliminado`,
+            title: `Egreso Eliminado`,
+            // text: `Egreso Eliminado`,
             icon: 'success',
             timer: '3000',
             buttons: {
