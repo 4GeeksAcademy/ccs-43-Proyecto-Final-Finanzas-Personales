@@ -30,7 +30,7 @@ export const Login = () => {
             console.log("Inicio de sesión exitoso", response.data);
             // You can perform any necessary action after successful login, like redirecting the user.
             mostrarAlerta1()
-            navigate("/UserHome")
+            navigate("/Inicio")
         } catch (error) {
             mostrarAlerta2()
             console.error("Error al iniciar sesión", error.response.data);

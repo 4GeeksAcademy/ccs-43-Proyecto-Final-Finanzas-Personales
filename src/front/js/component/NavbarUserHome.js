@@ -14,14 +14,14 @@ export const NavbarUserHome = () => {
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top px-lg-5" id="navUserHomeNicoSupremo">
             <div className="container-fluid containerDeNavbarUerHome">
-                <Link className="navbar-brand" to="/UserHome"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693774740/zyro-image__4_-removebg-preview_qxdzft.png" className="logo-img img-fluid NicoNavbarUSerHomeImg"/></Link>
+                <Link className="navbar-brand" to="/Inicio"><img src="https://res.cloudinary.com/dronv3ars/image/upload/v1693774740/zyro-image__4_-removebg-preview_qxdzft.png" className="logo-img img-fluid NicoNavbarUSerHomeImg"/></Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <i className="fa-solid fa-bars fa-lg" style={{color: "white"}}></i>
                     </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link active text-light" aria-current="page" to="/UserHome">Home</Link>
+                            <Link className="nav-link active text-light" aria-current="page" to="/Inicio">Inicio</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link text-light" to="/Categorias">Personalizar Categorias</Link>
