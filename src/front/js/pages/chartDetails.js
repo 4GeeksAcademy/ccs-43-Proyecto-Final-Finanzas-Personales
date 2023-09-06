@@ -45,7 +45,47 @@ export const CharDetail = () => {
     actions.checkLogin(navigate)
   }, []);
 
-  const moneyRegister = userData ? userData.money_register : [];
+  console.log(userData)
+
+const userData1 = {
+  "email": "snay208@gmail.com",
+  "first_name": "Ruben",
+  "id": 1,
+  "last_name": "Reyes",
+  "money_register": [
+      {
+          "id": 1,
+          "monto": 1000,
+          "time_selected": "Fri, 01 Sep 2023 00:00:00 GMT",
+          "tipo_categoria": "Sueldo",
+          "tipo_movimiento": "Ingresos"
+      },
+      {
+          "id": 2,
+          "monto": 250,
+          "time_selected": "Sat, 02 Sep 2023 00:00:00 GMT",
+          "tipo_categoria": "Mercado",
+          "tipo_movimiento": "Egresos"
+      },
+      {
+          "id": 4,
+          "monto": 500,
+          "time_selected": "Mon, 04 Sep 2023 00:00:00 GMT",
+          "tipo_categoria": "Bono Productividad ",
+          "tipo_movimiento": "Ingresos"
+      },
+      {
+          "id": 5,
+          "monto": 400,
+          "time_selected": "Wed, 06 Sep 2023 00:00:00 GMT",
+          "tipo_categoria": "Alquiler",
+          "tipo_movimiento": "Egresos"
+      }
+  ],
+  "user_name": "Screin208"
+}
+  
+  const moneyRegister = userData1 ? userData1.money_register : [];
 
   const miMetodo = () => {
     const filtrado = moneyRegister.filter(evento => {
@@ -67,37 +107,6 @@ export const CharDetail = () => {
   };
 
  
-  const options = {
-    responsive: true,
-    animation: {
-      duration: 1500,
-      easing: 'easeOutBounce',
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-      },
-    },
-    scales: {
-      y: {
-        min: -25,
-        max: 100,
-        grid: {
-          color: generarColorPastelAleatorio(),
-        },
-      },
-      x: {
-        ticks: {
-          color: generarColorPastelAleatorio(),
-          font: {
-            size: 12,
-          },
-        },
-      },
-    },
-  };
-
   const ingresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Ingresos');
 const egresos = resultadoFilter.filter(data => data.tipo_movimiento === 'Egresos');
 
@@ -115,21 +124,7 @@ const egresosData = allCategories.map(category => {
   return filteredData.reduce((total, data) => total + data.monto, 0);
 });
 
-const data = {
-  labels: allCategories,
-  datasets: [
-    {
-      label: 'Egresos',
-      data: egresosData,
-      backgroundColor: egresosData.map(() => generarColorPastelAleatorio()),
-    },
-    {
-      label: 'Ingresos',
-      data: ingresosData,
-      backgroundColor: ingresosData.map(() => generarColorPastelAleatorio()),
-    },
-  ],
-};
+
 
   const mostrarAlerta1 = () => {
     swal({
@@ -166,6 +161,59 @@ const data = {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' };
     return new Date(dateString).toLocaleDateString(undefined, options);
 };
+
+const coloresParaDatos = allCategories.map(() => generarColorPastelAleatorio());
+
+const data = {
+  labels: allCategories,
+  datasets: [
+    {
+      label: 'Egresos',
+      data: egresosData,
+      backgroundColor: coloresParaDatos, // Utilizar los mismos colores aquí
+    },
+    {
+      label: 'Ingresos',
+      data: ingresosData,
+      backgroundColor: coloresParaDatos, // Utilizar los mismos colores aquí
+    },
+  ],
+};
+
+// ...
+
+const options = {
+  responsive: true,
+  animation: {
+    duration: 1500,
+    easing: 'easeOutBounce',
+  },
+  plugins: {
+    legend: {
+      display: true,
+      position: 'top',
+    },
+  },
+  scales: {
+    y: {
+      min: -25,
+      max: 100,
+      grid: {
+        color: coloresParaDatos[0], // Utilizar un color de ejemplo aquí
+      },
+    },
+    x: {
+      ticks: {
+        color: coloresParaDatos[0], // Utilizar un color de ejemplo aquí
+        font: {
+          size: 12,
+        },
+      },
+    },
+  },
+};
+
+
 
   return (
     <div className="container containerDefinitivoRuben">
