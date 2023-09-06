@@ -10,32 +10,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-/* ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #000000;
-    border-radius: 5px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background-color: #F0F0F0;
-  }
-  
-  ::-webkit-scrollbar-track-piece {
-    background-color: #CCCCCC;
-  }
-  
-  ::-webkit-scrollbar-thumb:vertical {
-    border: 1px solid #ffffff;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #0055CC;
-  }
-   */
-   /* Estilos para la tabla personalizada */
 .custom-table-container {
   max-width: 100%;
   overflow-x: auto;
@@ -64,7 +38,6 @@
   text-align: center;
 }
 
-/* Estilos para botón de eliminar */
 .btn-danger {
   background-color: #ff0000;
   color: #fff;
