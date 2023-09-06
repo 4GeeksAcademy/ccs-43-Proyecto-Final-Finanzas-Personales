@@ -28,11 +28,11 @@ export const Registro = () => {
                     }
                 }
             );
-
-            console.log("Registro exitoso", response.data);
+            // console.log("Registro exitoso", response.data);
             mostrarAlerta1()
             navigate("/Login")
         } catch (error) {
+          mostrarAlerta2()
             console.error("Error al registrar", error);
         }
 
@@ -40,13 +40,32 @@ export const Registro = () => {
 
       const mostrarAlerta1 = () => {
         swal({
-            title: 'Registro de Usuario',
-            text: `Registro exitoso`,
+            title: 'Registro exitoso',
+            // text: `Registro exitoso`,
             icon: 'success',
             timer: '3000',
           buttons: {
             yes: {
-              text: "Si",
+              text: "Ok",
+              value: true,
+              className: "custom-button-yes",
+            },
+          },
+          customClass: {
+            modal: 'custom-modal', 
+          },
+        })
+      };
+
+      const mostrarAlerta2 = () => {
+        swal({
+            title: 'Usuario o Correo ya existente',
+            // text: `Registro exitoso`,
+            icon: 'success',
+            timer: '3000',
+          buttons: {
+            yes: {
+              text: "Ok",
               value: true,
               className: "custom-button-yes",
             },

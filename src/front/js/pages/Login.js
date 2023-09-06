@@ -32,19 +32,20 @@ export const Login = () => {
             mostrarAlerta1()
             navigate("/UserHome")
         } catch (error) {
+            mostrarAlerta2()
             console.error("Error al iniciar sesión", error.response.data);
         }
     };
 
     const mostrarAlerta1 = () => {
         swal({
-            title: 'Inicio de sesión',
-            text: `Inicio de sesión exitoso`,
+            title: 'Inicio de sesión exitoso',
+            // text: `Inicio de sesión exitoso`,
             icon: 'success',
             timer: '3000',
           buttons: {
             yes: {
-              text: "Si",
+              text: "Ok",
               value: true,
               className: "custom-button-yes",
             },
@@ -54,6 +55,27 @@ export const Login = () => {
           },
         })
       };
+
+      const mostrarAlerta2 = () => {
+        swal({
+            title: 'Correo o Contraseña Invalidad',
+            // text: `Inicio de sesión exitoso`,
+            icon: 'success',
+            timer: '3000',
+          buttons: {
+            yes: {
+              text: "Ok",
+              value: true,
+              className: "custom-button-yes",
+            },
+          },
+          customClass: {
+            modal: 'custom-modal', 
+          },
+        })
+      };
+
+
 
 
     return (
