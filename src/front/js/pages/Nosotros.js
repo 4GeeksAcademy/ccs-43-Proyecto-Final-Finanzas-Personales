@@ -22,7 +22,7 @@ export const Nosotros = () => {
                     </div>
                 </div>
                 <div className="container containerPrincipalFotoNosotros">
-                    <div className="container containerCirculoParaFotoNosotros">
+                    <div className="container containerCirculoParaFotoNosotrosRuben">
                     </div>
                     <div className="containerFotoNombresNosotrosRuben">
 
