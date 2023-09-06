@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import "../../styles/Ingresos&Egresos.css"
 
 export const Ingresos = () => {
     const { store, actions } = useContext(Context);
