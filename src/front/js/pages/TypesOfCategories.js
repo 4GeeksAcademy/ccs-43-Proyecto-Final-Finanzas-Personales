@@ -108,7 +108,7 @@ export const TypesOfCategories = () => {
         });
       }
 
-      const placeholderText = tipo === "" ? "Escoge un tipo de categoría" : (tipo === "Ingresos" ? "Tipo de Categoría. Ejemplo: Salario" : "Tipo de Categoría. Ejemplo: Medicinas");
+      const placeholderText = tipo === "" ? "Escoge un tipo de categoría" : (tipo === "Ingresos" ? "Tipo de Ingreso. Ejemplo: Salario" : "Tipo de Egreso. Ejemplo: Medicinas");
 
     return (
         <div className="container containerDeTypeOfCategories">
@@ -120,7 +120,7 @@ export const TypesOfCategories = () => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <select className="inputDeLogin" placeholder="Selecciona Tipo de Categoría" value={tipo} onChange={handleTipoChange} required>
-                        <option disabled value="">Selecciona un tipo</option>
+                        <option disabled value="">Selecciona un tipo de Categoría</option>
                         <option value="Ingresos">Ingresos</option>
                         <option value="Egresos">Egresos</option>
                     </select>

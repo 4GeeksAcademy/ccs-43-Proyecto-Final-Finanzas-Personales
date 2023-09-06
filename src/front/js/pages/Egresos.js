@@ -73,37 +73,41 @@ export const Egresos = () => {
     };
 
     return (
-        <div className="container">
-            <h2>Egresos</h2>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>Fecha de Registro</th>
-                        <th>Tipo de Movimiento</th>
-                        <th>Tipo de Categoría</th>
-                        <th>Monto</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortEgresosByDate(egresos).map((egreso) => (
-                        <tr key={egreso.id}>
-                            <td>{formatDate(egreso.time_selected)}</td>
-                            <td>{egreso.tipo_movimiento}</td>
-                            <td>{egreso.tipo_categoria}</td>
-                            <td>{egreso.monto}</td>
-                            <td>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleDelete(egreso.id)}
-                                >
-                                    Eliminar
-                                </button>
-                            </td>
+        <div className="container containerIngresosNicoSuper">
+            <div className="containerTituloIngresosyEgresosNico">
+                <h2><i className="fa-solid fa-arrow-trend-down iconEgresosEgresosNico" style={{color: "black"}}></i>Egresos</h2>
+            </div>
+            <div className="table-responsive">
+                <table className="table custom-table">
+                    <thead style={{background: "RGBA(255, 60, 102, 0.4)"}}>
+                        <tr>
+                            <th className="custom-header">Fecha</th>
+                            <th className="custom-header">Movimiento</th>
+                            <th className="custom-header">Categoría</th>
+                            <th className="custom-header">Monto</th>
+                            <th></th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {sortEgresosByDate(egresos).map((egreso) => (
+                            <tr key={egreso.id} className="custom-row">
+                                <td className="custom-cell">{formatDate(egreso.time_selected)}</td>
+                                <td className="custom-cell">{egreso.tipo_movimiento}</td>
+                                <td className="custom-cell">{egreso.tipo_categoria}</td>
+                                <td className="custom-cell">{egreso.monto}</td>
+                                <td className="custom-cell">
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => handleDelete(egreso.id)}
+                                    >
+                                        Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
