@@ -49,6 +49,7 @@ export const Ingresos = () => {
             }
     
             await fetchIngresos();
+            mostrarAlerta3()
         } catch (error) {
             console.log(error);
         }
@@ -72,6 +73,26 @@ export const Ingresos = () => {
             return dateB - dateA;
         });
     };
+
+    const mostrarAlerta3 = () => {
+        swal({
+            title: 'Listado de Ingesos',
+            text: `Ingreso Eliminado`,
+            icon: 'success',
+            timer: '3000',
+          buttons: {
+            yes: {
+              text: "Si",
+              value: true,
+              className: "custom-button-yes",
+            },
+          },
+          customClass: {
+            modal: 'custom-modal', 
+          },
+        })
+      };
+
 
     return (
         <div className="container mt-25">

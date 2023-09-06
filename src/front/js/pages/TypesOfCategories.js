@@ -55,6 +55,7 @@ export const TypesOfCategories = () => {
         }
 
         await fetchCategories();
+        mostrarAlerta3()
     } catch (error) {
         console.log(error);
     }
@@ -81,9 +82,11 @@ export const TypesOfCategories = () => {
         const response = await fetch(API_URL + "/api/RegistroCategorias", requestConfig);
         if (response.status !== 201) {
             console.log("Error en la solicitud. Código: ", response.status);
+            mostrarAlerta2()
             return;
         }
         const responseBody = await response.json();
+        mostrarAlerta1()
 
         fetchCategories();
         
@@ -99,14 +102,62 @@ export const TypesOfCategories = () => {
       fetchCategories()
     },[])
     
-    const mostrarAlerta1 = () => {
+      const mostrarAlerta1 = () => {
         swal({
-          title: 'Registro de Categoria',
-          text: `Se agrego esta categoria`,
-          icon: 'success',
-          timer: '500'
-        });
-      }
+            title: 'Registro de Categoria',
+            text: `Categoria Agregada ${categoria}`,
+            icon: 'success',
+            timer: '3000',
+          buttons: {
+            yes: {
+              text: "Si",
+              value: true,
+              className: "custom-button-yes",
+            },
+          },
+          customClass: {
+            modal: 'custom-modal', 
+          },
+        })
+      };
+
+      const mostrarAlerta2 = () => {
+        swal({
+            title: 'Registro de Categoria',
+            text: `Categoria Repetida ${categoria}`,
+            icon: 'success',
+            timer: '3000',
+          buttons: {
+            yes: {
+              text: "Si",
+              value: true,
+              className: "custom-button-yes",
+            },
+          },
+          customClass: {
+            modal: 'custom-modal', 
+          },
+        })
+      };
+
+      const mostrarAlerta3 = () => {
+        swal({
+            title: 'Registro de Categoria',
+            text: `Categoria Eliminada ${categoria}`,
+            icon: 'success',
+            timer: '3000',
+          buttons: {
+            yes: {
+              text: "Si",
+              value: true,
+              className: "custom-button-yes",
+            },
+          },
+          customClass: {
+            modal: 'custom-modal', 
+          },
+        })
+      };
 
       const placeholderText = tipo === "" ? "Escoge un tipo de categoría" : (tipo === "Ingresos" ? "Tipo de Categoría. Ejemplo: Salario" : "Tipo de Categoría. Ejemplo: Medicinas");
 
@@ -138,7 +189,7 @@ export const TypesOfCategories = () => {
                 </div>
                 <br />
                 <div className="d-flex justify-content-center">
-                    <button onClick={mostrarAlerta1} type="submit" className="btn btn-dark buttonCargadeDatosDeLogin">Enviar<i className="fa-solid fa-arrow-right"></i></button>
+                    <button type="submit" className="btn btn-dark buttonCargadeDatosDeLogin">Enviar<i className="fa-solid fa-arrow-right"></i></button>
                 </div>
             </form>
             </div>
