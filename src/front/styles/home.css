@@ -30,3 +30,10 @@
     color: white;
 }
 
+@media (max-width: 768px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+        background-color: inherit;
+        color: inherit;
+    }
+}
